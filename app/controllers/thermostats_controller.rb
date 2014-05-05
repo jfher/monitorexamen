@@ -1,6 +1,6 @@
 class ThermostatsController < ApplicationController
   before_action :set_thermostat, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  # load_and_authorize_resource
   # GET /thermostats
   # GET /thermostats.json
   def index
@@ -25,7 +25,7 @@ class ThermostatsController < ApplicationController
   # POST /thermostats.json
   def create
     @thermostat = Thermostat.new(thermostat_params)
-
+    @thermostat.user_id=current_user.id
     respond_to do |format|
       if @thermostat.save
         format.html { redirect_to @thermostat, notice: 'Thermostat was successfully created.' }
