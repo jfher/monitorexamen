@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Serial:</strong>
+  <%= @thermostat.serial %>
+</p>
+
+<p>
+  <strong>Temperature:</strong>
+  <%= @thermostat.temperature %>
+</p>
+
+<p>
+  <strong>Humidity:</strong>
+  <%= @thermostat.humidity %>
+</p>
+
+<%= link_to 'Edit', edit_thermostat_path(@thermostat) %> |
+<%= link_to 'Back', thermostats_path %>
