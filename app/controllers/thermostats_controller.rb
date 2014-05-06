@@ -1,16 +1,14 @@
 class ThermostatsController < ApplicationController
   before_action :set_thermostat, only: [:show, :edit, :update, :destroy]
-
-   load_and_authorize_resource
+   #load_and_authorize_resource
    #authorize_resource
    #load_and_authorize_resource :through => :current_user
   # GET /thermostats
   # GET /thermostats.json
   def index
-    if user_signed_in? && current_user.role == 'admin'
+    if user_signed_in? && current_user.id ==1
       redirect_to '/admi'
-      
-    
+      @thermostats=Thermostat.all
     else
     if    user_signed_in?
        redirect_to '/home'

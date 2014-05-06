@@ -1,5 +1,5 @@
+<% if user_signed_in? && current_user.id != nil %>
 <h1>Listing thermostats</h1>
- 
 <table>
   <thead>
    <tr>
@@ -50,3 +50,6 @@
 <br>
 
 <%= link_to 'New Thermostat', new_thermostat_path %>
+<% else %>
+<h1>Permission Denied!!</h1>
+<% end %>
