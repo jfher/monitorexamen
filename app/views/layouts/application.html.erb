@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+<img align= "right" src="\images\therm.jpg" alt="rss feed"  />
 <head>
   <title>ThermMonitor</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -12,10 +14,10 @@
   <% else %>
     <tr>
       <td>
-         <a href="/users/sign_in"><button><b><big>Sign in</big></b></button></a>
+          <a href="/users/sign_in" class="btn btn-success">Sign in</a>
       </td>
       <td>
-         <a href="/users/sign_up"><button><b><big>Sign up</big></b></button></a>
+         <a href="/users/sign_up" class="btn btn-success">Sign up</a>
       </td> 
     </tr>
   <% end %>

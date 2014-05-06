@@ -1,5 +1,11 @@
+ 
+<h1 class="lead">Admin view</h1>
+
+  </tbody>
+
  </tbody>
- <% if user_signed_in? && current_user.id == 1 %>
+ 
+
    <tbody>
     <% @users.each do |user| %>
       <tr>
@@ -8,14 +14,9 @@
         <br>
         <td><b><%= user.email %></b></td> <td>
         <br>
-        <b>Created At</b>
-        <br>
-        <td><%= user.created_at %></td>
-        <br>
-        <b>Updated At</b>
-        <br>
-        <td><%= user.updated_at %></td>
-        <br>
+        <td>serial</td>
+        <td>temperature </td>
+        <td>humidity </td>
 
         <% @thermostats.each do |thermostat| %>
       <tr>
@@ -24,14 +25,15 @@
         <td><%= thermostat.serial %></td>
         <td><%= thermostat.temperature %></td>
         <td><%= thermostat.humidity %></td>
-        <td><%= link_to 'Show', thermostat %></td>
-        <td><%= link_to 'Edit', edit_thermostat_path(thermostat) %></td>
-       <td><a href="/thermostats/destroy/<%= thermostat.id %>">Delete</a></td>
+
+        <td><%= link_to 'Show', thermostat,:class=>"btn btn-success" %></td>
+        <td><%= link_to 'Edit', edit_thermostat_path(thermostat),:class=>"btn btn-success" %></td>
+        <td><%= link_to 'Destroy', thermostat, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-success" %></td>
+        <% end %>
+        
+
       </tr>
     <% end %>
   </tr>
-    <% end %>
+    
       </tbody>
-    <% else %>
-   <h1>Permission denied!!</h1>
-     <% end %>
