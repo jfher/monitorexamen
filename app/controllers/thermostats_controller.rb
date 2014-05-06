@@ -1,6 +1,6 @@
 class ThermostatsController < ApplicationController
   before_action :set_thermostat, only: [:show, :edit, :update, :destroy]
-  # load_and_authorize_resource
+   load_and_authorize_resource
   # GET /thermostats
   # GET /thermostats.json
   def index

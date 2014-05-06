@@ -2,23 +2,30 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    if user.nil? == false 
-       if user.role == 'admin'
-        can :manage, :all
-        end
-        if user.role == 'simple'
-         can :destroy, :all
-       end
+   # if user.nil? == false 
+    #   if user.role == 'admin'
+     #   can :manage, :all
+      #  end
+       # if user.role == 'simple'
+        # can :destroy, :all
+       #end
  
-    else
-      can :read, :all
-    end
-
-     # if user.nil? ==false    
-      #  can :manage, :all
     #else
      # can :read, :all
     #end
+
+    if user.nil? ==false 
+        if user.role == 'admin'
+        can :manage, :all
+        
+        else
+          can :manage, Thermostat
+        end  
+      #  can :manage, :all
+
+    else
+      can :read, :all
+    end
 
 
         

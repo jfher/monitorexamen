@@ -9,6 +9,7 @@ ThermMonitor::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'thermostats#index'
+   get '/thermostats/destroy/:id' => 'thermostats#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
