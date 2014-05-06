@@ -1,37 +1,36 @@
+<h1>Listing thermostats</h1>
+ 
+<table>
+  <thead>
+    <tr>
+      <th>Serial</th>
+      <th>Temperature</th>
+      <th>Humidity</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
 
-<img align= "right" src="\images\therm.jpg" alt="rss feed" />
+  <tbody>
+    <% @thermostats.each do |thermostat| %>
+      <tr>
+         <% if current_user.nil? ==false %>
+        <% if current_user.id ==thermostat.user_id %>
+        <td><%= thermostat.serial %></td>
+        <td><%= thermostat.temperature %></td>
+        <td><%= thermostat.humidity %></td>
+        <td><%= link_to 'Show', thermostat %></td>
+        <td><%= link_to 'Edit', edit_thermostat_path(thermostat) %></td>
+        <td><%= link_to 'Destroy', thermostat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <br>
 
-<video width="320" height="240" controls>
-  <source src="video/video.mp4" type="video/mp4">
-</video>
-
-<table>
-   <tr>
-     <td>
-         <a href="/"><button><b><big>ThermMonitor</big></b></button></a>
-      </td>
-   </tr>
-	<tr>
-      <td>
-         <a href="https://www.facebook.com/ThermMonitor"><button>Facebook</button></b></a>
-      </td>
-      <td>
-         <a href="https://www.twitter.com/ThermMonitor"><button>Twitter</button></b></a>
-      </td>
-      <td>
-         <a href="https://www.youtube.com/ThermMonitor"><button>YouTube</button></b></a>
-      </td>
-	</tr>
-    <tr>
-      <td>
-         <a href="/about_us"><button><b><big>About us</big></b></button></a>
-      </td>
-      <td>
-         <a href="/contact_us"><button><b><big>Contact Us</big></b></button></a>
-      </td>
-    </tr>
-
-</table>
-</br>
-
+<%= link_to 'New Thermostat', new_thermostat_path %>
