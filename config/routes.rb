@@ -8,6 +8,8 @@ ThermMonitor::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
   get '/home' => 'thermostats#home'
   get '/admi' => 'thermostats#admi'
+  get '/about_us' => 'thermostats#about'
+  get '/contact_us' => 'thermostats#contact'
   # You can have the root of your site routed with "root"
    root 'thermostats#index'
 
