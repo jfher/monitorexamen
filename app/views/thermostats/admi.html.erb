@@ -1,0 +1,32 @@
+
+
+  </tbody>
+   <tbody>
+    <% @users.each do |user| %>
+      <tr>
+         
+        <td><%= user.email %></td>
+        <% @thermostats.each do |thermostat| %>
+      <tr>
+         <br>
+         
+        <% if user.id ==thermostat.user_id %>
+        <td><%= thermostat.serial %></td>
+        <td><%= thermostat.temperature %></td>
+        <td><%= thermostat.humidity %></td>
+        <td><%= link_to 'Show', thermostat %></td>
+        <td><%= link_to 'Edit', edit_thermostat_path(thermostat) %></td>
+        <td><%= link_to 'Destroy', thermostat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        
+
+      </tr>
+    <% end %>
+
+    
+        
+       
+
+      </tr>
+    <% end %>
+  </tbody>

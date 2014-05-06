@@ -10,8 +10,14 @@
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to('Sign out', '/users/sign_out', :method => :delete) %>
   <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or
-    <%= link_to "Sign in", new_user_session_path %>
+    <tr>
+      <td>
+         <a href="/users/sign_in"><button><b><big>Sign in</big></b></button></a>
+      </td>
+      <td>
+         <a href="/users/sign_up"><button><b><big>Sign up</big></b></button></a>
+      </td> 
+    </tr>
   <% end %>
 </div>
 <%= yield %>

@@ -14,7 +14,23 @@ class Ability
      # can :read, :all
     #end
 
-    if user.nil? ==false 
+    #if user.nil? ==false 
+        #if user.role == 'admin'
+        #can :read, :all
+        #end
+        #else
+         # can :manage, Thermostat
+        #end  
+       # if user.role == 'simple'
+      #   can :manage,  Thermostat
+     #   end
+     
+    #else
+     # can :read, :all
+    #end
+
+
+   if user.nil? ==false 
         if user.role == 'admin'
         can :manage, :all
         
@@ -25,10 +41,9 @@ class Ability
 
     else
       can :read, :all
-    end
+    end    
 
 
-        
 
     # Define abilities for the passed in user here. For example:
     #
