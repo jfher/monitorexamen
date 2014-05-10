@@ -17,6 +17,7 @@
         <td>serial</td>
         <td>temperature </td>
         <td>humidity </td>
+        <td>energy</td>
 
         <% @thermostats.each do |thermostat| %>
       <tr>
@@ -25,6 +26,7 @@
         <td><%= thermostat.serial %></td>
         <td><%= thermostat.temperature %></td>
         <td><%= thermostat.humidity %></td>
+        <td><%= thermostat.energy %></td>
 
         <td><%= link_to 'Show', thermostat,:class=>"btn btn-success" %></td>
         <td><%= link_to 'Edit', edit_thermostat_path(thermostat),:class=>"btn btn-success" %></td>

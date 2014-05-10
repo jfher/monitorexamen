@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505140943) do
+ActiveRecord::Schema.define(version: 20140510001444) do
 
   create_table "thermostats", force: true do |t|
     t.string   "serial"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140505140943) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "energy"
   end
 
   add_index "thermostats", ["user_id"], name: "index_thermostats_on_user_id"

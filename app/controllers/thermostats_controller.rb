@@ -89,6 +89,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thermostat_params
-      params.require(:thermostat).permit(:serial, :temperature, :humidity)
+      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy)
     end
 end
