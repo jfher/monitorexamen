@@ -46,6 +46,7 @@ end
   def create
     @thermostat = Thermostat.new(thermostat_params)
     @thermostat.user_id=current_user.id
+    @thermostat.energy = 0
     respond_to do |format|
       if @thermostat.save
         format.html { redirect_to @thermostat, notice: 'Thermostat was successfully created.' }
@@ -56,6 +57,21 @@ end
       end
     end
   end
+
+  def add
+    @thermostat = Thermostat.find(params[:id])
+    @thermostat.temperature = @thermostat.temperature + 1
+    @thermostat.save
+    redirect_to :back
+  end
+
+  def sub
+    @thermostat = Thermostat.find(params[:id])
+    @thermostat.temperature = @thermostat.temperature - 1
+    @thermostat.save
+    redirect_to :back
+  end
+
 
   # PATCH/PUT /thermostats/1
   # PATCH/PUT /thermostats/1.json

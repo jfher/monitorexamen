@@ -4,20 +4,31 @@
   <strong>Serial:</strong>
   <%= @thermostat.serial %>
 </p>
-
-<p>
-  <strong>Temperature:</strong>
-  <%= @thermostat.temperature %>
-</p>
-
-<p>
-  <strong>Humidity:</strong>
-  <%= @thermostat.humidity %>
-</p>
-<p>
-  <strong>Energy:</strong>
-  <%= @thermostat.energy %>
-</p>
-
+<tr>
+	<td>
+       <p>
+       <strong>Temperature:</strong>
+       <br>
+       <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.temperature %> °" maxlength="4" size="4">
+       </p>
+       <a href="/thermostats/sub/<%=@thermostat.id%>"><button>-</button></a>
+       <a href="/thermostats/add/<%=@thermostat.id%>"><button>+</button></a>
+       
+	</td>
+    <td>
+       <p>
+       <strong>Humidity:</strong>
+       <br>
+       <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.humidity %> %" maxlength="4" size="4">
+       </p>
+    </td>
+    <td>
+    	<p>
+        <strong>Energy:</strong>
+        <br>
+        <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.energy %> kW" maxlength="4" size="4">
+        </p>
+    </td>
+</tr>
 <%= link_to 'Edit', edit_thermostat_path(@thermostat) %> |
 <%= link_to 'Back', thermostats_path%>
