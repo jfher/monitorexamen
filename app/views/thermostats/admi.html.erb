@@ -1,5 +1,5 @@
  
-<h1 class="lead">Admin view</h1>
+<h1 >Admin view</h1>
 
   </tbody>
 
@@ -28,9 +28,9 @@
         <td><%= thermostat.humidity %></td>
         <td><%= thermostat.energy %></td>
 
-        <td><%= link_to 'Show', thermostat,:class=>"btn btn-success" %></td>
-        <td><%= link_to 'Edit', edit_thermostat_path(thermostat),:class=>"btn btn-success" %></td>
-        <td><%= link_to 'Destroy', thermostat, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-success" %></td>
+        <td><%= link_to 'Show', thermostat%></td>
+        <td><%= link_to 'Edit', edit_thermostat_path(thermostat) %></td>
+        <td><%= link_to 'Destroy', thermostat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
         
 
