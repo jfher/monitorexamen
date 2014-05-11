@@ -1,4 +1,6 @@
 ThermMonitor::Application.routes.draw do
+  resources :history_thermostats
+
   devise_for :users do
     get '/users/sign_out' => 'devise/sessions#destroy'
    end 
@@ -10,13 +12,14 @@ ThermMonitor::Application.routes.draw do
   get '/admi' => 'thermostats#admi'
   get '/about_us' => 'thermostats#about'
   get '/contact_us' => 'thermostats#contact'
+
   # You can have the root of your site routed with "root"
    root 'thermostats#index'
    get '/thermostats/destroy/:id' => 'thermostats#destroy'
    get '/thermostats/add/:id' => 'thermostats#add'
    get '/thermostats/sub/:id' => 'thermostats#sub'
 
-
+   get '/history_thermostats' => 'thermostats#history', :as => 'show_history'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

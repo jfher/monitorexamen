@@ -1,0 +1,32 @@
+<h1>Listing history_thermostats</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Temperature</th>
+      <th>Humidity</th>
+      <th>Energy</th>
+      <th>Thermostat</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @history_thermostats.each do |history_thermostat| %>
+      <tr>
+        <% if current_user.id == history_thermostat.thermostat.user_id %>
+        <td><%= history_thermostat.temperature %></td>
+        <td><%= history_thermostat.humidity %></td>
+        <td><%= history_thermostat.energy %></td>
+        <td><%= history_thermostat.thermostat.serial %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', thermostats_path%> 

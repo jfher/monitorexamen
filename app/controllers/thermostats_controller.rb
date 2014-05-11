@@ -32,6 +32,10 @@ end
   def show
   end
 
+  def history
+    redirect_to show_history
+  end
+
   # GET /thermostats/new
   def new
     @thermostat = Thermostat.new
@@ -61,6 +65,7 @@ end
   def add
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature + 1
+    @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
     @thermostat.save
     redirect_to :back
   end
@@ -68,6 +73,7 @@ end
   def sub
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature - 1
+    @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
     @thermostat.save
     redirect_to :back
   end
@@ -78,6 +84,7 @@ end
   def update
     respond_to do |format|
       if @thermostat.update(thermostat_params)
+        @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
         format.html { redirect_to @thermostat, notice: 'Thermostat was successfully updated.' }
         format.json { head :no_content }
       else

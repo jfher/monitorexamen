@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140510001444) do
+ActiveRecord::Schema.define(version: 20140511011137) do
+
+  create_table "history_thermostats", force: true do |t|
+    t.integer  "temperature"
+    t.integer  "humidity"
+    t.integer  "energy"
+    t.integer  "thermostat_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "history_thermostats", ["thermostat_id"], name: "index_history_thermostats_on_thermostat_id"
 
   create_table "thermostats", force: true do |t|
     t.string   "serial"

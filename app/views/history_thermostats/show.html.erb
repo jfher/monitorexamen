@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Temperature:</strong>
+  <%= @history_thermostat.temperature %>
+</p>
+
+<p>
+  <strong>Humidity:</strong>
+  <%= @history_thermostat.humidity %>
+</p>
+
+<p>
+  <strong>Energy:</strong>
+  <%= @history_thermostat.energy %>
+</p>
+
+<p>
+  <strong>Thermostat:</strong>
+  <%= @history_thermostat.thermostat %>
+</p>
+
+<%= link_to 'Edit', edit_history_thermostat_path(@history_thermostat) %> |
+<%= link_to 'Back', history_thermostats_path %>
