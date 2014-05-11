@@ -45,7 +45,7 @@ end
   # POST /thermostats.json
   def create
     @thermostat = Thermostat.new(thermostat_params)
-    @thermostat.user_id=current_user.id
+   @thermostat.user_id=current_user.id
     @thermostat.energy = 0
     respond_to do |format|
       if @thermostat.save
@@ -105,6 +105,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thermostat_params
-      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy)
+      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy, :user_id)
     end
 end
