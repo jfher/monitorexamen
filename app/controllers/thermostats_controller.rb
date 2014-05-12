@@ -18,7 +18,7 @@ class ThermostatsController < ApplicationController
   end
 
    def home
-    if current_user.id != 1
+    if current_user.role != 'admin' 
     @thermostats = Thermostat.all
     else
      redirect_to '/'
