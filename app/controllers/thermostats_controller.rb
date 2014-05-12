@@ -7,7 +7,7 @@ class ThermostatsController < ApplicationController
   # GET /thermostats
   # GET /thermostats.json
   def index
-    if user_signed_in? && current_user.id == 1
+    if user_signed_in? && current_user.role == 'admin'
       redirect_to '/admi'
       @thermostats=Thermostat.all
     else
@@ -18,12 +18,20 @@ class ThermostatsController < ApplicationController
   end
 
    def home
+    if current_user.id != 1
     @thermostats = Thermostat.all
+    else
+     redirect_to '/'
+   end
    end
  
    def admi
+    if current_user.role != 'simple'
     @users= User.all
     @thermostats = Thermostat.all
+  else
+    redirect_to '/'
+  end
 
    end
 
