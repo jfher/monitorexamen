@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
-<img align= "right" src="\images\therm.jpg" alt="rss feed"  />
+
 <head>
   <title>ThermMonitor</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
+  
+ 
 <div id="user_nav">
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?
@@ -40,14 +43,76 @@
           </form>
           
           <ul class="nav navbar-nav navbar-right">        
-            <li><img align= "right" src="\images\therm.jpg" alt="rss feed"  /></li>
+            <li><img class="img-thumbnail" align= "right" src="\images\therm.jpg" alt="rss feed"  /></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
   <% end %>
 </div>
-<%= yield %>
 
+<div class="row">
+  <div class="col-xs-12 col-md-8"><h2>Contenido General</h2>
+    <%= yield %> <!-- Aqui es donde va todo lo de Rails-->
+  </div>
+  <div class="col-xs-6 col-md-4"> 
+    <h2>Datos del Tiempo </h2>
+    <div class="list-group">
+      
+      <div><!--Clima local-->  
+        <p>
+          <!-- www.TuTiempo.net - Ancho:214px - Alto:122px -->
+          <div id="TT_vxTE1kE11aYFzehUjfVDjzzDjWnUMzzFbdkt1sCoa1DIGo353"><h2><a href="http://www.tutiempo.net">Pronósticos del tiempo</a></h2></div>
+          <script type="text/javascript" src="http://www.tutiempo.net/widget/eltiempo_vxTE1kE11aYFzehUjfVDjzzDjWnUMzzFbdkt1sCoa1DIGo353"></script>
+        </p>
+      </div><!--/div Clima local-->
+      
+      <hr>
+
+    </div><!--div class="list-group"-->
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+  </div>
+</div>
+  <hr width=100% align="center">
+
+
+<div class="panel-footer">
+  <footer class="footer">
+    <table >
+     <tr>
+       <td>
+            <h5>Siguenos en:</h5>
+           <a href="/" >ThermMonitor: </a>
+        </td>
+     </tr>
+    <tr>
+        <td>
+           <a href="https://www.facebook.com/ThermMonitor" class="btn btn-primary active" >Facebook </a>
+        </td>
+        <td>
+           <a href="https://www.twitter.com/ThermMonitor" class="btn btn-info active"> Twitter </a>
+        </td>
+        <td>
+           <a href="https://www.youtube.com/channel/UCy6YVTvpqqyjvFhjmVqjQfg" class="btn btn-danger" > YouTube </a>
+        </td>
+      </tr>
+        <tr>
+        <td>
+             <a href="/about_us" >About us</a>
+          </td>
+        <td>
+           <a href="/contact_us" >Contact Us</a>
+        </td>
+      </tr>
+    </table>
+  </footer>
+</div>
+
+</div><!-- container -->
 </body>
 </html>
