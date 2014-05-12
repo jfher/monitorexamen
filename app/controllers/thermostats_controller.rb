@@ -7,13 +7,14 @@ class ThermostatsController < ApplicationController
   # GET /thermostats
   # GET /thermostats.json
   def index
-    if user_signed_in? && current_user.role =='admin'
+    if user_signed_in? && current_user.id == 1
       redirect_to '/admi'
       @thermostats=Thermostat.all
-    end
+    else
     if  user_signed_in?
        redirect_to '/home'
     end
+  end
   end
 
    def home

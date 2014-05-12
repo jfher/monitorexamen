@@ -25,23 +25,23 @@
 <h1><span class="label label-danger">THERMS</span></h1>
 <br>
      <table class="table table-striped">
-     <td><b>Serial</b></td>
+    <td><b># User</b></td>
+    <td><b>Serial</b></td>
     <td><b>Temperature</b> </td>
-     <td><b>Humidity</b> </td>
-     <td><b>Energy</b></td>
+    <td><b>Humidity</b> </td>
+    <td><b>Energy</b></td>
      </table>
-     <table class="table table-striped">
       <% @users.each do |user| %>
+      <% user.thermostats.each do |thermostat| %>
       <table class="table table-striped">
-         <% user.thermostats.each do |thermostat| %>
-         
+        <td><%= thermostat.user_id %></td>
         <td><%= thermostat.serial %></td>
         <td><%= thermostat.temperature %></td>
         <td><%= thermostat.humidity %></td>
         <td><%= thermostat.energy %></td>
+          </table>
         <% end %>
-         </table>
-     <% end %>
+    <% end %>
     <td><h1><span class="label label-primary">LOCATIONS</span></h1>
       <br>
      <table class="table table-striped">

@@ -30,7 +30,7 @@ class Ability
     #end
 
 
-   if user.nil? ==false 
+   if user.nil? == false 
         if user.role == 'admin'
         can :manage, :all
         
