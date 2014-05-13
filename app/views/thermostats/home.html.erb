@@ -26,9 +26,13 @@
         <td><%= thermostat.energy %></td>
          <td><%= thermostat.address %></td>
         <td><%= link_to 'Show', thermostat %></td>
-        <!--<td><a href="<%= thermostat %>" class="btn btn-default">Show</a></td>-->
         <td><%= link_to 'Edit', edit_thermostat_path(thermostat)%></td>
         <td><a href="/thermostats/destroy/<%= thermostat.id %>">Delete</a></td>
+
+        <!--<td><a href="<%= thermostat %>" class="btn btn-default">Show</a></td>-->
+        <!--<td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Editar</a></td>-->
+        <!--<td><a href="<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>-->
+        
         <% end %>
         <% end %>
 
