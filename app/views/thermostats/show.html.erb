@@ -30,6 +30,21 @@
         <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.energy %> kW" maxlength="4" size="4">
         </p>
     </td>
+    <td>
+      <p>
+        <strong>Address:</strong>
+        <br>
+        <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.address %> ">
+        </p>
+    </td>
+    <td>
+      <p>
+        <strong>Address:</strong>
+        <br>
+        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@thermostat.latitude}%2C#{@thermostat.longitude}" %>
+        
+        </p>
+    </td>
 </tr>
 
 

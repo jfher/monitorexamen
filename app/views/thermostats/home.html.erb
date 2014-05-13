@@ -8,6 +8,8 @@
       <th>Temperature</th>
       <th>Humidity</th>
       <th>Energy</th>
+      <th>Address</th>
+
       <th></th>
       <th></th>
     </tr>
@@ -22,6 +24,7 @@
         <td><%= thermostat.temperature %></td>
         <td><%= thermostat.humidity %></td>
         <td><%= thermostat.energy %></td>
+         <td><%= thermostat.address %></td>
         <td><%= link_to 'Show', thermostat %></td>
         <!--<td><a href="<%= thermostat %>" class="btn btn-default">Show</a></td>-->
         <td><%= link_to 'Edit', edit_thermostat_path(thermostat)%></td>
