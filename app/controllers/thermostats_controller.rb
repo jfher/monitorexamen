@@ -1,5 +1,5 @@
 class ThermostatsController < ApplicationController
-  before_filter :authenticate_user!, :except =>  [:index]
+  before_filter :authenticate_user!, :except =>  [:index, :about, :contact]
   before_action :set_thermostat, only: [:show, :edit, :update, :destroy]
    #load_and_authorize_resource
    #authorize_resource
@@ -58,9 +58,11 @@ class ThermostatsController < ApplicationController
   end
 
   def block
+    redirect_to '/'
   end
 
   def unlock
+    redirect_to '/'
   end
 
   # GET /thermostats/new

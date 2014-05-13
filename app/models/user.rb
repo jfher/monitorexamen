@@ -7,7 +7,11 @@ class User < ActiveRecord::Base
     has_many :thermostats     
    
 	def begin_usu
+		if self.id==1
+			self.role='admin'
+		else
 		self.role='simple'
+	    end
 	end
 
 end
