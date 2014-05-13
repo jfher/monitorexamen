@@ -20,7 +20,7 @@ class ThermostatsController < ApplicationController
   end
 
   def index
-    if user_signed_in? && current_user.role == 'admin'
+    if user_signed_in? && current_user.role == "admin"
       redirect_to '/admi'
       @thermostats=Thermostat.all
     else
@@ -31,7 +31,7 @@ class ThermostatsController < ApplicationController
   end
 
    def home
-    if current_user.role != 'admin' 
+    if current_user.role != "admin"
     @thermostats = Thermostat.all
     else
      redirect_to '/'
@@ -39,7 +39,7 @@ class ThermostatsController < ApplicationController
    end
  
    def admi
-    if current_user.role != 'simple'
+    if current_user.role != "simple"
     @users= User.all
     @thermostats = Thermostat.all
   else
@@ -139,6 +139,6 @@ class ThermostatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thermostat_params
-      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy, :user_id)
+      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy, :user_id, :address)
     end
 end

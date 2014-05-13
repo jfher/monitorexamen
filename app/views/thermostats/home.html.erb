@@ -22,6 +22,8 @@
       <th>Temperature</th>
       <th>Humidity</th>
       <th>Energy</th>
+      <th>Address</th>
+
       <th></th>
       <th></th>
     </tr>
@@ -36,6 +38,7 @@
         <td><%= thermostat.temperature %></td>
         <td><%= thermostat.humidity %></td>
         <td><%= thermostat.energy %></td>
+         <td><%= thermostat.address %></td>
         <td><%= link_to 'Show', thermostat %></td>
         <td><%= link_to 'Edit', edit_thermostat_path(thermostat)%></td>
         <td><a href="/thermostats/destroy/<%= thermostat.id %>">Delete</a></td>
