@@ -12,14 +12,6 @@ class HistoryThermostatsController < ApplicationController
   def show
   end
 
-  # GET /history_thermostats/new
-  def new
-    @history_thermostat = HistoryThermostat.new
-  end
-
-  # GET /history_thermostats/1/edit
-  def edit
-  end
 
   # POST /history_thermostats
   # POST /history_thermostats.json
