@@ -5,8 +5,27 @@
   <strong>Serial:</strong>
   <%= @thermostat.serial %>
 </p>
+
 <tr>
-	<td>
+  <p><strong>Temperature:</strong></p>
+  <br>
+  <br>
+  <td>
+    <a class="izquierda" href="/thermostats/sub/<%=@thermostat.id%>">&laquo;</a>
+  </td>
+  <td>
+    <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.temperature %> °" maxlength="4" size="4">
+    
+  </td>
+  <td>
+    <a class="derecha" href="/thermostats/add/<%=@thermostat.id%>">&raquo;</a>
+  </td>
+</tr>
+<br>
+<br>
+
+<tr>
+<!--	<td>
        <p>
        <strong>Temperature:</strong>
        <br>
@@ -14,27 +33,27 @@
        </p>
        <a href="/thermostats/sub/<%=@thermostat.id%>"><button><b>-</b></button></a>
        <a href="/thermostats/add/<%=@thermostat.id%>"><button>+</button></a>
-       
+-->     
 	</td>
     <td>
        <p>
        <strong>Humidity:</strong>
        <br>
-       <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.humidity %> %" maxlength="4" size="4">
+       <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.humidity %> %" maxlength="4" size="4">
        </p>
     </td>
     <td>
     	<p>
         <strong>Energy:</strong>
         <br>
-        <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.energy %> kW" maxlength="4" size="4">
+        <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.energy %> kW" maxlength="4" size="4">
         </p>
     </td>
     <td>
       <p>
         <strong>Address:</strong>
         <br>
-        <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.address %> ">
+        <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.address %> ">
         </p>
     </td>
     <td>
