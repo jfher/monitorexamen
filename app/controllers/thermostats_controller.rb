@@ -1,29 +1,50 @@
 class ThermostatsController < ApplicationController
+  before_filter :authenticate_user!, :except =>  [:index]
   before_action :set_thermostat, only: [:show, :edit, :update, :destroy]
    #load_and_authorize_resource
    #authorize_resource
    #load_and_authorize_resource :through => :current_user
   # GET /thermostats
   # GET /thermostats.json
+
+  def change_role
+    @user=User.find(params[:id])
+
+    if @user.role=="admin"
+      @user.role="simple"
+    else
+      @user.role="admin"
+    end
+    @user.save
+    redirect_to '/'
+  end
+
   def index
-    if user_signed_in? && current_user.id ==1
+    if user_signed_in? && current_user.role == 'admin'
       redirect_to '/admi'
       @thermostats=Thermostat.all
     else
-    if    user_signed_in?
+    if  user_signed_in?
        redirect_to '/home'
-      
     end
   end
-end
+  end
 
    def home
+    if current_user.role != 'admin' 
     @thermostats = Thermostat.all
+    else
+     redirect_to '/'
+   end
    end
  
    def admi
+    if current_user.role != 'simple'
     @users= User.all
     @thermostats = Thermostat.all
+  else
+    redirect_to '/'
+  end
 
    end
 
@@ -34,6 +55,12 @@ end
 
   def history
     redirect_to show_history
+  end
+
+  def block
+  end
+
+  def unlock
   end
 
   # GET /thermostats/new

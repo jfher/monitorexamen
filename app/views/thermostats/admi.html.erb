@@ -1,7 +1,7 @@
  
 <h1 >Admin view</h1>
 
-    <td><h1><span class="label label-danger">USERS</span></h1></td>
+    <td><h1><span class="label label-success">USERS</span></h1></td>
     <br>
      <table class="table table-striped">
    <td><b>#</b></td>
@@ -17,11 +17,31 @@
         <td><%= user.role%></td> 
         <td><%= user.created_at %></td>
         <td><%= user.updated_at %></td>
-        <td><h5><span class="label label-danger">BLOCK</span></h5></td>
-        <td><h5><span class="label label-danger">DELETE</span></h5></td>
-       <td><h5><span class="label label-danger">CHANGE ROL</span></h5></td>
+        <td><h5><span class="label label-success"><a href= "/admi/user/block/<%=user.id %>">BLOCK</a></span></h5></td>
+        <td><h5><span class="label label-success"><a href= "/admi/user/unlock/<%=user.id %>">UNLOCK</a></span></h5></td>
+       <td><h5><span class="label label-success"><a href= "/admi/user/change_role/<%=user.id %>">CHANGE ROL</a></span></h5></td>
 </table>
 <% end %>
+<h1><span class="label label-danger">THERMS</span></h1>
+<br>
+     <table class="table table-striped">
+    <td><b># User</b></td>
+    <td><b>Serial</b></td>
+    <td><b>Temperature</b> </td>
+    <td><b>Humidity</b> </td>
+    <td><b>Energy</b></td>
+     </table>
+      <% @users.each do |user| %>
+      <% user.thermostats.each do |thermostat| %>
+      <table class="table table-striped">
+        <td><%= thermostat.user_id %></td>
+        <td><%= thermostat.serial %></td>
+        <td><%= thermostat.temperature %></td>
+        <td><%= thermostat.humidity %></td>
+        <td><%= thermostat.energy %></td>
+          </table>
+        <% end %>
+    <% end %>
     <td><h1><span class="label label-primary">LOCATIONS</span></h1>
       <br>
      <table class="table table-striped">
@@ -32,28 +52,6 @@
         
      </table>
     <% end %>
-    <h1><span class="label label-success">THERMS</span></h1>
-     <table class="table table-striped">
-     <td><b>Serial</b></td>
-    <td><b>Temperature</b> </td>
-     <td><b>Humidity</b> </td>
-     <td><b>Energy</b></td>
-     </table>
-     <table class="table table-striped">
-      <% @users.each do |user| %>
-      <table class="table table-striped">
-         <% user.thermostats.each do |thermostat| %>
-         
-        <td><%= thermostat.serial %></td>
-        <td><%= thermostat.temperature %></td>
-        <td><%= thermostat.humidity %></td>
-        <td><%= thermostat.energy %></td>
-        <% end %>
-         </table>
-     <% end %>
       </table>
-    <h1><span class="label label-info">BANNED</span></h1>
-    <h1><span class="label label-warning">SETTINGS</span></h1>
-    <h1><span class="label label-default">STATS</span></h1>
     </tr>
   
