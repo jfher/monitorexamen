@@ -6,6 +6,19 @@ class ThermostatsController < ApplicationController
    #load_and_authorize_resource :through => :current_user
   # GET /thermostats
   # GET /thermostats.json
+
+  def change_role
+    @user=User.find(params[:id])
+
+    if @user.role=="admin"
+      @user.role="simple"
+    else
+      @user.role="admin"
+    end
+    @user.save
+    redirect_to '/'
+  end
+
   def index
     if user_signed_in? && current_user.role == 'admin'
       redirect_to '/admi'
@@ -42,6 +55,12 @@ class ThermostatsController < ApplicationController
 
   def history
     redirect_to show_history
+  end
+
+  def block
+  end
+
+  def unlock
   end
 
   # GET /thermostats/new

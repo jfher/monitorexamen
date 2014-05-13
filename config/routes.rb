@@ -8,6 +8,9 @@ ThermMonitor::Application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  get '/admi/user/block/:id' => 'thermostats#block'
+  get '/admi/user/unlock/:id' => 'thermostats#unlock'
+  get '/admi/user/change_role/:id' => 'thermostats#change_role'
   get '/home' => 'thermostats#home'
   get '/admi' => 'thermostats#admi'
   get '/about_us' => 'thermostats#about'

@@ -17,9 +17,9 @@
         <td><%= user.role%></td> 
         <td><%= user.created_at %></td>
         <td><%= user.updated_at %></td>
-        <td><h5><span class="label label-success">BLOCK</span></h5></td>
-        <td><h5><span class="label label-success">UNLOCK</span></h5></td>
-       <td><h5><span class="label label-success">CHANGE ROL</span></h5></td>
+        <td><h5><span class="label label-success"><a href= "/admi/user/block/<%=user.id %>">BLOCK</a></span></h5></td>
+        <td><h5><span class="label label-success"><a href= "/admi/user/unlock/<%=user.id %>">UNLOCK</a></span></h5></td>
+       <td><h5><span class="label label-success"><a href= "/admi/user/change_role/<%=user.id %>">CHANGE ROL</a></span></h5></td>
 </table>
 <% end %>
 <h1><span class="label label-danger">THERMS</span></h1>
