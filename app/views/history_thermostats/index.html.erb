@@ -2,7 +2,7 @@
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
-      <tr>
+      <tr class="info">
         <th>Thermostat</th>
         <th>Temperature</th>
         <th>Humidity</th>
@@ -18,9 +18,9 @@
         <tr>
           <% if current_user.id == history_thermostat.thermostat.user_id %>
           <td><%= history_thermostat.thermostat.serial %></td>
-          <td><%= history_thermostat.temperature %></td>
-          <td><%= history_thermostat.humidity %></td>
-          <td><%= history_thermostat.energy %></td>
+          <td><%= history_thermostat.temperature %> °C</td>
+          <td><%= history_thermostat.humidity %> %</td>
+          <td><%= history_thermostat.energy %> W</td>
           <% end %>
         </tr>
       <% end %>
