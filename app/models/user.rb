@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     has_many :thermostats     
    
 	def begin_usu
+		self.state=true
 		if self.id==1
 			self.role='admin'
 		else

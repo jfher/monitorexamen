@@ -24,9 +24,14 @@
     <tr>
         <td><%= user.id %></td><td>
         <td><%= user.email %></td> 
-        <td><%= user.role%></td> 
+        <td><%= user.role %></td> 
         <td><%= user.created_at %></td>
         <td><%= user.updated_at %></td>
+        <% if user.state == true %>
+        <td>Unlocked</td>
+        <% else %>
+        <td>Locked</td>
+        <% end %>
         <td><h5><a href= "/admi/user/block/<%=user.id %>"class="btn btn-danger">Block</a></h5></td>
         <td><h5><a href= "/admi/user/unlock/<%=user.id %>"class="btn btn-default">Unlock</a></h5></td>
         <td><h5><a href= "/admi/user/change_role/<%=user.id %>"class="btn btn-warning">Rol</h5></a></td>        
@@ -62,7 +67,7 @@
         <td><%= thermostat.energy %></td>
         <td><%= thermostat.address %></td>
         <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default">Show</a></td>
-        <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Editar</a></td>
+        <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Edit</a></td>
         <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>
         
         <% end %>
