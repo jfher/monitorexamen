@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.ui.addresspicker
+//= require jquery.ui.core
+//= require jquery.ui.widget
+//= require jquery.ui.autocomplete
 //= require_tree .
+
