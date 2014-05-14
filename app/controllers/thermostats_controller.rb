@@ -19,6 +19,20 @@ class ThermostatsController < ApplicationController
     redirect_to '/'
   end
 
+ def block
+    @user=User.find(params[:id])
+    @user.state=false
+    @user.save
+    redirect_to '/'
+  end
+
+  def unlock
+   @user=User.find(params[:id])
+    @user.state=true
+    @user.save
+    redirect_to '/'
+  end
+
   def index
     if user_signed_in? && current_user.role == "admin"
       redirect_to '/admi'
@@ -55,14 +69,6 @@ class ThermostatsController < ApplicationController
 
   def history
     redirect_to show_history
-  end
-
-  def block
-    redirect_to '/'
-  end
-
-  def unlock
-    redirect_to '/'
   end
 
   # GET /thermostats/new

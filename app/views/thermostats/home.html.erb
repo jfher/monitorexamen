@@ -1,4 +1,4 @@
-
+<% if current_user.state == true %>
 <h1>Listing thermostats</h1>
 <br>
 <br>
@@ -10,6 +10,8 @@
       <th>Energy</th>
       <th>Address</th>
 
+      
+      <th></th>
       <th></th>
       <th></th>
     </tr>
@@ -24,14 +26,10 @@
         <td><%= thermostat.temperature %></td>
         <td><%= thermostat.humidity %></td>
         <td><%= thermostat.energy %></td>
-         <td><%= thermostat.address %></td>
-        <td><%= link_to 'Show', thermostat %></td>
-        <td><%= link_to 'Edit', edit_thermostat_path(thermostat)%></td>
-        <td><a href="/thermostats/destroy/<%= thermostat.id %>">Delete</a></td>
-
-        <!--<td><a href="<%= thermostat %>" class="btn btn-default">Show</a></td>-->
-        <!--<td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Editar</a></td>-->
-        <!--<td><a href="<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>-->
+        <td><%= thermostat.address %></td>
+        <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default">Show</a></td>
+        <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Edit</a></td>
+        <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>
         
         <% end %>
         <% end %>
@@ -45,7 +43,6 @@
 
 <a href="<%= new_thermostat_path %> " class="btn btn-success active"> New Thermostat</a> |
 <a href="<%= show_history_path %> " class="btn btn-primary active"> Show History Thermostat</a>
-<!--
-<%= link_to 'New Thermostat', new_thermostat_path %>
-<%= link_to 'Show History Thermostat', show_history_path %>
--->
+<% else %>
+<h2><b>You have been blocked by the administrator!!</b></h2>
+<% end %>
