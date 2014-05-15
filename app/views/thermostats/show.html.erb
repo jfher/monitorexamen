@@ -64,7 +64,37 @@
         
         </p>
     </td>
+    <td>
+      <strong>Current Weather:</strong>
+      <br>
+      <html>
+           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=weather"></script>
+    
+           <script type="text/javascript">
+               function initialize() {
+               var myOptions = {
+               zoom: 12,
+               center: new google.maps.LatLng('<%=@thermostat.latitude%>','<%=@thermostat.longitude%>'),
+               mapTypeId: google.maps.MapTypeId.ROADMAP
+               };
+               var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+               var weather = new google.maps.weather.WeatherLayer({
+                   temperatureUnits: google.maps.weather.TemperatureUnit.DEGREE //Temperature unit can also be changed to FAHRENHEIT by using the keyword "FAHRENHEIT"
+                    });
+               weather.setMap(map);
+               var cloud = new google.maps.weather.CloudLayer();
+               cloud.setMap(map); //Comment out this line if you do not wish to
+              }
+           </script>
+
+           <body onload="initialize()">
+                <div id="map_canvas" style="width: 530px; height: 230px"></div>
+           </body>
+        </html>
+       
+    </td>
 </tr>
+
 
 
 
