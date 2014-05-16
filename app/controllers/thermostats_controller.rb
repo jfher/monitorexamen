@@ -89,7 +89,7 @@ class ThermostatsController < ApplicationController
     respond_to do |format|
       if @thermostat.save
         @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
-        format.html { redirect_to @thermostat, notice: 'Thermostat was successfully created.' }
+        format.html { redirect_to location_thermostat_path, notice: 'Thermostat was successfully created.' }
         format.json { render action: 'show', status: :created, location: @thermostat }
       else
         format.html { render action: 'new' }

@@ -21,6 +21,12 @@
     <a class="derecha" href="/thermostats/add/<%=@thermostat.id%>">&raquo;</a>
   </td>
 </tr>
+<p>
+  <strong>Address:</strong>
+  <% @thermostat.locations.each do |location|%>
+  <%= location.address %>
+  <% end %>
+</p>
 <br>
 <br>
 
@@ -58,11 +64,7 @@
     </td>
     <td>
       <p>
-        <strong>Address:</strong>
-        <br>
-        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@thermostat.latitude}%2C#{@thermostat.longitude}" %>
         
-        </p>
     </td>
     <td>
       <strong>Current Weather:</strong>
@@ -90,10 +92,12 @@
            <body onload="initialize()">
                 <div id="map_canvas" style="width: 530px; height: 230px"></div>
            </body>
+           
         </html>
        
     </td>
 </tr>
+
 
 
 
