@@ -44,6 +44,22 @@ class ThermostatsController < ApplicationController
   end
   end
 
+  def delete
+    @user=User.find(params[:id])
+    @thermostats=Thermostat.all
+    @thermostats.each do |therm|
+      if therm.user_id == @user.id
+        therm.destroy
+      end
+    end
+    @user.destroy
+    redirect_to '/'
+  end
+
+  def discharge
+    redirect_to '/'
+  end
+
    def home
     if current_user.role != "admin"
     @thermostats = Thermostat.all
