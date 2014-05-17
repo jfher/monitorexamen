@@ -1,4 +1,4 @@
-<%= render 'mapa' %>
+
 <%= form_for(@thermostat) do |f| %>
   <% if @thermostat.errors.any? %>
     <div id="error_explanation">
@@ -28,15 +28,7 @@
     <%= f.label :address %><br>
     <%= f.text_field :address %>
   </div>
-  <div class="text-info">
-    
-    <%= f.hidden_field :latitude %>
-  </div>
-  <div class="text-info">
-    
-    <%= f.hidden_field :longitude %>
-  </div>
-
+  
   <br>
   <div>
     <button type="submit" class="btn btn-success">Submit</button>
