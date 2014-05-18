@@ -81,6 +81,7 @@ class ThermostatsController < ApplicationController
   # GET /thermostats/1
   # GET /thermostats/1.json
   def show
+    @location=Thermostat.find(params[:id]).locations.first
   end
 
   def history

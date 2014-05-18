@@ -26,6 +26,21 @@
   <% @thermostat.locations.each do |location|%>
   <%= location.address %>
   <% end %>
+
+</p>
+<p>
+  <strong>Name Location:</strong>
+  <% @thermostat.locations.each do |location|%>
+  <%= location.name %>
+  <% end %>
+
+</p>
+<p>
+  <strong>Address:</strong>
+        <br>
+        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+        
+        </p>
 </p>
 <br>
 <br>
@@ -55,52 +70,8 @@
         <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.energy %> kW" maxlength="4" size="4">
         </p>
     </td>
-    <td>
-      <p>
-        <strong>Address:</strong>
-        <br>
-        <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.address %> ">
-        </p>
-    </td>
-    <td>
-      <p>
-        
-    </td>
-    <td>
-      <strong>Current Weather:</strong>
-      <br>
-      <html>
-           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=weather"></script>
-    
-           <script type="text/javascript">
-               function initialize() {
-               var myOptions = {
-               zoom: 12,
-               center: new google.maps.LatLng('<%=@thermostat.latitude%>','<%=@thermostat.longitude%>'),
-               mapTypeId: google.maps.MapTypeId.ROADMAP
-               };
-               var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-               var weather = new google.maps.weather.WeatherLayer({
-                   temperatureUnits: google.maps.weather.TemperatureUnit.DEGREE //Temperature unit can also be changed to FAHRENHEIT by using the keyword "FAHRENHEIT"
-                    });
-               weather.setMap(map);
-               var cloud = new google.maps.weather.CloudLayer();
-               cloud.setMap(map); //Comment out this line if you do not wish to
-              }
-           </script>
-
-           <body onload="initialize()">
-                <div id="map_canvas" style="width: 530px; height: 230px"></div>
-           </body>
-           
-        </html>
-       
-    </td>
+   
 </tr>
-
-
-
-
 
 <%= link_to 'Edit', edit_thermostat_path(@thermostat) %> |
 <%= link_to 'Back', thermostats_path%> 
