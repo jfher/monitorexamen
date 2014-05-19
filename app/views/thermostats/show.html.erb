@@ -22,26 +22,10 @@
     <a class="derecha" href="/thermostats/add/<%=@thermostat.id%>">&raquo;</a>
   </td>
 </tr>
-<p>
-  <strong>Address:</strong>
-  <% @thermostat.locations.each do |location|%>
-  <%= location.address %>
-  <% end %>
-</p>
-<br>
-<br>
 
 <tr>
-<!--	<td>
-       <p>
-       <strong>Temperature:</strong>
-       <br>
-       <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.temperature %> °" maxlength="4" size="4">
-       </p>
-       <a href="/thermostats/sub/<%=@thermostat.id%>"><button><b>-</b></button></a>
-       <a href="/thermostats/add/<%=@thermostat.id%>"><button>+</button></a>
--->     
-	</td>
+
+</td>
     <td>
        <p>
        <strong>Humidity:</strong>
@@ -50,24 +34,36 @@
        </p>
     </td>
     <td>
-    	<p>
+      <p>
         <strong>Energy:</strong>
         <br>
         <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.energy %> kW" maxlength="4" size="4">
         </p>
     </td>
-    <td>
-      <p>
-        <strong>Address:</strong>
+</tr>
+<p>
+  <strong>Name Location:</strong>
+  <% @thermostat.locations.each do |location|%>
+  <%= location.name %>
+  <% end %>
+
+</p>
+<p>
+  <strong>Address:</strong>
+  <% @thermostat.locations.each do |location|%>
+  <%= location.address %>
+  <% end %>
+
+</p>
+<p>
+  <strong>Address:</strong>
         <br>
-        <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.address %> ">
-        </p>
-    </td>
-    <td>
-      <p>
+        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@location.latitude}%2C#{@location.longitude}" %>
         
-    </td>
-    <td>
+        </p>
+</p>
+
+<td>
       <strong>Current Weather:</strong>
       <br>
       <html>
@@ -77,7 +73,7 @@
                function initialize() {
                var myOptions = {
                zoom: 12,
-               center: new google.maps.LatLng('<%=@thermostat.latitude%>','<%=@thermostat.longitude%>'),
+               center: new google.maps.LatLng('<%=@location.latitude%>','<%=@location.longitude%>'),
                mapTypeId: google.maps.MapTypeId.ROADMAP
                };
                var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -93,15 +89,24 @@
            <body onload="initialize()">
                 <div id="map_canvas" style="width: 530px; height: 230px"></div>
            </body>
-           
         </html>
        
     </td>
+<br>
+<br>
+
+<tr>
+<!--	<td>
+       <p>
+       <strong>Temperature:</strong>
+       <br>
+       <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.temperature %> °" maxlength="4" size="4">
+       </p>
+       <a href="/thermostats/sub/<%=@thermostat.id%>"><button><b>-</b></button></a>
+       <a href="/thermostats/add/<%=@thermostat.id%>"><button>+</button></a>
+-->     
+   
 </tr>
-
-
-
-
 
 <%= link_to 'Edit', edit_thermostat_path(@thermostat) %> |
 <%= link_to 'Back', thermostats_path%> 

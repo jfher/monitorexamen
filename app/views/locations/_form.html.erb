@@ -1,3 +1,4 @@
+<%= render 'mapa' %>
 <%= form_for(@location) do |f| %>
   <% if @location.errors.any? %>
     <div id="error_explanation">
@@ -20,7 +21,14 @@
     <%= f.text_field :address %>
   </div>
   <%= f.hidden_field :Thermostat_id ,value: Thermostat.all.last.id %>
-  
+  <div class="text-info">
+    
+    <%= f.hidden_field :latitude %>
+  </div>
+  <div class="text-info">
+    
+    <%= f.hidden_field :longitude %>
+  </div>
   
 
   <div class="actions">

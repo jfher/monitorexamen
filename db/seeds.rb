@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 main_admin = User.create(:name => 'System', :last_name => 'Admin', 
        :email => 'admin@gmail.com', :password => '12345678', 
-       :password_confirmation => '12345678', :role => 'admin', :ci =>'0')
+       :password_confirmation => '12345678', :role => 'admin')
