@@ -1,6 +1,7 @@
 class ThermostatsController < ApplicationController
   before_filter :authenticate_user!, :except =>  [:index, :about, :contact]
   before_action :set_thermostat, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
    #load_and_authorize_resource
    #authorize_resource
    #load_and_authorize_resource :through => :current_user
@@ -118,7 +119,7 @@ class ThermostatsController < ApplicationController
   def add
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature + 1
-    @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
+    #@thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
     @thermostat.save
     redirect_to :back
   end
@@ -126,7 +127,7 @@ class ThermostatsController < ApplicationController
   def sub
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature - 1
-    @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
+    #@thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
     @thermostat.save
     redirect_to :back
   end
@@ -153,7 +154,7 @@ class ThermostatsController < ApplicationController
     @thermostat.history_thermostats.each do |history|
       history.destroy
     end
-    
+
     @thermostat.destroy
     respond_to do |format|
       format.html { redirect_to thermostats_url }
