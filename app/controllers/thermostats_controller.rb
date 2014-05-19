@@ -150,6 +150,10 @@ class ThermostatsController < ApplicationController
   # DELETE /thermostats/1
   # DELETE /thermostats/1.json
   def destroy
+    @thermostat.history_thermostats.each do |history|
+      history.destroy
+    end
+    
     @thermostat.destroy
     respond_to do |format|
       format.html { redirect_to thermostats_url }
