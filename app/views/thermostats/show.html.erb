@@ -20,8 +20,21 @@
   <td>
     <a class="derecha" href="/thermostats/add/<%=@thermostat.id%>">&raquo;</a>
   </td>
-</tr>
 
+  <% HistoryThermostat.all.each do |f| %>
+    <%if f.thermostat_id == @thermostat.id%>
+        <% @lastemp = f %>
+    <%end%>
+  <% end %>
+
+  <td>
+       <p>
+       <strong>Current Temperature:</strong>
+       <br>
+       <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @lastemp.temperature %> °" maxlength="4" size="4">
+       </p>
+    </td>
+</tr>
 <tr>
 
 </td>
