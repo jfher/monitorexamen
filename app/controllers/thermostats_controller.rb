@@ -104,6 +104,7 @@ class ThermostatsController < ApplicationController
     @thermostat = Thermostat.new(thermostat_params)
    @thermostat.user_id=current_user.id
     @thermostat.energy = 0
+    @thermostat.humidity = 0
     respond_to do |format|
       if @thermostat.save
         @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
