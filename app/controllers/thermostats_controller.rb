@@ -34,6 +34,36 @@ class ThermostatsController < ApplicationController
     redirect_to '/'
   end
 
+  def remove
+        @user=User.find(params[:id])
+    @thermostats=Thermostat.all
+    @thermostats.each do |therm|
+      if therm.user_id == @user.id
+        therm.destroy
+      end
+    end
+    @user.destroy
+    redirect_to '/'
+    end
+
+  def save
+      @users=User.all
+      @user=User.new
+      @user.email=params[:email]
+      @user.password=params[:password]
+      @users.each do |user|
+      if @user.email == user.email
+        create_user
+      end
+    end
+      @user.save
+      redirect_to '/'
+  end
+
+    def edit_user
+    @user=User.find(params[:id])
+  end
+
   def index
     if user_signed_in? && current_user.role == "admin"
       redirect_to '/admi'
@@ -45,20 +75,8 @@ class ThermostatsController < ApplicationController
   end
   end
 
-  def delete
-    @user=User.find(params[:id])
-    @thermostats=Thermostat.all
-    @thermostats.each do |therm|
-      if therm.user_id == @user.id
-        therm.destroy
-      end
-    end
-    @user.destroy
-    redirect_to '/'
-  end
-
-  def discharge
-    redirect_to '/'
+  def create_user
+    @user=User.new
   end
 
    def home

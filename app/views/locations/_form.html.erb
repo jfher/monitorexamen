@@ -1,37 +1,47 @@
 <%= render 'mapa' %>
-<%= form_for(@location) do |f| %>
-  <% if @location.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">Sign Up</h3>
+  </div>
+  <div class="panel-body">
+    <div class="container">
 
-      <ul>
-      <% @location.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <%= form_for(@location) do |f| %>
+        <% if @location.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+            <ul>
+            <% @location.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name, :class => "textboxgrade" %>
+        </div>
+        <div class="field">
+          <%= f.label :address %><br>
+          <%= f.text_field :address, :class => "textboxgrade" %>
+        </div>
+        <%= f.hidden_field :Thermostat_id ,value: Thermostat.all.last.id %>
+        <div class="text-info">
+          
+          <%= f.hidden_field :latitude %>
+        </div>
+        <div class="text-info">
+          
+          <%= f.hidden_field :longitude %>
+        </div>
+        
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <%= f.hidden_field :Thermostat_id ,value: Thermostat.all.last.id %>
-  <div class="text-info">
-    
-    <%= f.hidden_field :latitude %>
-  </div>
-  <div class="text-info">
-    
-    <%= f.hidden_field :longitude %>
-  </div>
-  
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

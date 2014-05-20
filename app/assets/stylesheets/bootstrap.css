@@ -4783,8 +4783,10 @@ a.list-group-item-danger.active:focus {
   color: inherit;
 }
 .panel-footer {
+  color: #DDDED8;
   padding: 10px 15px;
-  background-color: #f5f5f5;
+  /*background-color: #f5f5f5;*/
+  background-color: #CA6522;
   border-top: 1px solid #ddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -5830,3 +5832,4 @@ button.close {
   background: -o-linear-gradient(left, #FFFFFF, #F7F9FA);
   color: #2E3133;
   }
+

@@ -1,28 +1,37 @@
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title"></h3>
+  </div>
+  <div class="panel-body">
+    <div class="container">
 
-<%= form_for(@thermostat) do |f| %>
-  <% if @thermostat.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@thermostat.errors.count, "error") %> prohibited this thermostat from being saved:</h2>
+      <%= form_for(@thermostat) do |f| %>
+        <% if @thermostat.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@thermostat.errors.count, "error") %> prohibited this thermostat from being saved:</h2>
 
-      <ul>
-      <% @thermostat.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+            <ul>
+            <% @thermostat.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="text-info">
+          <%= f.label :serial %><br>
+          <%= f.text_field :serial, :class => "textboxgrade" %>
+        </div>
+        <div class="text-info">
+          <%= f.label :temperature %><br>
+          <%= f.number_field :temperature, :class => "textboxgrade" %>
+        </div>
+        
+        <br>
+        <div>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
-
-  <div class="text-info">
-    <%= f.label :serial %><br>
-    <%= f.text_field :serial %>
   </div>
-  <div class="text-info">
-    <%= f.label :temperature %><br>
-    <%= f.number_field :temperature %>
-  </div>
-  
-  <br>
-  <div>
-    <button type="submit" class="btn btn-success">Submit</button>
-  </div>
-<% end %>
+</div>
