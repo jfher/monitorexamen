@@ -21,11 +21,11 @@
 
         <div class="field">
           <%= f.label :name %><br>
-          <%= f.text_field :name, :class => "textboxgrade" %>
+          <%= f.text_field :name, :class => "textboxgrade", :required => "required" %>
         </div>
         <div class="field">
           <%= f.label :address %><br>
-          <%= f.text_field :address, :class => "textboxgrade" %>
+          <%= f.text_field :address, :class => "textboxgrade", :required => "required" %>
         </div>
         <%= f.hidden_field :Thermostat_id ,value: Thermostat.all.last.id %>
         <div class="text-info">
@@ -36,7 +36,7 @@
           
           <%= f.hidden_field :longitude %>
         </div>
-        
+        <br>
 
         <div class="actions">
           <%= f.submit %>
