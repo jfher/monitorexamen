@@ -2,10 +2,11 @@ ThermMonitor::Application.routes.draw do
   resources :locations
 
   resources :history_thermostats
-  get '/users/delete/:id' => 'thermostats#delete'
-  get '/users/discharge' => 'thermostats#discharge'
+  get '/users/create_user' => 'thermostats#create_user'
+  get '/users/remove/:id' => 'thermostats#remove'
+  get '/users/edit_user/:id' => 'thermostats#edit_user'
   devise_for :users do
-    get '/users/sign_out' => 'devise/sessions#destroy'
+  get '/users/sign_out' => 'devise/sessions#destroy'
    end 
   resources :thermostats
 

@@ -1,6 +1,7 @@
 class ThermostatsController < ApplicationController
   before_filter :authenticate_user!, :except =>  [:index, :about, :contact]
   before_action :set_thermostat, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
    #load_and_authorize_resource
    #authorize_resource
    #load_and_authorize_resource :through => :current_user
@@ -33,6 +34,22 @@ class ThermostatsController < ApplicationController
     redirect_to '/'
   end
 
+  def remove
+        @user=User.find(params[:id])
+    @thermostats=Thermostat.all
+    @thermostats.each do |therm|
+      if therm.user_id == @user.id
+        therm.destroy
+      end
+    end
+    @user.destroy
+    redirect_to '/'
+    end
+
+  def edit_user
+    redirect_to '/'
+  end
+
   def index
     if user_signed_in? && current_user.role == "admin"
       redirect_to '/admi'
@@ -44,19 +61,7 @@ class ThermostatsController < ApplicationController
   end
   end
 
-  def delete
-    @user=User.find(params[:id])
-    @thermostats=Thermostat.all
-    @thermostats.each do |therm|
-      if therm.user_id == @user.id
-        therm.destroy
-      end
-    end
-    @user.destroy
-    redirect_to '/'
-  end
-
-  def discharge
+  def create_user
     redirect_to '/'
   end
 
@@ -103,6 +108,7 @@ class ThermostatsController < ApplicationController
     @thermostat = Thermostat.new(thermostat_params)
    @thermostat.user_id=current_user.id
     @thermostat.energy = 0
+    @thermostat.humidity = 0
     respond_to do |format|
       if @thermostat.save
         @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
@@ -118,7 +124,7 @@ class ThermostatsController < ApplicationController
   def add
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature + 1
-    @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
+    #@thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
     @thermostat.save
     redirect_to :back
   end
@@ -126,7 +132,7 @@ class ThermostatsController < ApplicationController
   def sub
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature - 1
-    @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
+    #@thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
     @thermostat.save
     redirect_to :back
   end
@@ -150,6 +156,10 @@ class ThermostatsController < ApplicationController
   # DELETE /thermostats/1
   # DELETE /thermostats/1.json
   def destroy
+    @thermostat.history_thermostats.each do |history|
+      history.destroy
+    end
+
     @thermostat.destroy
     respond_to do |format|
       format.html { redirect_to thermostats_url }
