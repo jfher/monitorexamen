@@ -1,11 +1,11 @@
 <h1 >Admin view</h1> 
 <br>  
-<td><h1><span class="label label-success">USERS</span></h1>
-<h1><a href= "/users/discharge" class="btn btn-success">USER DISCHARGE</h1></a></td> 
+<td><h1><span class="label label-success"><b>USERS</b></span></h1>
+<h1><a href= "/users/create_user" class="btn btn-success"><b>Create User</b></h1></a></td> 
 <br>
 <table class="table table-striped"><thead>
     <tr class="info">
-    <td><b>#</b></td>
+    <td><b>#User</b></td>
     <th></th>
     <td><b>Email</b></td>
     <td><b>Role</b></td>
@@ -36,20 +36,22 @@
         <% else %>
         <td>Locked</td>
         <% end %>
-        <td><h5><a href= "/admi/user/block/<%=user.id %>"class="btn btn-danger">Block</a></h5></td>
-        <td><h5><a href= "/admi/user/unlock/<%=user.id %>"class="btn btn-default">Unlock</a></h5></td>
-        <td><h5><a href= "/admi/user/change_role/<%=user.id %>"class="btn btn-warning">Role</h5></a></td>  
-        <td><h5><a href= "/users/delete/<%=user.id%>" class="btn btn-info">Unsubscribe</h5></a></td>    
+        <td><h5><a href= "/admi/user/block/<%=user.id %>"class="btn btn-danger"><b>Block</b></a></h5></td>
+        <td><h5><a href= "/admi/user/unlock/<%=user.id %>"class="btn btn-default"><b>Unlock</b></a></h5></td>
+        <td><h5><a href= "/admi/user/change_role/<%=user.id %>"class="btn btn-warning"><b>Change Role</b></h5></a></td>  
+        <td><h5><a href= "/users/remove/<%=user.id%>" class="btn btn-info"><b>Remove</b></h5></a></td>
+        <td><h5><a href= "/users/edit_user/<%=user.id%>" class="btn btn-primary"><b>Edit</b></h5></a></td>      
         <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-<h1><span class="label label-danger">THERMS</span></h1>
+<h1><span class="label label-danger"><b>THERMS</b></span></h1>
 <br>
 <table class="table table-striped"><thead>
     <tr class="info">
     <td><b>#User</b></td>
+    <td><b>Email</b></td>
     <td><b>Serial</b></td>
     <td><b>Temperature</b> </td>
     <td><b>Humidity</b> </td>
@@ -66,24 +68,26 @@
     <% @thermostats.each do |thermostat| %>
       <tr>
         <td><%= thermostat.user_id %></td>
+        <% @users=User.find(thermostat.user_id) %>
+        <td><%= @users.email %></td>  
         <td><%= thermostat.serial %></td>
         <td><%= thermostat.temperature %></td>
         <td><%= thermostat.humidity %></td>
         <td><%= thermostat.energy %></td>
-        <td><%= thermostat.address %></td>
-        <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default">Show</a></td>
-        <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Edit</a></td>
-        <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>
+        <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default"><b>Show</b></a></td>
+        <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-primary"><b>Edit</b></a></td>
+        <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger"><b>Delete</b></a></td>
         
         <% end %>
       </tr>
   </tbody>
 </table>
- <td><h1><span class="label label-primary">LOCATIONS</span></h1>
+ <td><h1><span class="label label-primary"><b>LOCATIONS</b></span></h1>
       <br>
 <table class="table table-striped"><thead>
     <tr class="info">
-      <th>#User<th>
+      <td><b>#User</b></td>
+      <td><b>Email</b></td>
       <th>Serial</th>
       <th>Address</th>
       <th></th>
@@ -93,11 +97,6 @@
   <tbody>
     <% @thermostats.each do |thermostat| %>
       <tr>
-        <td><%= thermostat.user_id %></td>
-        <th></th>
-        <td><%= thermostat.serial %></td>
-        <td><%= thermostat.address %></td>
-        
         <% end %>
 
       </tr>
