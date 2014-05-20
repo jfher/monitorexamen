@@ -1,5 +1,5 @@
 class ThermostatsController < ApplicationController
-  before_filter :authenticate_user!, :except =>  [:index, :about, :contact]
+  before_filter :authenticate_user!, :except =>  [:index, :about, :contact, :edit, :update]
   before_action :set_thermostat, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token
    #load_and_authorize_resource

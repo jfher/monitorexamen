@@ -20,10 +20,10 @@
       <tr>
          <% if current_user.nil? ==false %>
         <% if current_user.id ==thermostat.user_id %>
-        <td><%= thermostat.serial %></td>
-        <td><%= thermostat.temperature %></td>
-        <td><%= thermostat.humidity %></td>
-        <td><%= thermostat.energy %></td>
+        <td><%= thermostat.serial  %></td>
+        <td><%= thermostat.history_thermostats.last.temperature %></td>
+        <td><%= thermostat.history_thermostats.last.humidity %></td>
+        <td><%= thermostat.history_thermostats.last.energy %></td>
         
         <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default">Show</a></td>
         <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Edit</a></td>
