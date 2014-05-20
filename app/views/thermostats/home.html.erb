@@ -1,8 +1,8 @@
 <% if current_user.state == true %>
-<h1>Listing thermostats</h1>
+<center><h1><b> Listing thermostats</b></h1></center>
 <div class="panel panel-success">
   <div class="panel-heading">
-    <h3 class="panel-title">Listing thermostats</h3>
+    <h3 class="panel-title"><b> Listing thermostats</b></h3>
   </div>
 
 
@@ -45,6 +45,8 @@
 
   <a href="<%= new_thermostat_path %> " class="btn btn-success active"> New Thermostat</a> |
   <a href="<%= show_history_path %> " class="btn btn-primary active"> Show History Thermostat</a>
+  <br>
+  <br>
   <% else %>
   <h2><b>You have been blocked by the administrator!!</b></h2>
   <% end %>
