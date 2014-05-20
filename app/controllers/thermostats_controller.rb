@@ -46,8 +46,22 @@ class ThermostatsController < ApplicationController
     redirect_to '/'
     end
 
-  def edit_user
-    redirect_to '/'
+  def save
+      @users=User.all
+      @user=User.new
+      @user.email=params[:email]
+      @user.password=params[:password]
+      @users.each do |user|
+      if @user.email == user.email
+        create_user
+      end
+    end
+      @user.save
+      redirect_to '/'
+  end
+
+    def edit_user
+    @user=User.find(params[:id])
   end
 
   def index
@@ -62,7 +76,7 @@ class ThermostatsController < ApplicationController
   end
 
   def create_user
-    redirect_to '/'
+    @user=User.new
   end
 
    def home
