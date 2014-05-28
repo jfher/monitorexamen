@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Day week:</strong>
+  <%= @schedule.day_week %>
+</p>
+
+<p>
+  <strong>Max:</strong>
+  <%= @schedule.max %>
+</p>
+
+<p>
+  <strong>Min:</strong>
+  <%= @schedule.min %>
+</p>
+
+<p>
+  <strong>Day time:</strong>
+  <%= @schedule.day_time %>
+</p>
+
+<p>
+  <strong>Thermostat:</strong>
+  <%= @schedule.thermostat.id %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
+<%= link_to 'Back', schedules_path %>

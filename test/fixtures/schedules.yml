@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_week: MyString
+  max: 1
+  min: 1
+  day_time: MyString
+  thermostat_id: 
+
+two:
+  day_week: MyString
+  max: 1
+  min: 1
+  day_time: MyString
+  thermostat_id: 

@@ -1,0 +1,92 @@
+<center><h1><b> Report Admin view</b></h1></center> 
+<br>  
+<!--<td><h1><span class="label label-success"><b>USERS</b></span></h1>-->
+<h1><a href= "/users/create_user" class="btn btn-success"><b>Create User</b></h1></a></td> 
+<br>
+
+ <h1><b>USERS</b></h1>
+
+
+
+      <table class="table table-striped"><thead>
+          <tr class="info">
+ 
+
+
+
+<td><b>#User</b></td>
+          <th></th>
+          <td><b>Email</b></td>
+          <td><b>Role</b></td>
+          <td><b>Created At</b></td>
+          <td><b>Updated At</b></td>
+
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+          <% @users.each do |user| %>
+          <% if user.id != 1 %>
+          <tr>
+              <td><%= user.id %></td><td>
+              <td><%= user.email %><b></td> 
+              <td><%= user.role %><b></td> 
+              <td><%= user.created_at %><b></td>
+              <td><%= user.updated_at %><b></td>
+
+            </tr>
+
+
+
+
+
+
+          <br> 
+
+          <table class="table table-striped"><thead>
+          <tr class="info">
+          <td>Serial</td>
+          <th>temperature</th>
+          <th>humedad</th>
+          <th>energia</th>
+          <td><b></b></td>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+        <% @thermostats.each do |thermostat| %>
+        <tr>
+           <% if user.nil? ==false %>
+          <% if user.id ==thermostat.user_id %>
+          <td><%= thermostat.serial %></td>
+          <td><%= thermostat.temperature %></td>
+          <td><%= thermostat.humidity%></td>
+          <td><%= thermostat.energy %></td>
+          
+          <% end %>
+          <% end %>
+
+        </tr>
+
+      </tbody>
+          <% end %>
+
+        </tr>
+      <% end %>
+
+
+
+        </tbody>
+      </table>
+    
+<% end %>

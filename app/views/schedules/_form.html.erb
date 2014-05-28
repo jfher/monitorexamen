@@ -1,0 +1,36 @@
+<%= form_for(@schedule) do |f| %>
+  <% if @schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+      <ul>
+      <% @schedule.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :day_week, "Day of the week" %><br>
+    <%= f.select :day_week, options_for_select([["Monday"], ["Tuesday"], ["Wednesday"], ["Thursday"], ["Friday"], ["Saturday"], ["Sunday"]]) %>
+  </div>
+  <div class="field">
+    <%= f.label :day_time, "Schedule" %><br>
+    <%= f.select :day_time, options_for_select([["12:00 am - 6:00 am"], ["6:00 am - 12:00 pm"], ["12:00 pm - 6:00 pm"], ["6:00 pm a 12:00 am"]]) %>
+  </div>
+  <div class="field">
+    <%= f.label :max %><br>
+    <%= f.number_field :max %>
+  </div>
+  <div class="field">
+    <%= f.label :min %><br>
+    <%= f.number_field :min %>
+  </div>
+  <div class="field">
+    <%= f.label :thermostat_id, "Thermostat Serial" %><br>
+    <%= f.text_field :thermostat_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

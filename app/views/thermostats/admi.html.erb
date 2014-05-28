@@ -5,6 +5,15 @@
 <br>
 
  <h1><b>USERS</b></h1>
+    <%= form_tag '/admi', :method => 'get' do %>
+    <div class= "field">
+      <h3 class = "tex-info"> <%= label_tag "Search"%></h3><br>
+      <%= text_field_tag :search %>
+    </div>
+    <div class= "actions">
+      <%= submit_tag "search" %>
+     </div>  
+<% end %>
 
 
 
@@ -116,3 +125,6 @@
         </tr>
     </tbody>
   </table>
+
+<a href="<%= report_thermostat_path %> " class="btn btn-success active"> report </a>
+

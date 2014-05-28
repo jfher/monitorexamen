@@ -67,6 +67,7 @@ class ThermostatsController < ApplicationController
   def index
     if user_signed_in? && current_user.role == "admin"
       redirect_to '/admi'
+      #redirect_to redirect_to
       @thermostats=Thermostat.all
     else
     if  user_signed_in?
@@ -88,14 +89,31 @@ class ThermostatsController < ApplicationController
    end
  
    def admi
+    
+    if current_user.role != "simple"
+      if params[:search]
+        @users = User.search(params[:search])
+        @thermostats = Thermostat.all
+      else
+      @users= User.all
+      @thermostats = Thermostat.all
+      end
+    else
+      redirect_to '/'
+    end
+  end
+
+
+  def report
     if current_user.role != "simple"
     @users= User.all
     @thermostats = Thermostat.all
   else
     redirect_to '/'
   end
+  end
 
-   end
+   
 
   # GET /thermostats/1
   # GET /thermostats/1.json
@@ -106,6 +124,7 @@ class ThermostatsController < ApplicationController
   def history
     redirect_to show_history
   end
+
 
   # GET /thermostats/new
   def new
