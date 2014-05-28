@@ -27,9 +27,6 @@
           <%= f.label :address %><br>
           <%= f.text_field :address, :class => "textboxgrade", :required => "required" %>
         </div>
-        <%= f.hidden_field :Thermostat_id ,value: Thermostat.all.last.id %>
-        <div class="text-info">
-          
           <%= f.hidden_field :latitude %>
         </div>
         <div class="text-info">
@@ -40,7 +37,9 @@
 
         <div class="actions">
           <%= f.submit %>
+          <td><a href="<%= locations_home_path %>" class="btn btn-danger">Back</a></td>
         </div>
+        
       <% end %>
     </div>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528022243) do
+ActiveRecord::Schema.define(version: 20140528162114) do
 
   create_table "history_thermostats", force: true do |t|
     t.integer  "temperature"
@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20140528022243) do
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "Thermostat_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
-  add_index "locations", ["Thermostat_id"], name: "index_locations_on_Thermostat_id"
+  add_index "locations", ["user_id"], name: "index_locations_on_user_id"
 
   create_table "schedules", force: true do |t|
     t.string   "day_week"
@@ -56,8 +56,10 @@ ActiveRecord::Schema.define(version: 20140528022243) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "energy"
+    t.integer  "location_id"
   end
 
+  add_index "thermostats", ["location_id"], name: "index_thermostats_on_location_id"
   add_index "thermostats", ["user_id"], name: "index_thermostats_on_user_id"
 
   create_table "users", force: true do |t|

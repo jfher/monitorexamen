@@ -18,7 +18,7 @@ ThermMonitor::Application.routes.draw do
   get '/admi/user/block/:id' => 'thermostats#block'
   get '/admi/user/unlock/:id' => 'thermostats#unlock'
   get '/admi/user/change_role/:id' => 'thermostats#change_role'
-  get '/home' => 'thermostats#home'
+  get '/home' => 'locations#index', :as => 'locations_home'
   get '/admi' => 'thermostats#admi'
   get '/admi/report' => 'thermostats#report', :as => 'report_thermostat'  
   get '/about_us' => 'thermostats#about'

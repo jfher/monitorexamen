@@ -7,9 +7,19 @@ class LocationsController < ApplicationController
     @locations = Location.all
   end
 
+  def home
+    if current_user.role != "admin"
+    @locations = Location.all
+    else
+     redirect_to '/'
+   end
+  end
+
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @location = Location.find(params[:id])
+    @thermostats = Thermostat.all
   end
 
   # GET /locations/new
@@ -25,6 +35,7 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
+    @location.user_id = current_user.id
 
     respond_to do |format|
       if @location.save
@@ -69,6 +80,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :address, :latitude, :longitude, :Thermostat_id)
+      params.require(:location).permit(:name, :address, :latitude, :longitude, :user_id)
     end
 end

@@ -26,7 +26,10 @@
           <%= f.label :temperature %><br>
           <%= f.number_field :temperature, :class => "textboxgrade", :required => "required" %>
         </div>
-        
+        <div class="text_info">
+          <%= f.label :'Please select the location for this thermostat'%><br>
+          <%= f.collection_select(:location_id, Location.all, :id, :name, {:required => "required"} ) %>
+        </div>
         <br>
         <div>
           <button type="submit" class="btn btn-success">Submit</button>

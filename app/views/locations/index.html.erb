@@ -1,0 +1,47 @@
+<% if current_user.state == true %>
+<center><h1><b> Listing Locations</b></h1></center>
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title"><b> Listing Locations</b></h3>
+  </div>
+
+
+  <table class="table table-striped"><thead>
+      <tr class="info">
+        <th>Name</th>
+        <th>Address</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @locations.each do |location| %>
+        <tr>
+           <% if current_user.nil? ==false %>
+          <td><%= location.name %></td>
+          <td><%= location.address %></td>
+          
+          <td><a href="<%= location_path (location.id) %>" class="btn btn-default">Show</a></td>
+          <td><a href="<%= edit_location_path(location) %>" class="btn btn-default">Edit</a></td>
+          <td><a href="/locations/destroy/<%= location.id %>" class="btn btn-danger">Delete</a></td>
+          
+          <% end %>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <a href="<%= new_location_path %> " class="btn btn-success active"> New Location</a> |  <a href="<%= new_thermostat_path %> " class="btn btn-success active"> New Thermostat</a> 
+  <br>
+  <br>
+  <% else %>
+  <h2><b>You have been blocked by the administrator!!</b></h2>
+  <% end %>
+</div>
+<br>
+<br>

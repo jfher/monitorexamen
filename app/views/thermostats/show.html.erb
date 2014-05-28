@@ -1,16 +1,83 @@
+<% @location = Location.find_by id: @thermostat.location_id %>
+<% HistoryThermostat.all.each do |f| %>
+    <%if f.thermostat_id == @thermostat.id%>
+        <% @lastemp = f %>
+    <%end%>
+  <% end %>
 
 <div class="thumbnail">
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Serial:</strong>
-  <%= @thermostat.serial %>
-</p>
+<table class="table table-striped"><thead>
+      <tr class="info">
+        <th>Location Name: </th>
+        <th>Address: </th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+     <td>
+       <input readonly type="text" class="textboxgrade" name="locations[name]" value="<%= @location.name %>">
+     </td>
+     <td>
+       <input readonly type="text" class="textboxgrade" name="locations[address]" value="<%= @location.address %>">
+     </td>
+    </tr> 
+    </tbody>
+  </table>
+      <p>
+        <strong>Address:</strong>
+        <br>
+        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@location.latitude}%2C#{@location.longitude}" %>
+      </p>
+
+ <table class="table table-striped"><thead>
+      <tr class="info">
+        <th>Serial: </th>
+        <th>Current Temp: </th>
+        <th>Humidity: </th>
+        <th>Energy: </th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+         <input readonly type="text" class="textboxgrade" name="thermostats[serial]" value="N° <%= @thermostat.serial %>">
+      </td>
+    <% if @lastemp == nil%>
+     <td>
+       <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.temperature %> °" maxlength="4" size="4">
+     </td>
+     <td>
+       <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.humidity %> %" maxlength="4" size="4">
+     </td>
+     <td>
+        <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @thermostat.energy %> kW" maxlength="4" size="4">
+     </td>
+     <%else%>
+     <td>
+       <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @lastemp.temperature %> °" maxlength="4" size="4">
+     </td>
+     <td>
+       <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @lastemp.humidity %> %" maxlength="4" size="4">
+     </td>
+     <td>
+        <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @lastemp.energy %> kW" maxlength="4" size="4">
+     </td>
+     <%end %>
+    </tr> 
+    </tbody>
+  </table>
 
 <tr>
   <p><strong>Temperature:</strong></p>
-  <br>
-  <br>
   <td>
     <a class="izquierda" href="/thermostats/sub/<%=@thermostat.id%>">&laquo;</a>
   </td>
@@ -21,60 +88,9 @@
   <td>
     <a class="derecha" href="/thermostats/add/<%=@thermostat.id%>">&raquo;</a>
   </td>
-
-  <% HistoryThermostat.all.each do |f| %>
-    <%if f.thermostat_id == @thermostat.id%>
-        <% @lastemp = f %>
-    <%end%>
-  <% end %>
-  
-  <td>
-       <p>
-       <strong>Current Temperature:</strong>
-       <br>
-       <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @lastemp.temperature %> °" maxlength="4" size="4">
-       </p>
-    </td>
+   <br>
+   <br>
 </tr>
-<tr>
-
-</td>
-    <td>
-       <p>
-       <strong>Humidity:</strong>
-       <br>
-       <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @lastemp.humidity %> %" maxlength="4" size="4">
-       </p>
-    </td>
-    <td>
-      <p>
-        <strong>Energy:</strong>
-        <br>
-        <input readonly type="text" class="textboxgrade" name="thermostats[temperature]" value="<%= @lastemp.energy %> kW" maxlength="4" size="4">
-        </p>
-    </td>
-</tr>
-<p>
-  <strong>Name Location:</strong>
-  <% @thermostat.locations.each do |location|%>
-  <%= location.name %>
-  <% end %>
-
-</p>
-<p>
-  <strong>Address:</strong>
-  <% @thermostat.locations.each do |location|%>
-  <%= location.address %>
-  <% end %>
-
-</p>
-<p>
-  <strong>Address:</strong>
-        <br>
-        <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=14&markers=#{@location.latitude}%2C#{@location.longitude}" %>
-        
-        </p>
-</p>
 
 <td>
       <strong>Current Weather:</strong>
@@ -108,19 +124,6 @@
 <br>
 <br>
 
-<tr>
-<!--	<td>
-       <p>
-       <strong>Temperature:</strong>
-       <br>
-       <input readonly type="text" name="thermostats[temperature]" value="<%= @thermostat.temperature %> °" maxlength="4" size="4">
-       </p>
-       <a href="/thermostats/sub/<%=@thermostat.id%>"><button><b>-</b></button></a>
-       <a href="/thermostats/add/<%=@thermostat.id%>"><button>+</button></a>
--->     
-   
-</tr>
-
-<%= link_to 'Edit', edit_thermostat_path(@thermostat) %> |
-<%= link_to 'Back', thermostats_path%> 
+<td><a href="<%= edit_thermostat_path(@thermostat) %>" class="btn btn-default">Edit</a></td> |
+<td><a href="<%= locations_home_path %>" class="btn btn-danger">Back</a></td>
 </div>

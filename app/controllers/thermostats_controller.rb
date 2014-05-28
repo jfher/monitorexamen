@@ -118,7 +118,7 @@ class ThermostatsController < ApplicationController
   # GET /thermostats/1
   # GET /thermostats/1.json
   def show
-    @location=Thermostat.find(params[:id]).locations.first
+    @location=Thermostat.find(params[:id]).location_id
   end
 
   def history
@@ -144,8 +144,7 @@ class ThermostatsController < ApplicationController
     @thermostat.humidity = 0
     respond_to do |format|
       if @thermostat.save
-        @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
-        format.html { redirect_to location_thermostat_path, notice: 'Thermostat was successfully created.' }
+        format.html { redirect_to locations_home_path, notice: 'Thermostat was successfully created.' }
         format.json { render action: 'show', status: :created, location: @thermostat }
       else
         format.html { render action: 'new' }
@@ -153,19 +152,17 @@ class ThermostatsController < ApplicationController
       end
     end
   end
-
+#Increases the temperature configuration
   def add
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature + 1
-    #@thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
     @thermostat.save
     redirect_to :back
   end
-
+#Decreases the temperature configuration
   def sub
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature - 1
-    #@thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
     @thermostat.save
     redirect_to :back
   end
@@ -176,7 +173,6 @@ class ThermostatsController < ApplicationController
   def update
     respond_to do |format|
       if @thermostat.update(thermostat_params)
-        @thermostat.history_thermostats.create(temperature:@thermostat.temperature, humidity: @thermostat.humidity, energy: @thermostat.energy)
         format.html { redirect_to @thermostat, notice: 'Thermostat was successfully updated.' }
         format.json { head :no_content }
       else
@@ -208,6 +204,6 @@ class ThermostatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thermostat_params
-      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy, :user_id)
+      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy, :user_id, :location_id)
     end
 end
