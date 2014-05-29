@@ -25,7 +25,13 @@
 
 
 </table>
- <%= @thermostat.serial %> aqui esta el termostato correcto
+<% @schedules.each do |schedule| %> 
+<% if schedule.thermostat_id == @thermostat.id %>
+<%= schedule.id %>
+<% end%>
+ <% end %>
+ 
 
 
 <%= link_to 'New Schedule', new_schedule_path %>
+
