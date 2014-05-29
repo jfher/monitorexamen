@@ -65,20 +65,23 @@
     <div id="alerta" class="col-xs-6 col-md-4"> <!--Alertas de las configuraciones -->
       <h1>ALERTs</h1>
       <% if user_signed_in? && current_user.role != "admin" %>
-        <p><%= current_user.email %></p> 
-        <p>Usuario comun</p>
-        <p>ID USUARIO:: <%= current_user.id %></p>
+        <p><%= current_user.email %></p>
         <% @thermostats = Thermostat.all %>
         <% @schedules = Schedule.all %>
-        <p>THERMOSTATOS:::<br>
+        <p>
           <% @thermostats.each do |thermostat| %>
             <% if thermostat.user_id == current_user.id %>
               <% @schedules.each do |schedule| %>
-                <% if schedule.thermostat_id == thermostat.user_id %>
+                <% if schedule.thermostat_id == thermostat.user_id  %>
                   
-                  Serial themostato con alarma:::<%= thermostat.serial %>
-                  <br>                  
-                  <%break%>
+                  <% if thermostat.temperature > schedule.max || thermostat.temperature < schedule.min  %>
+                    <h4>Serial :::<%= thermostat.serial %></h4><br>
+                    Temperature::<%= thermostat.temperature %><br>
+                    Temperature max ::<%= schedule.max %><br>
+                    Temperature min ::<%= schedule.min %><br>
+                    <hr>              
+                    <%break%>
+                  <%end%>
                 <%end%>
               <%end%>
             <%end%>
