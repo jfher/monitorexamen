@@ -18,6 +18,9 @@ class LocationsController < ApplicationController
   end
 
   def home
+      if current_user.role != 'simple'
+      redirect_to '/'
+      end
        @locations = Location.all
   end
 
@@ -25,16 +28,26 @@ class LocationsController < ApplicationController
   # GET /locations/1.json
   def show
     @location = Location.find(params[:id])
+    if @location.user_id != current_user.id
+      redirect_to '/'
+    end
     @thermostats = Thermostat.all
   end
 
   # GET /locations/new
   def new
+    if current_user.role != 'simple'
+      redirect_to '/'
+    end
     @location = Location.new
   end
 
   # GET /locations/1/edit
   def edit
+    @location = Location.find(params[:id])
+    if @location.user_id != current_user.id
+      redirect_to '/'
+    end
   end
 
   # POST /locations
