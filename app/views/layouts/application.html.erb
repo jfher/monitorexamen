@@ -69,10 +69,18 @@
         <p>Usuario comun</p>
         <p>ID USUARIO:: <%= current_user.id %></p>
         <% @thermostats = Thermostat.all %>
-        <p>THERMOSTATOS:::
+        <% @schedules = Schedule.all %>
+        <p>THERMOSTATOS:::<br>
           <% @thermostats.each do |thermostat| %>
             <% if thermostat.user_id == current_user.id %>
-              <%= thermostat.serial %> <br>
+              <% @schedules.each do |schedule| %>
+                <% if schedule.thermostat_id == thermostat.user_id %>
+                  
+                  Serial themostato con alarma:::<%= thermostat.serial %>
+                  <br>                  
+                  <%break%>
+                <%end%>
+              <%end%>
             <%end%>
           <%end%>
         </p>
