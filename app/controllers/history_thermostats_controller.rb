@@ -11,8 +11,7 @@ class HistoryThermostatsController < ApplicationController
   # GET /history_thermostats/1.json
   def show
   end
-
-
+  
   # POST /history_thermostats
   # POST /history_thermostats.json
   def create
