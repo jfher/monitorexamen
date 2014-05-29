@@ -62,33 +62,36 @@
     <div class="col-xs-12 col-md-8">
       <%= yield %> <!-- Aqui es donde va todo lo de Rails-->
     </div>
-    <div id="alerta" class="col-xs-6 col-md-4"> <!--Alertas de las configuraciones -->
-      <h1>ALERTs</h1>
+    <div id="alerta" class="col-xs-4 col-md-2"> <!--Alertas de las configuraciones -->
       <% if user_signed_in? && current_user.role != "admin" %>
-        <p><%= current_user.email %></p>
-        <% @thermostats = Thermostat.all %>
-        <% @schedules = Schedule.all %>
-        <p>
-          <% @thermostats.each do |thermostat| %>
-            <% if thermostat.user_id == current_user.id %>
-              <% @schedules.each do |schedule| %>
-                <% if schedule.thermostat_id == thermostat.user_id  %>
-                  
-                  <% if thermostat.temperature > schedule.max || thermostat.temperature < schedule.min  %>
-                    <h4>Serial :::<%= thermostat.serial %></h4><br>
-                    Temperature::<%= thermostat.temperature %><br>
-                    Temperature max ::<%= schedule.max %><br>
-                    Temperature min ::<%= schedule.min %><br>
-                    <hr>              
-                    <%break%>
+        <div class="alert alert-danger">
+          <h1>ALERTS</h1>
+
+          <p><%= current_user.email %></p>
+          <% @thermostats = Thermostat.all %>
+          <% @schedules = Schedule.all %>
+          <p>
+            <% @thermostats.each do |thermostat| %>
+              <% if thermostat.user_id == current_user.id %>
+                <% @schedules.each do |schedule| %>
+                  <% if schedule.thermostat_id == thermostat.user_id  %>
+                    
+                    <% if thermostat.temperature > schedule.max || thermostat.temperature < schedule.min  %>
+                      <h4>Serial :::<%= thermostat.serial %></h4><br>
+                      Temperature::<%= thermostat.temperature %><br>
+                      Temperature max ::<%= schedule.max %><br>
+                      Temperature min ::<%= schedule.min %><br>
+                      <hr>              
+                      <%break%>
+                    <%end%>
                   <%end%>
                 <%end%>
               <%end%>
             <%end%>
-          <%end%>
-        </p>
+          </p>
+        </div>
       <% else %>
-        aun no se loguea 
+        
       <% end %>
     </div><!-- /#Alertas de las configuraciones -->    
   </div>
