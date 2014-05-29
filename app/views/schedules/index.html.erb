@@ -12,12 +12,36 @@
           <td><b>Sunday</b></td>
 
           </tr>
+          <tr class="info"><td><b>12:00 am - 6:00 am</b>
+           <th><% @schedules.each do |schedule| %> 
+              <% if schedule.thermostat_id == @thermostat.id %>
+                  <%= schedule.max %>-<%= schedule.min %>
+              <% end%>
+               <% end %>
+            </th></td></tr>
+          <tr class="info"><td><b>6:00 am - 12:00 pm</b>
+            <th><% @schedules.each do |schedule| %> 
+                <% if schedule.thermostat_id == @thermostat.id %>
+                  <%= schedule.max %>-<%= schedule.min %>
+                <% end%>
+                <% end %>
+          </th> </td></tr>
+          <tr class="info"><td><b>12:00 pm - 6:00 pm</b> 
+            <th><% @schedules.each do |schedule| %> 
+            <% if schedule.thermostat_id == @thermostat.id %>
+                <%= schedule.max %>-<%= schedule.min %>
+            <% end%>
+            <% end %>
+          </th></td></tr>
+          <tr class="info"><td><b>6:00 pm a 12:00 am</b>
+            <th><% @schedules.each do |schedule| %> 
+                <% if schedule.thermostat_id == @thermostat.id %>
+                  <%= schedule.max %>-<%= schedule.min %>
+                <% end%>
+                <% end %>
+            </th> </td></tr>
 
-          <tr class="info"><td><b>12:00 am - 6:00 am</b> <th><%= link_to 'Show' %></th></td></tr>
-            <tr class="info"><td><b>6:00 am - 12:00 pm</b> </td></tr>
-            <tr class="info"><td><b>12:00 pm - 6:00 pm</b> </td></tr>
-            <tr class="info"><td><b>6:00 pm a 12:00 am</b> </td></tr>
-
+            
 
         </thead>
 
@@ -25,14 +49,9 @@
 
 
 </table>
- <%= @thermostat.serial %> aqui esta el termostato correcto
 
-<% @schedules.each do |schedule| %> 
-<% if schedule.thermostat_id == @thermostat.id %>
-<%= schedule.id %>
-<% end%>
- <% end %>
  
+
 
 <%= link_to 'New Schedule', new_schedule_path %>
 
