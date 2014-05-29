@@ -1,4 +1,6 @@
 ThermMonitor::Application.routes.draw do
+  resources :alarms
+
   resources :schedules
 
   resources :locations
@@ -19,7 +21,7 @@ ThermMonitor::Application.routes.draw do
   get '/admi/user/unlock/:id' => 'thermostats#unlock'
   get '/admi/user/change_role/:id' => 'thermostats#change_role'
   get '/home' => 'locations#index', :as => 'locations_home'
-  get '/admi' => 'thermostats#admi'
+  get '/admi' => 'thermostats#admi', :as => 'home'
   get '/admi/report' => 'thermostats#report', :as => 'report_thermostat'  
   get '/about_us' => 'thermostats#about'
   get '/locations/new' => 'locations#new', :as => 'location_thermostat'
@@ -34,6 +36,9 @@ ThermMonitor::Application.routes.draw do
 
    get '/history_thermostats' => 'thermostats#history', :as => 'show_history'
    get '/home/:id/schedules' => 'schedules#index', :as => 'home_new_schedule'
+
+  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -99,13 +99,13 @@ end
   end
   end
 
-   def home
+  def home
     if current_user.role != "admin"
-    @thermostats = Thermostat.all
+      @thermostats = Thermostat.all
     else
      redirect_to '/'
-   end
-   end
+     end
+  end
  
    def admi
     
@@ -125,11 +125,11 @@ end
 
   def report
     if current_user.role != "simple"
-    @users= User.all
-    @thermostats = Thermostat.all
-  else
-    redirect_to '/'
-  end
+      @users= User.all
+      @thermostats = Thermostat.all
+    else
+     redirect_to '/'
+    end
   end
 
    

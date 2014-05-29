@@ -10,8 +10,9 @@
   <%= javascript_include_tag "bootstrap" %>
   <%= javascript_include_tag "bootstrap.min" %>
   <%= javascript_include_tag "jquery.ui.addresspicker" %>
+  <%= javascript_include_tag "alert" %>
 </head>
-<body background="\images\fondo1.jpeg">
+<body background="\images\fondo.jpeg">
   <br><br><br><br><br>
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
@@ -60,7 +61,33 @@
   <div class="row">
     <div class="col-xs-12 col-md-8">
       <%= yield %> <!-- Aqui es donde va todo lo de Rails-->
-    </div>    
+    </div>
+    <div id="alerta" class="col-xs-6 col-md-4"> <!--Alertas de las configuraciones -->
+      <h1>ALERTs</h1>
+      <% if user_signed_in? && current_user.role != "admin" %>
+        <p><%= current_user.email %></p> 
+        <p>Usuario comun</p>
+        <p>ID USUARIO:: <%= current_user.id %></p>
+        <% @thermostats = Thermostat.all %>
+        <% @schedules = Schedule.all %>
+        <p>THERMOSTATOS:::<br>
+          <% @thermostats.each do |thermostat| %>
+            <% if thermostat.user_id == current_user.id %>
+              <% @schedules.each do |schedule| %>
+                <% if schedule.thermostat_id == thermostat.user_id %>
+                  
+                  Serial themostato con alarma:::<%= thermostat.serial %>
+                  <br>                  
+                  <%break%>
+                <%end%>
+              <%end%>
+            <%end%>
+          <%end%>
+        </p>
+      <% else %>
+        aun no se loguea 
+      <% end %>
+    </div><!-- /#Alertas de las configuraciones -->    
   </div>
   <!--<hr width=100% align="center">-->
 </div><!-- container -->
