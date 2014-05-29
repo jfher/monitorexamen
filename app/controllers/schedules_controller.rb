@@ -4,7 +4,9 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    @thermostat = Thermostat.first
+    @Thermostat.schedules.first
+
   end
 
   # GET /schedules/1

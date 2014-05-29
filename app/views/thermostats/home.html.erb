@@ -32,7 +32,7 @@
           <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default">Show</a></td>
           <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Edit</a></td>
           <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>
-          
+          <td><a href="<%= home_new_schedule_path(thermostat) %> " class="btn btn-success active"> Alarm Settings </a></td>          
           <% end %>
           <% end %>
 
@@ -44,7 +44,6 @@
   <br>
 
   <a href="<%= new_thermostat_path %> " class="btn btn-success active"> New Thermostat</a> |
-  <a href="<%= home_new_schedule_path %> " class="btn btn-success active"> Alarm Settings </a> |
   <a href="<%= show_history_path %> " class="btn btn-primary active"> Show History Thermostat</a>
   <br>
   <br>
