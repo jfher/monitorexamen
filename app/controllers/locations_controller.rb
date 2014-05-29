@@ -13,7 +13,7 @@ class LocationsController < ApplicationController
         redirect_to '/'
       end
     else
-     redirect_to '/'
+     redirect_to '/users/sign_in'
    end
   end
 
