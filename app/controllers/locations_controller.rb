@@ -1,18 +1,24 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, :except =>  [:index, :about, :contact, :edit, :update]
+  skip_before_filter :verify_authenticity_token
 
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
-  end
-
-  def home
-    if current_user.role != "admin"
-    @locations = Location.all
+    if user_signed_in?
+      if current_user.role != "admin" 
+          @locations = Location.all
+      else
+        redirect_to '/'
+      end
     else
      redirect_to '/'
    end
+  end
+
+  def home
+       @locations = Location.all
   end
 
   # GET /locations/1

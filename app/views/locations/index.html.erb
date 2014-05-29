@@ -19,7 +19,7 @@
     <tbody>
       <% @locations.each do |location| %>
         <tr>
-           <% if current_user.nil? ==false %>
+           <% if current_user.nil? ==false && location.user_id == current_user.id%>
           <td><%= location.name %></td>
           <td><%= location.address %></td>
           
