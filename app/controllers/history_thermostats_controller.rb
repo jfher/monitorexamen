@@ -18,6 +18,9 @@ class HistoryThermostatsController < ApplicationController
   # GET /history_thermostats/1
   # GET /history_thermostats/1.json
   def show
+    if current_user.role == 'admin'
+         redirect_to '/'
+       end
   end
   
   # POST /history_thermostats
