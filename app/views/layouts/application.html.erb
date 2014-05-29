@@ -67,6 +67,15 @@
       <% if user_signed_in? && current_user.role != "admin" %>
         <p><%= current_user.email %></p> 
         <p>Usuario comun</p>
+        <p>ID USUARIO:: <%= current_user.id %></p>
+        <% @thermostats = Thermostat.all %>
+        <p>THERMOSTATOS:::
+          <% @thermostats.each do |thermostat| %>
+            <% if thermostat.user_id == current_user.id %>
+              <%= thermostat.serial %> <br>
+            <%end%>
+          <%end%>
+        </p>
       <% else %>
         aun no se loguea 
       <% end %>
