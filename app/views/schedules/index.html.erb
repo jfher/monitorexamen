@@ -11,37 +11,36 @@
           <td><b>Saturday</b></td>
           <td><b>Sunday</b></td>
 
+
           </tr>
           <tr class="info"><td><b>12:00 am - 6:00 am</b>
            <th><% @schedules.each do |schedule| %> 
-              <% if schedule.thermostat_id == @thermostat.id %>
+              <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
                   <%= schedule.max %>-<%= schedule.min %>
               <% end%>
                <% end %>
             </th></td></tr>
           <tr class="info"><td><b>6:00 am - 12:00 pm</b>
             <th><% @schedules.each do |schedule| %> 
-                <% if schedule.thermostat_id == @thermostat.id %>
+              <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "6:00 am - 12:00 pm")%>
                   <%= schedule.max %>-<%= schedule.min %>
                 <% end%>
                 <% end %>
           </th> </td></tr>
           <tr class="info"><td><b>12:00 pm - 6:00 pm</b> 
             <th><% @schedules.each do |schedule| %> 
-            <% if schedule.thermostat_id == @thermostat.id %>
-                <%= schedule.max %>-<%= schedule.min %>
+            <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "12:00 pm - 6:00 pm")%>
+               link_to "<%= schedule.max %>-<%= schedule.min %>"
             <% end%>
             <% end %>
           </th></td></tr>
           <tr class="info"><td><b>6:00 pm a 12:00 am</b>
             <th><% @schedules.each do |schedule| %> 
-                <% if schedule.thermostat_id == @thermostat.id %>
+                <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "6:00 pm a 12:00 am")%>
                   <%= schedule.max %>-<%= schedule.min %>
                 <% end%>
                 <% end %>
             </th> </td></tr>
-
-            
 
         </thead>
 
