@@ -33,7 +33,7 @@ ThermMonitor::Application.routes.draw do
    get '/thermostats/sub/:id' => 'thermostats#sub'
 
    get '/history_thermostats' => 'thermostats#history', :as => 'show_history'
-   get '/home/schedules' => 'schedules#index', :as => 'home_new_schedule'
+   get '/home/:id/schedules' => 'schedules#index', :as => 'home_new_schedule'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

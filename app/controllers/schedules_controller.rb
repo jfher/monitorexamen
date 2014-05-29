@@ -6,7 +6,7 @@ class SchedulesController < ApplicationController
   def index
     if user_signed_in?
       if current_user.role != "admin" 
-           @schedules = Schedule.all
+           @thermostat=Thermostat.find(params[:id])
       else
         redirect_to '/'
       end
