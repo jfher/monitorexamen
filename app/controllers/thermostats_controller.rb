@@ -21,21 +21,30 @@ class ThermostatsController < ApplicationController
   end
 
  def block
+   if current_user.role=="admin"
     @user=User.find(params[:id])
     @user.state=false
     @user.save
     redirect_to '/'
-  end
+  else
+  redirect_to '/'
+   end
+end
 
   def unlock
+     if current_user.role=="admin"
    @user=User.find(params[:id])
     @user.state=true
     @user.save
     redirect_to '/'
+  else
+    redirect_to '/'
+  end
   end
 
   def remove
-        @user=User.find(params[:id])
+     if current_user.role=="admin"
+    @user=User.find(params[:id])
     @thermostats=Thermostat.all
     @thermostats.each do |therm|
       if therm.user_id == @user.id
@@ -44,7 +53,10 @@ class ThermostatsController < ApplicationController
     end
     @user.destroy
     redirect_to '/'
-    end
+  else
+    redirect_to '/'
+  end
+end
 
   def save
       @users=User.all
@@ -61,13 +73,16 @@ class ThermostatsController < ApplicationController
   end
 
     def edit_user
+       if current_user.role=="admin"
     @user=User.find(params[:id])
+  else
+    redirect_to '/'
+  end
   end
 
   def index
     if user_signed_in? && current_user.role == "admin"
       redirect_to '/admi'
-      #redirect_to redirect_to
       @thermostats=Thermostat.all
     else
     if  user_signed_in?
@@ -77,7 +92,11 @@ class ThermostatsController < ApplicationController
   end
 
   def create_user
+     if current_user.role=="admin"
     @user=User.new
+  else
+    redirect_to '/'
+  end
   end
 
    def home
@@ -128,7 +147,11 @@ class ThermostatsController < ApplicationController
 
   # GET /thermostats/new
   def new
+    if current_user.role == 'simple'
     @thermostat = Thermostat.new
+  else
+    redirect_to '/'
+  end
   end
 
   # GET /thermostats/1/edit
@@ -138,7 +161,7 @@ class ThermostatsController < ApplicationController
   # POST /thermostats
   # POST /thermostats.json
   def create
-    @thermostat = Thermostat.new(thermostat_params)
+  @thermostat = Thermostat.new(thermostat_params)
    @thermostat.user_id=current_user.id
     @thermostat.energy = 0
     @thermostat.humidity = 0
