@@ -10,7 +10,7 @@ ThermMonitor::Application.routes.draw do
   get '/users/edit_user/:id' => 'thermostats#edit_user'
   devise_for :users do
   get '/users/sign_out' => 'devise/sessions#destroy'
-   end 'thermostat_show'
+   end 
   resources :thermostats
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -23,7 +23,7 @@ ThermMonitor::Application.routes.draw do
   get '/admi/report' => 'thermostats#report', :as => 'report_thermostat'  
   get '/about_us' => 'thermostats#about'
   get '/locations/new' => 'locations#new', :as => 'location_thermostat'
-  get '/thermostats/:id' => 'thermostats#show', :as => 
+  get '/thermostats/:id' => 'thermostats#show', :as => 'thermostat_show'
   get '/contact_us' => 'thermostats#contact'
 
   # You can have the root of your site routed with "root"
