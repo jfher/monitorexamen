@@ -1,0 +1,29 @@
+# Logfile created on 2014-05-29 09:52:07 -0400 by logger.rb/36483
+D, [2014-05-29T09:52:07.659051 #6564] DEBUG -- : query: "history_thermostat%5Btemperature%5D=120&history_thermostat%5Bhumidity%5D=30&history_thermostat%5Benergy%5D=40&history_thermostat%5Bthermostat_id%5D=3"
+I, [2014-05-29T09:52:07.660051 #6564]  INFO -- : Net::HTTP::Post: /history_thermostats.json
+D, [2014-05-29T09:52:07.660051 #6564] DEBUG -- : request-header: accept-encoding => gzip,deflate,identity
+D, [2014-05-29T09:52:07.660051 #6564] DEBUG -- : request-header: accept => */*
+D, [2014-05-29T09:52:07.660051 #6564] DEBUG -- : request-header: user-agent => Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4b) Gecko/20030516 Mozilla Firebird/0.6
+D, [2014-05-29T09:52:07.660051 #6564] DEBUG -- : request-header: accept-charset => ISO-8859-1,utf-8;q=0.7,*;q=0.7
+D, [2014-05-29T09:52:07.661052 #6564] DEBUG -- : request-header: accept-language => en-us,en;q=0.5
+D, [2014-05-29T09:52:07.661052 #6564] DEBUG -- : request-header: host => localhost:3000
+D, [2014-05-29T09:52:07.661052 #6564] DEBUG -- : request-header: content-type => application/x-www-form-urlencoded
+D, [2014-05-29T09:52:07.661052 #6564] DEBUG -- : request-header: content-length => 149
+I, [2014-05-29T09:52:08.936819 #6564]  INFO -- : status: Net::HTTPCreated 1.1 201 Created 
+D, [2014-05-29T09:52:08.936819 #6564] DEBUG -- : response-header: x-frame-options => SAMEORIGIN
+D, [2014-05-29T09:52:08.936819 #6564] DEBUG -- : response-header: x-xss-protection => 1; mode=block
+D, [2014-05-29T09:52:08.937820 #6564] DEBUG -- : response-header: x-content-type-options => nosniff
+D, [2014-05-29T09:52:08.937820 #6564] DEBUG -- : response-header: x-ua-compatible => chrome=1
+D, [2014-05-29T09:52:08.937820 #6564] DEBUG -- : response-header: location => http://localhost:3000/history_thermostats/3
+D, [2014-05-29T09:52:08.937820 #6564] DEBUG -- : response-header: content-type => application/json; charset=utf-8
+D, [2014-05-29T09:52:08.937820 #6564] DEBUG -- : response-header: etag => "fa742a92865043d3abc31dfce24d3ba7"
+D, [2014-05-29T09:52:08.937820 #6564] DEBUG -- : response-header: cache-control => max-age=0, private, must-revalidate
+D, [2014-05-29T09:52:08.938818 #6564] DEBUG -- : response-header: x-request-id => 08408102-33f6-42cd-a03b-b2c78e826cea
+D, [2014-05-29T09:52:08.938818 #6564] DEBUG -- : response-header: x-runtime => 0.247725
+D, [2014-05-29T09:52:08.938818 #6564] DEBUG -- : response-header: server => WEBrick/1.3.1 (Ruby/2.0.0/2013-05-14)
+D, [2014-05-29T09:52:08.938818 #6564] DEBUG -- : response-header: date => Thu, 29 May 2014 13:52:08 GMT
+D, [2014-05-29T09:52:08.938818 #6564] DEBUG -- : response-header: content-length => 150
+D, [2014-05-29T09:52:08.938818 #6564] DEBUG -- : response-header: connection => Keep-Alive
+D, [2014-05-29T09:52:08.938818 #6564] DEBUG -- : response-header: set-cookie => request_method=POST; path=/
+D, [2014-05-29T09:52:08.939818 #6564] DEBUG -- : Read 150 bytes (150 total)
+D, [2014-05-29T09:52:08.948823 #6564] DEBUG -- : saved cookie: request_method=POST

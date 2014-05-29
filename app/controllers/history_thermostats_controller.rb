@@ -27,7 +27,11 @@ class HistoryThermostatsController < ApplicationController
   # POST /history_thermostats.json
   def create
     @history_thermostat = HistoryThermostat.new(history_thermostat_params)
-
+    @therm=Thermostat.find(@history_thermostat.thermostat_id)
+    @mail=params[:mail]
+    @user=User.find_by_email(@mail)
+    @userpass=User.where(:password => 'params[:pass]')
+    if @user && @userpass && @therm.user.id == @user.id
     respond_to do |format|
       if @history_thermostat.save
         format.html { redirect_to @history_thermostat, notice: 'History thermostat was successfully created.' }
@@ -37,6 +41,9 @@ class HistoryThermostatsController < ApplicationController
         format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
       end
     end
+   else
+  format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
+   end
   end
 
   # PATCH/PUT /history_thermostats/1

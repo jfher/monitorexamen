@@ -20,15 +20,36 @@ class SchedulesController < ApplicationController
   # GET /schedules/1
   # GET /schedules/1.json
   def show
+    if user_signed_in?
+      if current_user.role == 'admin' 
+      redirect_to '/'
+      end
+    else
+  redirect_to '/users/sign_in'
   end
+end
 
   # GET /schedules/new
   def new
+    if user_signed_in?
+      if current_user.role != 'admin'
     @schedule = Schedule.new
+  else
+    redirect_to '/'
   end
-
+else
+  redirect_to '/users/sign_in'
+  end
+end
   # GET /schedules/1/edit
   def edit
+    if user_signed_in?
+      if current_user.role == 'admin'
+      redirect_to '/'
+      end
+    else
+  redirect_to '/users/sign_in'
+  end
   end
 
   # POST /schedules
