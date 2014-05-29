@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
     has_many :thermostats  
+    has_many :locations  
 
   scope :search, lambda { |search_word| where('users.email LIKE ?', "%#{search_word}%") }
 

@@ -4,15 +4,22 @@ class HistoryThermostatsController < ApplicationController
   # GET /history_thermostats
   # GET /history_thermostats.json
   def index
-    @history_thermostats = HistoryThermostat.all
+    if user_signed_in?
+      if current_user.role != "admin" 
+           @history_thermostats = HistoryThermostat.all
+      else
+        redirect_to '/'
+      end
+    else
+     redirect_to '/users/sign_in'
+   end
   end
 
   # GET /history_thermostats/1
   # GET /history_thermostats/1.json
   def show
   end
-
-
+  
   # POST /history_thermostats
   # POST /history_thermostats.json
   def create

@@ -4,10 +4,16 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @thermostat = Thermostat.first
-    @Thermostat.schedules.first
-
-  end
+    if user_signed_in?
+      if current_user.role != "admin" 
+           @schedules = Schedule.all
+      else
+        redirect_to '/'
+      end
+    else
+     redirect_to '/users/sign_in'
+   end
+ end
 
   # GET /schedules/1
   # GET /schedules/1.json
