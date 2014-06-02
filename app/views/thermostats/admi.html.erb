@@ -1,11 +1,7 @@
-<center><h1><b> Admin view</b></h1></center> 
-<br>  
-<!--<td><h1><span class="label label-success"><b>USERS</b></span></h1>-->
-<h1><a href= "/users/create_user" class="btn btn-success"><b>Create User</b></h1></a></td> 
-<br>
-
- <h1><b>USERS</b></h1>
-    <%= form_tag '/admi', :method => 'get' do %>
+<center><h1><b> Admin view</b></h1></center>  
+<a href= "/users/create_user" class="btn btn-success"><b>Create User</b></a>
+<a href="<%= report_thermostat_path %> " class="btn btn-success active"><b>Report</b></a>
+<%= form_tag '/admi', :method => 'get' do %>
     <div class= "field">
       <h3 class = "tex-info"> <%= label_tag "Search"%></h3><br>
       <%= text_field_tag :search %>
@@ -14,9 +10,7 @@
       <%= submit_tag "search" %>
      </div>  
 <% end %>
-
-
-
+ <h1><b>USERS</b></h1>
       <table class="table table-striped"><thead>
           <tr class="info">
           <td><b>#User</b></td>
@@ -75,7 +69,6 @@
         <td><b>Temperature</b> </td>
         <td><b>Humidity</b> </td>
         <td><b>Energy</b></td>
-        <td><b>Address</b></td>
         <td><b>Options</b></td>
 
           <th></th>
@@ -106,25 +99,26 @@
  <h1><b>LOCATIONS</b></h1>
       <br>
 
-
   <table class="table table-striped"><thead>
       <tr class="info">
         <td><b>#User</b></td>
         <td><b>Email</b></td>
-        <th>Serial</th>
+        <th>Name</th>
         <th>Address</th>
-        <th></th>
       </tr>
     </thead>
 
     <tbody>
-      <% @thermostats.each do |thermostat| %>
+      <% @locations.each do |location| %>
         <tr>
-          <% end %>
+          <% @user=User.find(location.user_id)%>
+          <td><%= @user.id %></td>
+          <td><%= @user.email %></td>  
+          <td><%= location.name %></td>
+          <td><%= location.address %></td>
+      <% end %>
 
         </tr>
     </tbody>
   </table>
-
-<a href="<%= report_thermostat_path %> " class="btn btn-success active"> report </a>
 

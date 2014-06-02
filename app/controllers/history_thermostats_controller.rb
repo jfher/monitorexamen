@@ -24,7 +24,12 @@ class HistoryThermostatsController < ApplicationController
   end
  #show the report for a thermostat by the id
   def report
+    @user_id=Thermostat.find(params[:id].to_i).user_id
+     if current_user.id == @user_id 
      @history_thermostats = HistoryThermostat.all
+     else
+      redirect_to '/'
+     end
   end
   
   # POST /history_thermostats

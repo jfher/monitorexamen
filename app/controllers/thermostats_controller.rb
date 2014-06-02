@@ -113,9 +113,11 @@ end
       if params[:search]
         @users = User.search(params[:search])
         @thermostats = Thermostat.all
+        @locations = Location.all
       else
       @users= User.all
       @thermostats = Thermostat.all
+      @locations = Location.all
       end
     else
       redirect_to '/'
@@ -137,7 +139,12 @@ end
   # GET /thermostats/1
   # GET /thermostats/1.json
   def show
-    @location=Thermostat.find(params[:id]).location_id
+    @aux=params[:id]
+    @location=Thermostat.find(@aux).location_id
+    @thermostat=Thermostat.find(@aux)
+     if current_user.id != @thermostat.user_id && current_user.role != 'admin'
+      redirect_to '/'
+     end
   end
 
   def history
