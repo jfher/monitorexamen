@@ -9,5 +9,5 @@ agent = Mechanize.new
 			"history_thermostat[humidity]" => 100,
 			"history_thermostat[energy]" => 8,
 			"history_thermostat[thermostat_id]" => 1,
-			 mail: 'luis@yahoo.com' , pass: 'usuariotres'
+			 mail: 'asd@gmail.com' , pass: '12345678'
 			})
