@@ -14,13 +14,17 @@ class HistoryThermostatsController < ApplicationController
      redirect_to '/users/sign_in'
    end
   end
-
+ 
   # GET /history_thermostats/1
   # GET /history_thermostats/1.json
   def show
     if current_user.role == 'admin'
          redirect_to '/'
-       end
+    end
+  end
+ #show the report for a thermostat by the id
+  def report
+     @history_thermostats = HistoryThermostat.all
   end
   
   # POST /history_thermostats
@@ -72,7 +76,7 @@ class HistoryThermostatsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_history_thermostat
+   def set_history_thermostat
       @history_thermostat = HistoryThermostat.find(params[:id])
     end
 

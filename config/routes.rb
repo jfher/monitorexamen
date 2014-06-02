@@ -27,6 +27,7 @@ ThermMonitor::Application.routes.draw do
   get '/locations/new' => 'locations#new', :as => 'location_thermostat'
   get '/thermostats/:id' => 'thermostats#show', :as => 'thermostat_show'
   get '/contact_us' => 'thermostats#contact'
+  get '/history_thermostats/report/:id' => 'history_thermostats#report', :as => 'report_history'
 
   # You can have the root of your site routed with "root"
    root 'thermostats#index'
