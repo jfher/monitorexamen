@@ -29,7 +29,7 @@ ThermMonitor::Application.routes.draw do
   get '/contact_us' => 'thermostats#contact'
   get '/history_thermostats/report/:id' => 'history_thermostats#report', :as => 'report_history'
 
-  # You can have the root of your site routed with "root"
+  # You can have thjjjjje root of your site routed with "root"
    root 'thermostats#index'
    get '/thermostats/destroy/:id' => 'thermostats#destroy'
    get '/thermostats/add/:id' => 'thermostats#add'
