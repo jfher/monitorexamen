@@ -36,7 +36,10 @@ class HistoryThermostatsController < ApplicationController
   # POST /history_thermostats.json
   def create
     @history_thermostat = HistoryThermostat.new(history_thermostat_params)
-    @therm=Thermostat.find(@history_thermostat.thermostat_id)
+    @serial=params[:serial]
+    @therm=Thermostat.find_by_serial(@serial)
+    if @therm
+    @history_thermostat.thermostat_id=@therm.id
     @mail=params[:mail]
     @user=User.find_by_email(@mail)
     @userpass=User.where(:password => 'params[:pass]')
@@ -53,6 +56,9 @@ class HistoryThermostatsController < ApplicationController
    else
   format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
    end
+ else
+  format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
+ end
   end
 
   # PATCH/PUT /history_thermostats/1
@@ -87,6 +93,6 @@ class HistoryThermostatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def history_thermostat_params
-      params.require(:history_thermostat).permit(:temperature, :humidity, :energy, :thermostat_id)
+      params.require(:history_thermostat).permit(:temperature, :humidity, :energy)
     end
 end

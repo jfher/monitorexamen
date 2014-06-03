@@ -4,6 +4,7 @@ ThermMonitor::Application.routes.draw do
   resources :schedules
 
   resources :locations
+  get 'history_thermostats/:id' => 'thermostats#index'
 
   resources :history_thermostats
   post '/user/save' => 'thermostats#save'
