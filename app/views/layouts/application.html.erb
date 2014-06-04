@@ -53,7 +53,7 @@
               
 
               <li class="">
-                <a href="/users/sign_out" title="" method="delete"><%= current_user.email %> <b>Sing Out</b> </a>
+                <a href="/users/sign_out" title="" method="delete"><%= current_user.email %><img src="\images\user.png" alt="12%" width="30" height="30"></a>
                                 
               </li>
             <% else %>
@@ -72,31 +72,29 @@
     </div>
     <div id="alerta" class="col-xs-4 col-md-2"> <!--Alertas de las configuraciones -->
       <% if user_signed_in? && current_user.role != "admin" %>
+        
         <div class="alert alert-danger">
+          <p><img src="\images\alert_red.gif" alt="dsdad" width="50" height="50"></p>
           <h1>ALERTS</h1>
+          <h3>ID USER::<%= current_user.id %></h3>
+          <% @schedules = Array.new %>
+          <% @thermostats = Thermostat.where( :user_id => current_user.id) %> <!--Los termostatos del usuario-->
 
-          <p><%= current_user.email %></p>
-          <% @thermostats = Thermostat.all %>
-          <% @schedules = Schedule.all %>
-          <p>
-            <% @thermostats.each do |thermostat| %>
-              <% if thermostat.user_id == current_user.id %>
-                <% @schedules.each do |schedule| %>
-                  <% if schedule.thermostat_id == thermostat.user_id  %>
-                    
-                    <% if thermostat.temperature > schedule.max || thermostat.temperature < schedule.min  %>
-                      <h4>Serial :::<%= thermostat.serial %></h4><br>
-                      Temperature::<%= thermostat.temperature %><br>
-                      Temperature max ::<%= schedule.max %><br>
-                      Temperature min ::<%= schedule.min %><br>
-                      <hr>              
-                      <%break%>
-                    <%end%>
-                  <%end%>
-                <%end%>
-              <%end%>
+          <% @thermostats.each do |thermostat|%>
+            <% @schedules= Schedule.where(:thermostat_id => thermostat.id) %>           
+            <hr>
+            <p>SCHEDULES</p>
+            <% @schedules.each do |schedule| %>
+              <p>THER ID ::<%= schedule.thermostat_id %></p>
+              <p>DAY ::<%= schedule.day_week %></p>
             <%end%>
-          </p>
+            
+          <%end%>
+
+
+         
+          
+         
         </div>
       <% else %>
         
