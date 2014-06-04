@@ -6,6 +6,17 @@
 	</div>
 	<div class="panel-body">
 		<div class="container">
+			<div class="row">
+    			<div class="col-sm-4 social-buttons">	
+					<a class="btn btn-block btn-social btn-facebook">
+		      		  <i class="fa fa-facebook"></i> Sign in with Facebook
+		     		</a>
+		     		<a class="btn btn-block btn-social btn-twitter">
+				    	<i class="fa fa-twitter"></i> Sign in with Twitter
+				    </a>
+		     	</div>
+
+		    </div>
 
 			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 			  <div><%= f.label :email %><br />
