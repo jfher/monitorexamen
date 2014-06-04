@@ -39,7 +39,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/about_us">About Us</a></li>
             <li><a href="/contact_us">Contact Us</a></li>
-            <li id="hour"><h3><font color="#DBDBDB">aqui va la hora</font></h3></li>
+            <li id="hour"><h3><font color="#DBDBDB">aqui ira la hora</font></h3></li>
           </ul>
 
           
@@ -92,8 +92,9 @@
           <% @thermostats = Thermostat.where( :user_id => current_user.id) %> <!--Los termostatos del usuario-->
 
           <% @thermostats.each do |thermostat|%>
-            <% @schedules= Schedule.where(:thermostat_id => thermostat.id) %>           
-            <% @history_thermostats = HistoryThermostat.where(:thermostat_id => thermostat.id).last %>           
+            <% @schedules= Schedule.where(:thermostat_id => thermostat.id) %><!--Schedules del termostato-->           
+            <% @history_thermostats= HistoryThermostat.where(:thermostat_id => thermostat.id).last %><!--Ultimo Historial del termostato-->
+
             <hr>
             <p>SCHEDULES <H4>THERM ID :: <%= thermostat.id %></H4></p>
             <% @schedules.each do |schedule| %>
@@ -102,6 +103,15 @@
               <p>HORARIO ::<%= schedule.day_time %></p>
             <%end%>
             
+            <p>ULTIMO HIST THERM</p>
+            <% if HistoryThermostat.where(:thermostat_id => thermostat.id).length > 0%>
+              <p>temperatura= <%= @history_thermostats.temperature %></p>
+              <p>humidity= <%= @history_thermostats.humidity %></p>
+              <p>energy= <%= @history_thermostats.energy %></p>
+              <p>id termostato= <%= @history_thermostats.thermostat_id %></p>
+            <%else%>
+              no hay nada el el historial
+            <%end%>
           <%end%>
 
 
