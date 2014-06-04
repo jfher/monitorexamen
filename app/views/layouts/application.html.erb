@@ -83,10 +83,11 @@
           <% @thermostats.each do |thermostat|%>
             <% @schedules= Schedule.where(:thermostat_id => thermostat.id) %>           
             <hr>
-            <p>SCHEDULES</p>
+            <p>SCHEDULES <H4>THERM ID :: <%= thermostat.id %></H4></p>
             <% @schedules.each do |schedule| %>
-              <p>THER ID ::<%= schedule.thermostat_id %></p>
+              <hr>
               <p>DAY ::<%= schedule.day_week %></p>
+              <p>DAY ::<%= schedule.day_time %></p>
             <%end%>
             
           <%end%>
