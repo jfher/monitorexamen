@@ -1,7 +1,7 @@
 <%= render 'mapa' %>
 <div class="panel panel-success">
   <div class="panel-heading">
-    <h3 class="panel-title">Sign Up</h3>
+    <h3 class="panel-title">New Location</h3>
   </div>
   <div class="panel-body">
     <div class="container">
@@ -36,8 +36,8 @@
         <br>
 
         <div class="actions">
-          <%= f.submit %>
-          <td><a href="<%= locations_home_path %>" class="btn btn-danger">Back</a></td>
+          <td><a href="<%= locations_home_path %>" class="btn btn-default">Back</a></td>
+          <%= f.submit :class => "btn btn-primary" %>
         </div>
         
       <% end %>
