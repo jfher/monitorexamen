@@ -130,7 +130,7 @@
         <td><b>User</b></td>
         <td><b>Themostat_id</b></td>
         <td><b>Description</b></td>
-        <td><b>State</b></td>
+        <td><b>Status</b></td>
         <td><b>Resolution</b></td>
         <td><b>Options</b></td>
       </tr>
@@ -147,7 +147,11 @@
           <td><%= issue.description %></td>  
           <td><%= issue.status%></td>
           <td><%= issue.resolution %></td>
+          <% if issue.status != "Resolved" %>
           <td><a href="/issues/resolve/<%= issue.id %>" class="btn btn-primary"><b>Resolve</b></a></td>
+          <% else %>
+          <td><a href="/issues/open/<%= issue.id %>" class="btn btn-default"><b>Open</b></a></td>
+          <%end%>
       <% end %>
       <%end%>
         </tr>

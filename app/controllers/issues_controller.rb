@@ -32,11 +32,22 @@ class IssuesController < ApplicationController
       redirect_to '/'
   end
 
-  def resolve
-    if current_user.role != 'admin'
-      redirect_to '/'
+  def open
+      @issue=Issue.find(params[:id])
+    if current_user.role == 'admin' && @issue.status != "Open" && @issue.status != "Canceled"
+      @issue.status="Open"
+      @issue.save
     end
+    redirect_to '/'
+  end
+
+  def resolve
     @issue=Issue.find(params[:id])
+    if current_user.role == 'admin' && @issue.status != "Resolved" && @issue.status != "Canceled"
+    @issue.status="Resolved"
+    else
+    redirect_to '/'
+  end
   end
 
   # GET /issues/new
@@ -61,8 +72,8 @@ class IssuesController < ApplicationController
   # POST /issues.json
   def create
     @issue = Issue.new(issue_params)
-    @issue.status="Unresolved"
-    @issue.resolution="..."
+    @issue.status="Open"
+    @issue.resolution=""
 
     respond_to do |format|
       if @issue.save
