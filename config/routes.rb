@@ -41,6 +41,7 @@ ThermMonitor::Application.routes.draw do
    get '/history_thermostats' => 'thermostats#history', :as => 'show_history'
    get '/schedules/index/:thermostat_id' => 'schedules#index', :as => 'location_new_schedule'
    get '/schedules/new/:thermostat_id' => 'schedules#new'
+   post '/schedules/new/:thermostat_id'=> 'schedules#create'
   
 
 
