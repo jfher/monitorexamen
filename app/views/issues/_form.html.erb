@@ -16,16 +16,12 @@
 
   <div class="field">
     <%= f.label :description %><br>
-<<<<<<< HEAD
-    <%= f.text_area :description, :class => "textboxgrade", :required => "required" %>
-=======
     <%= f.text_field :description , :required => "required" %>
   </div>
   <%if current_user.role != "admin"%>
   <div class="field">
     <%= f.label :status %><br>
     <%= f.text_field :status , :required => "required" , :disabled => "true"%>
->>>>>>> d77831aec5c9ca43298da9dee99e87343f392048
   </div>
   <div class="field">
     <%= f.label :resolution %><br>
@@ -34,11 +30,7 @@
   <%else%>
     <div class="field">
     <%= f.label :status %><br>
-<<<<<<< HEAD
-    <%= f.text_field :status, :class => "textboxgrade" %>
-=======
     <%= f.text_field :status , :required => "required" %>
->>>>>>> d77831aec5c9ca43298da9dee99e87343f392048
   </div>
   <div class="field">
     <%= f.label :resolution %><br>
