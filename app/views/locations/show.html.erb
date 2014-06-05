@@ -51,7 +51,8 @@
           <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>
           <td><a href="/schedules/new/<%= thermostat.id %>" class="btn btn-danger">Schedule</a></td>
           <td><a href="<%= report_history_path(thermostat.id) %> " class="btn btn-primary active"> Show History Thermostat</a></td>
-          
+          <td><a href="/issues/new/<%= thermostat.id %>" class="btn btn-warning">Report Problem</a></td>
+          <td><a href="/issues/show/<%= thermostat.id %>"class="btn btn-info">Show Problems</a></td>
           <% end %>
           <% end %>
         </tr>

@@ -4,7 +4,13 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
+    @id_therm=params[:id]
+    @id_therm=@id_therm.to_i
+    if @id_therm != 0
+      @issues = Issue.all
+  else
+    redirect_to '/'
+  end
   end
 
   # GET /issues/1
@@ -12,9 +18,26 @@ class IssuesController < ApplicationController
   def show
   end
 
+  def cancel
+    @id_therm=params[:id]
+    @issue=Issue.find_by_thermostat_id(@id_therm)
+    if @issue
+      @issue.status="Canceled"
+      @issue.save
+      end
+      redirect_to '/'
+  end
+
   # GET /issues/new
   def new
+    @id_therm=params[:id]
+    @id_therm=@id_therm.to_i
+    if @id_therm != 0
     @issue = Issue.new
+    @issue.thermostat_id=@id_therm
+  else
+    redirect_to '/'
+  end
   end
 
   # GET /issues/1/edit
@@ -25,6 +48,8 @@ class IssuesController < ApplicationController
   # POST /issues.json
   def create
     @issue = Issue.new(issue_params)
+    @issue.status="Unresolved"
+    @issue.resolution="..."
 
     respond_to do |format|
       if @issue.save
