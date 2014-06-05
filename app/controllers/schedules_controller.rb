@@ -31,9 +31,13 @@ end
 
   # GET /schedules/new
   def new
+    @therm_id= params[:thermostat_id]
+    @therm_id=@therm_id.to_i
     if user_signed_in?
       if current_user.role != 'admin'
     @schedule = Schedule.new
+    @schedule.thermostat_id=@therm_id
+    @schedule.save
   else
     redirect_to '/'
   end
@@ -102,6 +106,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:day_week, :max, :min, :day_time, :thermostat_id)
+      params.require(:schedule).permit(:day_week, :temperature, :day_time, :thermostat_id)
     end
 end
