@@ -32,6 +32,13 @@ class IssuesController < ApplicationController
       redirect_to '/'
   end
 
+  def resolve
+    if current_user.role != 'admin'
+      redirect_to '/'
+    end
+    @issue=Issue.find(params[:id])
+  end
+
   # GET /issues/new
   def new
    issues_permissions

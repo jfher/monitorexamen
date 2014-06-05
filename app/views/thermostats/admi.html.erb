@@ -103,8 +103,8 @@
       <tr class="info">
         <td><b>#User</b></td>
         <td><b>Email</b></td>
-        <th>Name</th>
-        <th>Address</th>
+        <td><b>Name</b></td>
+        <td><b>Address</b></td>
       </tr>
     </thead>
 
@@ -130,8 +130,9 @@
         <td><b>User</b></td>
         <td><b>Themostat_id</b></td>
         <td><b>Description</b></td>
-        <th>State</th>
-        <th>Resolution</th>
+        <td><b>State</b></td>
+        <td><b>Resolution</b></td>
+        <td><b>Options</b></td>
       </tr>
     </thead>
 
@@ -140,12 +141,13 @@
         <tr>
          <%@id_user=Thermostat.find(issue.thermostat_id).user_id%>
          <% @user=User.find(@id_user)%>
+         <%if issue.status != "Canceled"%>
           <td><%= @user.email %></td>
-        <%if issue.status != "Canceled"%>
           <td><%= issue.thermostat_id %></td>
           <td><%= issue.description %></td>  
           <td><%= issue.status%></td>
           <td><%= issue.resolution %></td>
+          <td><a href="/issues/resolve/<%= issue.id %>" class="btn btn-primary"><b>Resolve</b></a></td>
       <% end %>
       <%end%>
         </tr>
