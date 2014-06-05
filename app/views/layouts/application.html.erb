@@ -82,48 +82,47 @@
 <!--========================== :::::ALERTAS::::: ============================================== -->
 
   <div class="row">  
-    <div id="alerta" class="col-sm-4 col-md-4"> <!--Alertas de las configuraciones -->
+    <div id="alerta" class="col-sm-3 col-md-3"> <!--Alertas de las configuraciones -->
       <% if user_signed_in? && current_user.role != "admin" %>
         
-        <div class="alert alert-danger">
-          <p><img src="\images\alert_red.gif" alt="dsdad" width="50" height="50"></p>
+          
+        
           <strong>ALERTS</strong>
           <h3>ID USER::<%= current_user.id %></h3>
-          <% @schedules = Array.new %>
+          <% @schedule = Array.new %>
           <% @history_thermostats = Array.new %>
           <% @thermostats = Thermostat.where( :user_id => current_user.id) %> <!--Los termostatos del usuario-->
 
           <% @thermostats.each do |thermostat|%>
-            <% @schedules= Schedule.where(:thermostat_id => thermostat.id) %><!--Schedules del termostato-->           
+            <% @schedule= Schedule.where(:thermostat_id => thermostat.id, :day_week =>"Monday").last %><!--Schedules del termostato-->           
             <% @history_thermostats= HistoryThermostat.where(:thermostat_id => thermostat.id).last %><!--Ultimo Historial del termostato-->
             
-            <!--AUQI IRA LO LO Q FALTA-->
-           
+            <% if @schedule.temperature > @history_thermostats.temperature %>
+              <% @valor = @schedule.temperature - @history_thermostats.temperature %>
+            <%else%>
+              <% @valor = @history_thermostats.temperature - @schedule.temperature %>
+
+            <%end%>      
 
             <hr class="message-inner-separator">
-            <p>SCHEDULES <H4>THERM ID :: <%= thermostat.id %></H4></p>
-            <% @schedules.each do |schedule| %>
-              <hr>
-              <p>DAY ::<%= schedule.day_week %></p>
-              <p>HORARIO ::<%= schedule.day_time %></p>
-
-
-            <%end%>
             
-            <p>ULTIMO HIST THERM</p>
             <% if HistoryThermostat.where(:thermostat_id => thermostat.id).length > 0%>
             
-              <p>temperatura= <%= @history_thermostats.temperature %></p>
-              <p>humidity= <%= @history_thermostats.humidity %></p>
-              <p>energy= <%= @history_thermostats.energy %></p>
-              <p>id termostato= <%= @history_thermostats.thermostat_id %></p>
-              
-              <% if @history_thermostats.temperature > 15 || @history_thermostats.temperature < 5 %>
-                <!--code cuando se activa la alerta
-                <audio autoplay='autoplay' >
-                  <source src="\images\alert2.mp3" type="audio/mp3" >
-                </audio>-->
-                <h1>ojo</h1>
+
+              <% @alarm = Alarm.last %>
+
+              <% if @valor > @alarm.time %>
+                <p align="center"><img src="\images\alert_red.gif" alt="dsdad" width="50" height="50"></p>
+                <div class="alert alert-danger">
+                  <H4>THERM serial :: <%= thermostat.serial %></H4>
+                  <p>temperatura= <%= @history_thermostats.temperature %></p>
+                  <p>humidity= <%= @history_thermostats.humidity %></p>
+                  <p>energy= <%= @history_thermostats.energy %></p>
+                  <p>id termostato= <%= @history_thermostats.thermostat_id %></p>
+                  <audio autoplay='autoplay'>
+                    <source src="\images\alert2.mp3" type="audio/mp3">
+                  </audio>
+                </div>
               <%end%>
             
             <%else%>
@@ -141,7 +140,7 @@
          
           
          
-        </div>
+        
       <% else %>
         
       <% end %>
