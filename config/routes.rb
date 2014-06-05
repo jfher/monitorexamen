@@ -3,6 +3,7 @@ ThermMonitor::Application.routes.draw do
  get '/issues/show/:id' => 'issues#index'
  get '/issues/cancel/:id' => 'issues#cancel'
  get '/issues/resolve/:id' => 'issues#resolve'
+ get '/issues/open/:id' => 'issues#open'
 
   resources :issues
 
@@ -40,6 +41,8 @@ ThermMonitor::Application.routes.draw do
   # You can have thjjjjje root of your site routed with "root"
    root 'thermostats#index'
    get '/thermostats/destroy/:id' => 'thermostats#destroy'
+   get '/locations/destroy/:id' => 'locations#destroy'
+   get '/schedules/destroy/:id' => 'schedules#destroy'
    get '/thermostats/add/:id' => 'thermostats#add'
    get '/thermostats/sub/:id' => 'thermostats#sub'
 

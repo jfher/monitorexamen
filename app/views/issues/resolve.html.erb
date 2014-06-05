@@ -21,7 +21,7 @@
   <%if current_user.role != "admin"%>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.text_field :status , :required => "required" , :disabled => "true"%>
+    <%= f.text_field :status , :required => "required"%>
   </div>
   <div class="field">
     <%= f.label :resolution %><br>
@@ -30,7 +30,7 @@
   <%else%>
     <div class="field">
     <%= f.label :status %><br>
-    <%= f.text_field :status , :required => "required", :disabled => "true"%>
+    <%= f.text_field :status , :required => "required"%>
   </div>
   <div class="field">
     <%= f.label :resolution %><br>
