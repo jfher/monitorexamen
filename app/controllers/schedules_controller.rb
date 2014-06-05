@@ -31,9 +31,13 @@ end
 
   # GET /schedules/new
   def new
+    @therm_id= params[:thermostat_id]
+    @therm_id=@therm_id.to_i
     if user_signed_in?
       if current_user.role != 'admin'
     @schedule = Schedule.new
+    @schedule.thermostat_id=@therm_id
+    @schedule.save
   else
     redirect_to '/'
   end
@@ -57,11 +61,7 @@ end
   def create
     @schedule = Schedule.new(schedule_params)
     @thermostats = Thermostat.all
-    @thermostats.each do |thermostat|
-      if thermostat.serial = @schedule.thermostat_id
-        @schedule.thermostat_id=thermostat.id.to_int
-      end 
-    end
+    
 
     respond_to do |format|
       if @schedule.save
@@ -92,10 +92,8 @@ end
   # DELETE /schedules/1.json
   def destroy
     @schedule.destroy
-    respond_to do |format|
-      format.html { redirect_to schedules_url }
-      format.json { head :no_content }
-    end
+    
+    redirect_to '/'
   end
 
   private
@@ -106,6 +104,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:day_week, :max, :min, :day_time, :thermostat_id)
+      params.require(:schedule).permit(:day_week, :temperature, :day_time, :thermostat_id)
     end
 end

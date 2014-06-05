@@ -6,13 +6,8 @@
 </p>
 
 <p>
-  <strong>Max:</strong>
-  <%= @schedule.max %>
-</p>
-
-<p>
-  <strong>Min:</strong>
-  <%= @schedule.min %>
+  <strong>Temperature:</strong>
+  <%= @schedule.temperature %>
 </p>
 
 <p>
@@ -22,8 +17,10 @@
 
 <p>
   <strong>Thermostat:</strong>
-  <%= @schedule.thermostat.id %>
+  <%= @schedule.thermostat_id %>
 </p>
 
-<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
-<a href='/home/<%= @schedule.thermostat.id %>/schedules ' >Back</a>
+<a href="<%= edit_schedule_path(@schedule)%>" class="btn btn-info">Edit</a>|
+<a href='/schedules/index/<%= @schedule.thermostat_id %> 'class="btn btn-default" >Back</a> |
+<a href='/schedules/destroy/<%= @schedule.id %> ' class="btn btn-danger" >Delete</a>
+

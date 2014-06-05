@@ -114,10 +114,12 @@ end
         @users = User.search(params[:search])
         @thermostats = Thermostat.all
         @locations = Location.all
+        @issues = Issue.all
       else
       @users= User.all
       @thermostats = Thermostat.all
       @locations = Location.all
+      @issues = Issue.all
       end
     else
       redirect_to '/'

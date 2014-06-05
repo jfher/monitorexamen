@@ -1,33 +1,27 @@
-<h1>Listing issues</h1>
+<h1>Show Problems</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Resolution</th>
-      <th>Thermostat</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @issues.each do |issue| %>
-      <tr>
-        <td><%= issue.description %></td>
-        <td><%= issue.status %></td>
-        <td><%= issue.resolution %></td>
-        <td><%= issue.thermostat %></td>
-        <td><%= link_to 'Show', issue %></td>
-        <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
-        <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+ <table class="table table-striped"><thead>
+      <tr class="info">
+        <th>Thermostat_id</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Resolution</th>
+        
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Issue', new_issue_path %>
+    <tbody>
+      <% @issues.each do |issue| %>
+        <tr>
+          <% if issue.thermostat_id == @id_therm %>
+             <td><%= issue.thermostat_id %></td>
+             <td><%= issue.description %></td>
+             <td><%= issue.status%></td>
+             <td><%= issue.resolution %></td>
+             <td><a href="/issues/cancel/<%=issue.id %>"class="btn btn-danger">Cancel Problem</a></td>
+       <%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

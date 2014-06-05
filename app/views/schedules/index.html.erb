@@ -7,16 +7,17 @@
           <td><b>Tuesday</b></td>
           <td><b>Wednesday</b></td>
           <td><b>Thursday</b></td>
-          <td><b> Friday </b></td>
+          <td><b>Friday </b></td>
           <td><b>Saturday</b></td>
           <td><b>Sunday</b></td>
 
 
           </tr>
           <tr class="info"><td><b>12:00 am - 6:00 am</b>
+            
            <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.max %> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %>  </a>
                   
               <% end%>
                <% end %>
@@ -25,7 +26,7 @@
 
             <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Tuesday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
               <% end%>
                <% end %>
             </th></td>
@@ -33,7 +34,7 @@
 
             <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Wednesday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
               <% end%>
                <% end %>
             </th></td>
@@ -41,7 +42,7 @@
 
             <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Thursday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
               <% end%>
                <% end %>
             </th></td>
@@ -49,21 +50,21 @@
 
             <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Friday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
               <% end%>
                <% end %>
             </th></td>
 
             <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Saturday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
               <% end%>
                <% end %>
             </th></td>
 
             <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Sunday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
               <% end%>
                <% end %>
             </th></td>
@@ -74,28 +75,28 @@
           <tr class="info"><td><b>6:00 am - 12:00 pm</b>
             <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "6:00 am - 12:00 pm")%>
-                 <a href="/schedules/<%= schedule.id %>"> show </a>
+                 <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
           </th> </td>
 
           <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Tuesday") &&(schedule.day_time == "6:00 am - 12:00 pm")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
           </th> </td>
 
           <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Wednesday") &&(schedule.day_time == "6:00 am - 12:00 pm")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %></a>
                 <% end%>
                 <% end %>
           </th> </td>
 
           <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Thursday") &&(schedule.day_time == "6:00 am - 12:00 pm")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
           </th> </td>
@@ -103,21 +104,21 @@
 
           <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Friday") &&(schedule.day_time == "6:00 am - 12:00 pm")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
           </th> </td>
 
           <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Saturday") &&(schedule.day_time == "6:00 am - 12:00 pm")%>
-                 <a href="/schedules/<%= schedule.id %>"> show </a>
+                 <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
           </th> </td>
 
           <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Sunday") &&(schedule.day_time == "6:00 am - 12:00 pm")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
           </th> </td>  
@@ -131,14 +132,14 @@
           <tr class="info"><td><b>12:00 pm - 6:00 pm</b> 
             <th><% @schedules.each do |schedule| %> 
             <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "12:00 pm - 6:00 pm")%>
-               <a href="/schedules/<%= schedule.id %>"> show </a>
+               <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %></a>
             <% end%>
             <% end %>
           </th></td>
 
             <th><% @schedules.each do |schedule| %> 
             <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Tuesday") &&(schedule.day_time == "12:00 pm - 6:00 pm")%>
-               <a href="/schedules/<%= schedule.id %>"> show </a>
+               <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
             <% end%>
             <% end %>
           </th></td>
@@ -146,28 +147,28 @@
 
             <th><% @schedules.each do |schedule| %> 
             <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Wednesday") &&(schedule.day_time == "12:00 pm - 6:00 pm")%>
-               <a href="/schedules/<%= schedule.id %>"> show </a>
+               <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
             <% end%>
             <% end %>
           </th></td>
 
             <th><% @schedules.each do |schedule| %> 
             <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Thursday") &&(schedule.day_time == "12:00 pm - 6:00 pm")%>
-               <a href="/schedules/<%= schedule.id %>"> show </a>
+               <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
             <% end%>
             <% end %>
           </th></td>
 
             <th><% @schedules.each do |schedule| %> 
             <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Friday") &&(schedule.day_time == "12:00 pm - 6:00 pm")%>
-               <a href="/schedules/<%= schedule.id %>"> show </a>
+               <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                            <% end%>
             <% end %>
           </th></td>
 
             <th><% @schedules.each do |schedule| %> 
             <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Saturday") &&(schedule.day_time == "12:00 pm - 6:00 pm")%>
-               <a href="/schedules/<%= schedule.id %>"> show </a>
+               <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
             <% end%>
             <% end %>
           </th></td>
@@ -175,7 +176,7 @@
 
             <th><% @schedules.each do |schedule| %> 
             <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Sunday") &&(schedule.day_time == "12:00 pm - 6:00 pm")%>
-               <a href="/schedules/<%= schedule.id %>"> show </a>
+               <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
             <% end%>
             <% end %>
           </th></td>
@@ -188,7 +189,7 @@
           <tr class="info"><td><b>6:00 pm a 12:00 am</b>
             <th><% @schedules.each do |schedule| %> 
                 <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "6:00 pm a 12:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
             </th> </td>
@@ -196,7 +197,7 @@
 
            <th><% @schedules.each do |schedule| %> 
                 <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Tuesday") &&(schedule.day_time == "6:00 pm a 12:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
             </th> </td>
@@ -205,7 +206,7 @@
 
             <th><% @schedules.each do |schedule| %> 
                 <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Wednesday") &&(schedule.day_time == "6:00 pm a 12:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
             </th> </td>
@@ -213,7 +214,7 @@
 
             <th><% @schedules.each do |schedule| %> 
                 <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Thursday") &&(schedule.day_time == "6:00 pm a 12:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
             </th> </td>
@@ -221,7 +222,7 @@
 
             <th><% @schedules.each do |schedule| %> 
                 <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Friday") &&(schedule.day_time == "6:00 pm a 12:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
             </th> </td>
@@ -229,23 +230,18 @@
 
             <th><% @schedules.each do |schedule| %> 
                 <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Saturday") &&(schedule.day_time == "6:00 pm a 12:00 am")%>
-                 <a href="/schedules/<%= schedule.id %>"> show </a>
+                 <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> </a>
                 <% end%>
                 <% end %>
             </th> </td>
 
             <th><% @schedules.each do |schedule| %> 
                 <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Sunday") &&(schedule.day_time == "6:00 pm a 12:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %>
+                   </a>
                 <% end%>
                 <% end %>
             </th> </td>
-
-
-
-
-
-
           </tr>
 
         </thead>
@@ -255,7 +251,8 @@
 
 </table>
 
+  <a href= "/schedules/new/<%= @thermostat.id %> " class = "btn btn-default">Schedule </a>|
  
-<%= link_to 'New Schedule', new_schedule_path, :class =>"btn btn-success" %>
-<%= link_to 'Set Alarm', new_alarm_path, :class =>"btn btn-primary" %>
+
+<%= link_to 'Set Alarm', new_alarm_path, :class =>"btn btn-primary active" %>
 

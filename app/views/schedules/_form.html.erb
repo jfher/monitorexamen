@@ -19,16 +19,12 @@
     <%= f.select :day_time, options_for_select([["12:00 am - 6:00 am"], ["6:00 am - 12:00 pm"], ["12:00 pm - 6:00 pm"], ["6:00 pm a 12:00 am"]]) %>
   </div>
   <div class="field">
-    <%= f.label :max %><br>
-    <%= f.number_field :max, :class => "textboxgrade" %>
+    <%= f.label :temperature %><br>
+    <%= f.number_field :temperature, :class => "textboxgrade" %>
   </div>
   <div class="field">
-    <%= f.label :min %><br>
-    <%= f.number_field :min, :class => "textboxgrade" %>
-  </div>
-  <div class="field">
-    <%= f.label :thermostat_id, "Thermostat Serial" %><br>
-    <%= f.text_field :thermostat_id, :class => "textboxgrade" %>
+   
+    <%= f.hidden_field :thermostat_id %>
   </div>
   <br>
   <div class="actions">
