@@ -81,16 +81,18 @@
           <% @thermostats = Thermostat.where( :user_id => current_user.id) %> <!--Los termostatos del usuario-->
 
           <% @thermostats.each do |thermostat|%>
-            <% @schedule= Schedule.where(:thermostat_id => thermostat.id, :day_week =>"Monday").last %><!--Schedules del termostato-->           
+            <% @schedule= Schedule.where(:thermostat_id => thermostat.id, :day_week =>"Thursday").last %><!--Schedules del termostato-->           
             <% @history_thermostats= HistoryThermostat.where(:thermostat_id => thermostat.id).last %><!--Ultimo Historial del termostato-->
-            <% if Schedule.where(:thermostat_id => thermostat.id, :day_week =>"Monday").length() > 0 && HistoryThermostat.where(:thermostat_id => thermostat.id).length() > 0 %>
+            <% if Schedule.where(:thermostat_id => thermostat.id, :day_week =>"Thursday").length() > 0 && HistoryThermostat.where(:thermostat_id => thermostat.id).length() > 0 %>
 
               <% if @schedule.temperature.to_i > @history_thermostats.temperature.to_i %>
                 <% @valor = @schedule.temperature.to_i - @history_thermostats.temperature.to_i %>
               <%else%>
                 <% @valor = @history_thermostats.temperature.to_i - @schedule.temperature.to_i %>
               <%end%>      
-            <%end%>      
+            <%end%> 
+
+               <!--auidsadasdad-->
 
             
             
