@@ -7,7 +7,7 @@
           <td><b>Tuesday</b></td>
           <td><b>Wednesday</b></td>
           <td><b>Thursday</b></td>
-          <td><b> Friday </b></td>
+          <td><b>Friday </b></td>
           <td><b>Saturday</b></td>
           <td><b>Sunday</b></td>
 
@@ -242,12 +242,6 @@
                 <% end%>
                 <% end %>
             </th> </td>
-
-
-
-
-
-
           </tr>
 
         </thead>
@@ -257,8 +251,8 @@
 
 </table>
 
-  <a href= "/schedules/new/<%= @thermostat.id %> ">schedule </a>
+  <a href= "/schedules/new/<%= @thermostat.id %> " class = "btn btn-default">Schedule </a>|
  
 
-<%= link_to 'Set Alarm', new_alarm_path, :class =>"btn btn-primary" %>
+<%= link_to 'Set Alarm', new_alarm_path, :class =>"btn btn-primary active" %>
 
