@@ -119,7 +119,11 @@
               <p>id termostato= <%= @history_thermostats.thermostat_id %></p>
               
               <% if @history_thermostats.temperature > 15 || @history_thermostats.temperature < 5 %>
-                <!--code cuando se activa la alerta-->
+                <!--code cuando se activa la alerta
+                <audio autoplay='autoplay' >
+                  <source src="\images\alert2.mp3" type="audio/mp3" >
+                </audio>-->
+                <h1>ojo</h1>
               <%end%>
             
             <%else%>

@@ -52,6 +52,9 @@ ThermMonitor::Application.routes.draw do
    get '/schedules/index/:thermostat_id' => 'schedules#index', :as => 'location_new_schedule'
    get '/schedules/new/:thermostat_id' => 'schedules#new'
    post '/schedules/new/:thermostat_id'=> 'schedules#create'
+
+   get '/schedules/destroy/:id' => 'schedules#destroy'  
+
   
 
 
