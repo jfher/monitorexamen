@@ -1,4 +1,6 @@
 ThermMonitor::Application.routes.draw do
+  resources :issues
+
   resources :alarms
 
   resources :schedules
