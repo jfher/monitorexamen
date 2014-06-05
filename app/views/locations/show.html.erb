@@ -11,19 +11,17 @@
 </p>
 
 <center><h1><b> Listing thermostats</b></h1></center>
-<div class="panel panel-success">
-  <div class="panel-heading">
-    <h3 class="panel-title"><b> Listing thermostats</b></h3>
-  </div>
 
 
-  <table class="table table-striped"><thead>
+  <table class="table table-striped "><thead>
       <tr class="info">
         <th>Serial</th>
         <th>Temperature</th>
         <th>Humidity</th>
         <th>Energy</th>
         
+        <th></th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -50,7 +48,7 @@
           <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Edit</a></td>
           <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>
           <td><a href="/schedules/new/<%= thermostat.id %>" class="btn btn-danger">Schedule</a></td>
-          <td><a href="<%= report_history_path(thermostat.id) %> " class="btn btn-primary active"> Show History Thermostat</a></td>
+          <td><a href="<%= report_history_path(thermostat.id) %> " class="btn btn-primary "> Show History Thermostat</a></td>
           
           <% end %>
           <% end %>
@@ -61,7 +59,7 @@
   <br>
   <br>
   <br>
-</div>
+
 <br>
 <br>
 

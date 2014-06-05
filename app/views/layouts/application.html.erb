@@ -16,6 +16,8 @@
   <%= javascript_include_tag "bootstrap.min" %>
   <%= javascript_include_tag "jquery.ui.addresspicker" %>
   <%= javascript_include_tag "alert" %>
+  <%= javascript_include_tag "jquery" %>
+  <%= csrf_meta_tags %>
 
 </head>
 <body background="\images\fondo.jpeg">
@@ -53,7 +55,7 @@
           
           <ul class="nav navbar-nav navbar-right">        
             <% if user_signed_in? %>
-              <p> Signed in as <%= current_user.email %>. Not you?</p> 
+             
               
 
               <li class="">
@@ -74,12 +76,12 @@
     <div class="col-xs-12 col-md-8">
       <%= yield %> <!-- Aqui es donde va todo lo de Rails-->
     </div>
-
+  </div>
 
 
 <!--========================== :::::ALERTAS::::: ============================================== -->
 
-    
+  <div class="row">  
     <div id="alerta" class="col-sm-4 col-md-4"> <!--Alertas de las configuraciones -->
       <% if user_signed_in? && current_user.role != "admin" %>
         
@@ -94,6 +96,9 @@
           <% @thermostats.each do |thermostat|%>
             <% @schedules= Schedule.where(:thermostat_id => thermostat.id) %><!--Schedules del termostato-->           
             <% @history_thermostats= HistoryThermostat.where(:thermostat_id => thermostat.id).last %><!--Ultimo Historial del termostato-->
+            
+            <!--AUQI IRA LO LO Q FALTA-->
+           
 
             <hr class="message-inner-separator">
             <p>SCHEDULES <H4>THERM ID :: <%= thermostat.id %></H4></p>
@@ -101,10 +106,13 @@
               <hr>
               <p>DAY ::<%= schedule.day_week %></p>
               <p>HORARIO ::<%= schedule.day_time %></p>
+
+
             <%end%>
             
             <p>ULTIMO HIST THERM</p>
             <% if HistoryThermostat.where(:thermostat_id => thermostat.id).length > 0%>
+            
               <p>temperatura= <%= @history_thermostats.temperature %></p>
               <p>humidity= <%= @history_thermostats.humidity %></p>
               <p>energy= <%= @history_thermostats.energy %></p>
@@ -142,7 +150,7 @@
   </div>
   <!--<hr width=100% align="center">-->
 </div><!-- container -->
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
   <div class="panel-footer navbar-inverse">
     <footer>
       <table >
@@ -175,5 +183,44 @@
       <b>The website and its content was created for Walsoft® Labs.</b>
     </footer>
   </div>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+  function get_hour () {
+     var fecha = new Date();
+     var hora = fecha.getHours();
+     return hora;
+  }
+  function get_minute () {
+     var fecha = new Date();
+     var minuto = fecha.getMinutes();
+     return minuto;
+  }
+  function get_day () {
+     var fecha = new Date();
+     var dia = fecha.getDay();
+     var dias= new Array(7);
+      dias[0]='Monday';
+      dias[1]='Tuesday';
+      dias[2]='Wednesday';
+      dias[3]='Thursday';
+      dias[4]='Friday';
+      dias[5]='Saturday';
+      dias[6]='Sunday';
+     return dias[dia-1];
+  }
+
+  function put_hour () {   
+    $('#hour').html("<h3><font color='#DBDBDB'>"+get_day()+" "+get_hour()+":"+get_minute()+"</font></h3>");    
+  }
+
+  put_hour();
+  
+ 
+});
+
+</script>
 </body>
 </html>
