@@ -122,3 +122,35 @@
     </tbody>
   </table>
 
+  <h1><b>ISSUES</b></h1>
+      <br>
+
+  <table class="table table-striped"><thead>
+      <tr class="info">
+        <td><b>User</b></td>
+        <td><b>Themostat_id</b></td>
+        <td><b>Description</b></td>
+        <th>State</th>
+        <th>Resolution</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @issues.each do |issue| %>
+        <tr>
+         <%@id_user=Thermostat.find(issue.thermostat_id).user_id%>
+         <% @user=User.find(@id_user)%>
+          <td><%= @user.email %></td>
+        <%if issue.status != "Canceled"%>
+          <td><%= issue.thermostat_id %></td>
+          <td><%= issue.description %></td>  
+          <td><%= issue.status%></td>
+          <td><%= issue.resolution %></td>
+      <% end %>
+      <%end%>
+        </tr>
+    </tbody>
+  </table>
+
+
+
