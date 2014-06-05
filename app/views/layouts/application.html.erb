@@ -70,25 +70,12 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-8">
-      <%= yield %> <!-- Aqui es donde va todo lo de Rails-->
-    </div>
-  </div>
-
-
 <!--========================== :::::ALERTAS::::: ============================================== -->
 
   <div class="row">  
-    <div id="alerta" class="col-sm-3 col-md-3"> <!--Alertas de las configuraciones -->
+    <div id="alerta" class="col-sm-2 col-md-2"> <!--Alertas de las configuraciones -->
       <% if user_signed_in? && current_user.role != "admin" %>
         
-          
-        
-          <strong>ALERTS</strong>
-          <h3>ID USER::<%= current_user.id %></h3>
           <% @schedule = Array.new %>
           <% @history_thermostats = Array.new %>
           <% @thermostats = Thermostat.where( :user_id => current_user.id) %> <!--Los termostatos del usuario-->
@@ -104,7 +91,7 @@
 
             <%end%>      
 
-            <hr class="message-inner-separator">
+            
             
             <% if HistoryThermostat.where(:thermostat_id => thermostat.id).length > 0%>
             
@@ -115,6 +102,8 @@
                 <p align="center"><img src="\images\alert_red.gif" alt="dsdad" width="50" height="50"></p>
                 <div class="alert alert-danger">
                   <H4>THERM serial :: <%= thermostat.serial %></H4>
+                  <hr class="message-inner-separator">
+                  <strong>step was::</strong> <%= @valor %>
                   <p>temperatura= <%= @history_thermostats.temperature %></p>
                   <p>humidity= <%= @history_thermostats.humidity %></p>
                   <p>energy= <%= @history_thermostats.energy %></p>
@@ -148,6 +137,15 @@
 
 
 <!--========================== :::::ALERTAS::::: ============================================== -->
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-12 col-md-8">
+      <%= yield %> <!-- Aqui es donde va todo lo de Rails-->
+    </div>
+  </div>
+
 
 
   </div>
