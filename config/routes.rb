@@ -1,4 +1,6 @@
 ThermMonitor::Application.routes.draw do
+
+ get '/api/register.json' => 'history_thermostats#register' 
  get '/issues/new/:id' => 'issues#new'
  get '/issues/show/:id' => 'issues#index'
  get '/issues/cancel/:id' => 'issues#cancel'

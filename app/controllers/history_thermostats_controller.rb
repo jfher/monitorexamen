@@ -14,6 +14,10 @@ class HistoryThermostatsController < ApplicationController
      redirect_to '/users/sign_in'
    end
   end
+
+  def register
+    redirect_to '/'
+  end
  
   # GET /history_thermostats/1
   # GET /history_thermostats/1.json
@@ -46,18 +50,20 @@ class HistoryThermostatsController < ApplicationController
     if @user && @userpass && @therm.user.id == @user.id
     respond_to do |format|
       if @history_thermostat.save
-        format.html { redirect_to @history_thermostat, notice: 'History thermostat was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @history_thermostat }
+        msg = { :status => "ok"}
+        format.json  { render :json => msg } # don't do msg.to_json
       else
-        format.html { render action: 'new' }
-        format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
+         msg2 = { :status => "error", :message => "Error!"}
+        format.json  { render :json => msg2 }
       end
     end
    else
-  format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
+  msg3 = { :status => "error", :message => "Error!"}
+        format.json  { render :json => msg3 }
    end
  else
-  format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
+   msg4 = { :status => "error", :message => "Error!"}
+        format.json  { render :json => msg4}
  end
   end
 
