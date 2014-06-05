@@ -92,10 +92,8 @@ end
   # DELETE /schedules/1.json
   def destroy
     @schedule.destroy
-    respond_to do |format|
-      format.html { redirect_to schedules_url }
-      format.json { head :no_content }
-    end
+    
+    redirect_to '/'
   end
 
   private

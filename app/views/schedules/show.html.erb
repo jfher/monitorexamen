@@ -20,5 +20,8 @@
   <%= @schedule.thermostat_id %>
 </p>
 
-<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
+<%= link_to 'Edit', edit_schedule_path(@schedule) %>
+  |
 <a href='/schedules/index/<%= @schedule.thermostat_id %> ' >Back</a>
+<a href='/schedules/destroy/<%= @schedule.id %> ' >Delete</a>
+
