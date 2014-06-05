@@ -49,6 +49,7 @@
           <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default">Show</a></td>
           <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Edit</a></td>
           <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger">Delete</a></td>
+          <td><a href="/schedules/new/<%= thermostat.id %>" class="btn btn-danger">Schedule</a></td>
           <td><a href="<%= report_history_path(thermostat.id) %> " class="btn btn-primary active"> Show History Thermostat</a></td>
           
           <% end %>
