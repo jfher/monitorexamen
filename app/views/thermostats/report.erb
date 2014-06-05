@@ -1,30 +1,17 @@
 <center><h1><b> Report Admin view</b></h1></center> 
 <br>  
-<!--<td><h1><span class="label label-success"><b>USERS</b></span></h1>-->
 <h1><a href= "/users/create_user" class="btn btn-success"><b>Create User</b></h1></a></td> 
 <br>
-
- <h1><b>USERS</b></h1>
-
-
-
-      <table class="table table-striped"><thead>
+<h1><b>USERS</b></h1>
+<table class="table table-striped"><thead>
           <tr class="info">
  
-
-
-
-<td><b>#User</b></td>
-          <th></th>
+          <td><b>#User</b></td>
           <td><b>Email</b></td>
           <td><b>Role</b></td>
           <td><b>Created At</b></td>
           <td><b>Updated At</b></td>
 
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
           </tr>
         </thead>
 
@@ -33,32 +20,22 @@
           <% @users.each do |user| %>
           <% if user.id != 1 %>
           <tr>
-              <td><%= user.id %></td><td>
-              <td><%= user.email %><b></td> 
-              <td><%= user.role %><b></td> 
-              <td><%= user.created_at %><b></td>
-              <td><%= user.updated_at %><b></td>
+              <td><b><%= user.id %></b></td>
+              <td><b><%= user.email %></b></td> 
+              <td><b><%= user.role %></b></td> 
+              <td><b><%= user.created_at %></b></td>
+              <td><b><%= user.updated_at %></b></td>
 
             </tr>
-
-
-
-
-
-
           <br> 
+          <br>
 
           <table class="table table-striped"><thead>
           <tr class="info">
-          <td>Serial</td>
-          <th>temperature</th>
-          <th>humedad</th>
-          <th>energia</th>
-          <td><b></b></td>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+          <td><b>Serial</b></td>
+          <td><b>temperature</b></td>
+          <td><b>humedad</b></td>
+          <td><b>energia</b></td>
           </tr>
         </thead>
 
