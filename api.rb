@@ -10,3 +10,4 @@ agent = Mechanize.new
 			"history_thermostat[energy]" => 10,
 			 serial: '123', #numero serial del termostato
 			 mail: 'user1@thermmonitor.com.bo' , pass: 'usuariouno' #usuario y contraseña del dueño del termostato
+			})
