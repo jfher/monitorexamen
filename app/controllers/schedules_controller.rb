@@ -57,11 +57,7 @@ end
   def create
     @schedule = Schedule.new(schedule_params)
     @thermostats = Thermostat.all
-    @thermostats.each do |thermostat|
-      if thermostat.serial = @schedule.thermostat_id
-        @schedule.thermostat_id=thermostat.id.to_int
-      end 
-    end
+    
 
     respond_to do |format|
       if @schedule.save
