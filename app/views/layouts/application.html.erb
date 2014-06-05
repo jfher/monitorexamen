@@ -79,13 +79,13 @@
 
 <!--========================== :::::ALERTAS::::: ============================================== -->
 
-
-    <div id="alerta" class="col-xs-4 col-md-2"> <!--Alertas de las configuraciones -->
+    
+    <div id="alerta" class="col-sm-4 col-md-4"> <!--Alertas de las configuraciones -->
       <% if user_signed_in? && current_user.role != "admin" %>
         
         <div class="alert alert-danger">
           <p><img src="\images\alert_red.gif" alt="dsdad" width="50" height="50"></p>
-          <h1>ALERTS</h1>
+          <strong>ALERTS</strong>
           <h3>ID USER::<%= current_user.id %></h3>
           <% @schedules = Array.new %>
           <% @history_thermostats = Array.new %>
@@ -95,7 +95,7 @@
             <% @schedules= Schedule.where(:thermostat_id => thermostat.id) %><!--Schedules del termostato-->           
             <% @history_thermostats= HistoryThermostat.where(:thermostat_id => thermostat.id).last %><!--Ultimo Historial del termostato-->
 
-            <hr>
+            <hr class="message-inner-separator">
             <p>SCHEDULES <H4>THERM ID :: <%= thermostat.id %></H4></p>
             <% @schedules.each do |schedule| %>
               <hr>
@@ -109,9 +109,20 @@
               <p>humidity= <%= @history_thermostats.humidity %></p>
               <p>energy= <%= @history_thermostats.energy %></p>
               <p>id termostato= <%= @history_thermostats.thermostat_id %></p>
+              
+              <% if @history_thermostats.temperature > 15 || @history_thermostats.temperature < 5 %>
+                <!--code cuando se activa la alerta-->
+              <%end%>
+            
             <%else%>
-              no hay nada el el historial
+              <div class="alert alert-success">
+                <strong>That's all right.</strong>
+                <hr class="message-inner-separator">
+                <p>
+                    Historial Vacio. :D</p>
+              </div>
             <%end%>
+
           <%end%>
 
 
