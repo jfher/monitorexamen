@@ -10,19 +10,33 @@
       </ul>
     </div>
   <% end %>
+  <div class="text-info">
+    <%= f.hidden_field :thermostat_id %>
+  </div>
 
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_field :description , :required => "required" %>
   </div>
+  <%if current_user.role != "admin"%>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    <%= f.text_field :status , :required => "required" , :disabled => "true"%>
+  </div>
+  <div class="field">
+    <%= f.label :resolution %><br>
+    <%= f.text_area :resolution, :disabled => "true" %>
+  </div>
+  <%else%>
+    <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status , :required => "required" %>
   </div>
   <div class="field">
     <%= f.label :resolution %><br>
     <%= f.text_area :resolution %>
   </div>
+  <%end%>
   <div class="field">
     <%= f.label :thermostat_id %><br>
     <%= f.text_field :thermostat_id %>

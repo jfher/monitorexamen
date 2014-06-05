@@ -16,7 +16,7 @@
           <tr class="info"><td><b>12:00 am - 6:00 am</b>
            <th><% @schedules.each do |schedule| %> 
               <% if (schedule.thermostat_id == @thermostat.id)&&(schedule.day_week == "Monday") &&(schedule.day_time == "12:00 am - 6:00 am")%>
-                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.max %> show </a>
+                  <a href="/schedules/<%= schedule.id %>"> <%=schedule.temperature %> show </a>
                   
               <% end%>
                <% end %>
