@@ -10,7 +10,7 @@ class AuthenticationsController < ApplicationController
     token = Authentication.find(params[:id])
     me = FbGraph::User.me(token.token)
         me.feed!(
-          :message => 'Updating via ThermMonitor',
+          :message => 'Updating via ThermMonitor -> Hi you have a thermostat on alert state please check this in our page',
           :name => 'Alarm',
           :description => 'Hi you have a thermostat on alert state please check this in our page')
         redirect_to :back

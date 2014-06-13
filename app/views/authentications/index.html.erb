@@ -6,6 +6,8 @@
         <div class="authentication">
           <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
           <div class="uid"><%= authentication.uid %></div>
+          
+          <a href="/post/<%=authentication.id%>" class = "btn btn-warning">Post</a>
         </div>
       <% end %>
       <div class="clear"></div>
