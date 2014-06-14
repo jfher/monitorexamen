@@ -72,7 +72,7 @@ end
       redirect_to '/'
   end
 
-    def edit_user
+  def edit_user
        if current_user.role=="admin"
     @user=User.find(params[:id])
   else

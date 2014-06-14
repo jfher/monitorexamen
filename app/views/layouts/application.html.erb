@@ -44,8 +44,6 @@
             <li id="hour"><h3><font color="#DBDBDB">aqui ira la hora</font></h3></li>
           </ul>
 
-          
-
           <form class="navbar-form navbar-left" role="search">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
@@ -55,16 +53,14 @@
           
           <ul class="nav navbar-nav navbar-right">        
             <% if user_signed_in? %>
-             
-              
-
+            <li> <a href="<%= authentications_path %>"><strong>Authentications</strong></a> |</li>
               <li class="">
-                <a href="/users/sign_out" title="" method="delete"><%= current_user.email %><img src="\images\user.png" alt="12%" width="30" height="30"></a>
-                                
+                <a href="/users/sign_out" title="" method="delete"><%= current_user.email %><img src="\images\user.png" alt="12%" width="30" height="30"></a>       
               </li>
+              
             <% else %>
-              <li><a href="/users/sign_in">Sign in</a></li>
-              <li><a href="/users/sign_up">Sign up</a></li> 
+              <li><a href="<%= new_user_registration_path %>">Sign Up</a></li>
+              <li><a href="<%= new_user_session_path %>">Login</a></li> 
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -156,10 +152,8 @@
       <tr>
           <td>
              <a href="https://www.facebook.com/ThermMonitor">
-               <img  src="\images\f.ico" width="30" />&nbsp;
+               <img  src="\images\facebook_32.png" width="30" />&nbsp;
              </a>|
-          </td>
-          <td>
              <a href="https://www.twitter.com/ThermMonitor">
               <img  src="\images\t.png" width="30" />&nbsp;
             </a>|
@@ -175,6 +169,7 @@
       <b>®2014 Walsoft Labs . All rights reserved.</b>
       <br>
       <b>The website and its content was created for Walsoft® Labs.</b>
+
     </footer>
   </div>
 
