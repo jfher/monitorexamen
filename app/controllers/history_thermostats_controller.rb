@@ -53,7 +53,7 @@ class HistoryThermostatsController < ApplicationController
         msg = { :status => "ok", :temperature => @therm.temperature }
         format.json  { render :json => msg }
       else
-         msg2 = { :error => "Error when trying to save"}
+         msg2 = { :error => "Error while trying to save"}
         format.json  { render :json => msg2 }
       end
     end
