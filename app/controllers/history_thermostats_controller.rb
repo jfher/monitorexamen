@@ -50,20 +50,24 @@ class HistoryThermostatsController < ApplicationController
     if @user && @userpass && @therm.user.id == @user.id
     respond_to do |format|
       if @history_thermostat.save
-        msg = { :status => "ok"}
-        format.json  { render :json => msg } # don't do msg.to_json
+        msg = { :status => "ok", :temperature => @therm.temperature }
+        format.json  { render :json => msg }
       else
-         msg2 = { :status => "error", :message => "Error!"}
+         msg2 = { :error => "Error when trying to save"}
         format.json  { render :json => msg2 }
       end
     end
    else
-  msg3 = { :status => "error", :message => "Error!"}
+     respond_to do |format|
+  msg3 = { :error => "Error thermostat does not belong to the user"}
         format.json  { render :json => msg3 }
+      end
    end
  else
-   msg4 = { :status => "error", :message => "Error!"}
-        format.json  { render :json => msg4}
+   respond_to do |format|
+   msg4 = { :error => "Error the thermostat does not exist"}
+        format.json  { render :json => msg4 }
+      end
  end
   end
 
