@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
+  # Include default devise modules. Others available are:auta
   # :confirmable, :lockable, :timeoutable and :omniauthable
   before_create :begin_usu
   before_save :begin_usu2
@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :locations  
   has_many :authentications
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  #attr_accessible :email, :password, :password_confirmation, :remember_me
 
   scope :search, lambda { |search_word| where('users.email LIKE ?', "%#{search_word}%") }
 
