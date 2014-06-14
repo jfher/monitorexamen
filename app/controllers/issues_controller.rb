@@ -29,7 +29,7 @@ class IssuesController < ApplicationController
       @issue.status="Canceled"
       @issue.save
     end
-      redirect_to '/'
+      redirect_to :back
   end
 
   def open

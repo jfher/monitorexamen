@@ -20,7 +20,7 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body background="\images\fondo.jpeg">
+<body background="\images\img1.jpg">
   <br><br><br><br><br>
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
@@ -100,30 +100,25 @@
             
 
               <% @alarm = Alarm.last %>
-
-              <% if @valor > @alarm.time %>
+              <% if @valor != nil%>
+              <% if @valor > @alarm.time%>
                 <p align="center"><img src="\images\alert_red.gif" alt="dsdad" width="50" height="50"></p>
                 <div class="alert alert-danger">
                   <H4>THERM serial :: <%= thermostat.serial %></H4>
                   <hr class="message-inner-separator">
                   <strong>step was::</strong> <%= @valor %>
-                  <p>temperatura= <%= @history_thermostats.temperature %></p>
+                  <p>temperature= <%= @history_thermostats.temperature %></p>
                   <p>humidity= <%= @history_thermostats.humidity %></p>
                   <p>energy= <%= @history_thermostats.energy %></p>
-                  <p>id termostato= <%= @history_thermostats.thermostat_id %></p>
+                  <p>id thermostat= <%= @history_thermostats.thermostat_id %></p>
                   <audio autoplay='autoplay'>
                     <source src="\images\alert2.mp3" type="audio/mp3">
                   </audio>
                 </div>
               <%else%>
               <%end%>
-            
+            <%end%>
             <%else%>
-                <div class="alert alert-success">
-                  <strong>That's all right.</strong>
-                  <hr class="message-inner-separator">
-                  <p id="hour2">. :D</p>
-                </div>
               
             <%end%>
 

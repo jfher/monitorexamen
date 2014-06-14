@@ -165,6 +165,9 @@ end
 
   # GET /thermostats/1/edit
   def edit
+    if current_user.id != @thermostat.user_id && current_user.role != 'admin'
+      redirect_to '/'
+     end
   end
 
   # POST /thermostats
