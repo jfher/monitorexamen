@@ -10,7 +10,7 @@
         <th></th>
       </tr>
     </thead>
-
+    
     <tbody>
       <% @issues.each do |issue| %>
         <tr>
@@ -19,7 +19,7 @@
              <td><%= issue.description %></td>
              <td id="status<%=issue.id%>"><%= issue.status%></td>
              <td><%= issue.resolution %></td>
-             <td><span><a class="button_cancelar" id="<%= issue.id %>">Cancel Problem</span></td>
+             <td class="button_cancelar" id="<%= issue.id %>"><button>Cancel Problem</button></td>
        <%end%>
         </tr>
       <% end %>
