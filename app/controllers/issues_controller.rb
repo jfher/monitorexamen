@@ -18,17 +18,16 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
-     issues_permissions
+     #issues_permissions
   end
 
   def cancel
     @issue.status = "Canceled"
-    if @issue.save
+    @issue.save
     respond_to do |format|
         format.html { redirect_to '/', notice: "Canceled"}
         format.json { render json: {:status => @issue.status} }
-    end
-  end
+      end
   end
 
   def open
