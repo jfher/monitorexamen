@@ -21,6 +21,7 @@
                    <% if @s != nil %> 
                   <a href="/schedules/<%= @s.id %>"> <%= @s.temperature %> </a>
                     <% end %>
+                    
             </th></td>
 
              <% @s1= Schedule.where(:thermostat_id => @thermostat.id , :day_week => "Tuesday" , :day_time => "12:00 am - 6:00 am").last %>
