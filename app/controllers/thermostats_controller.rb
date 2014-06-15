@@ -174,6 +174,7 @@ end
   # POST /thermostats.json
   def create
   @thermostat = Thermostat.new(thermostat_params)
+  @thermostat.default_temperature=@thermostat.temperature
    @thermostat.user_id=current_user.id
     @thermostat.energy = 0
     @thermostat.humidity = 0
