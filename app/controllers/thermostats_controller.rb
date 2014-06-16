@@ -72,7 +72,7 @@ end
       redirect_to '/'
   end
 
-    def edit_user
+  def edit_user
        if current_user.role=="admin"
     @user=User.find(params[:id])
   else
@@ -165,12 +165,16 @@ end
 
   # GET /thermostats/1/edit
   def edit
+    if current_user.id != @thermostat.user_id && current_user.role != 'admin'
+      redirect_to '/'
+     end
   end
 
   # POST /thermostats
   # POST /thermostats.json
   def create
   @thermostat = Thermostat.new(thermostat_params)
+  @thermostat.default_temperature=@thermostat.temperature
    @thermostat.user_id=current_user.id
     @thermostat.energy = 0
     @thermostat.humidity = 0

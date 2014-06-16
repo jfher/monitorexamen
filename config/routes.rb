@@ -1,11 +1,18 @@
 ThermMonitor::Application.routes.draw do
 
+  resources :authentications
+  devise_for :users, path_names: {sign_in: "login"},
+                        controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
+
  get '/api/register.json' => 'history_thermostats#register' 
  get '/issues/new/:id' => 'issues#new'
  get '/issues/show/:id' => 'issues#index'
  get '/issues/cancel/:id' => 'issues#cancel'
  get '/issues/resolve/:id' => 'issues#resolve'
  get '/issues/open/:id' => 'issues#open'
+
+ #Ruta de hacer un post en facebook
+ get '/post/:id' => 'authentications#post'
 
   resources :issues
 
@@ -21,9 +28,6 @@ ThermMonitor::Application.routes.draw do
   get '/users/create_user' => 'thermostats#create_user'
   get '/users/remove/:id' => 'thermostats#remove'
   get '/users/edit_user/:id' => 'thermostats#edit_user'
-  devise_for :users do
-  get '/users/sign_out' => 'devise/sessions#destroy'
-   end 
   resources :thermostats
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -39,9 +43,9 @@ ThermMonitor::Application.routes.draw do
   get '/thermostats/:id' => 'thermostats#show', :as => 'thermostat_show'
   get '/contact_us' => 'thermostats#contact'
   get '/history_thermostats/report/:id' => 'history_thermostats#report', :as => 'report_history'
-
+   
   # You can have thjjjjje root of your site routed with "root"
-   root 'thermostats#index'
+  root 'thermostats#index'
    get '/thermostats/destroy/:id' => 'thermostats#destroy'
    get '/locations/destroy/:id' => 'locations#destroy'
    get '/schedules/destroy/:id' => 'schedules#destroy'

@@ -11,17 +11,19 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <%= csrf_meta_tags %>
-  <%= javascript_include_tag "bootstrap.js" %>
+
+
+  <%= javascript_include_tag "bootstrap" %>
   <%= javascript_include_tag "bootstrap.min" %>
   <%= javascript_include_tag "jquery.ui.addresspicker" %>
+  <%= javascript_include_tag "jquery.ui.core" %>
   <%= javascript_include_tag "alert" %>
   <%= javascript_include_tag "jquery" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" %>
   
 
 </head>
-<body background="\images\fondo.jpeg">
+<body background="\images\img1.jpg">
   <br><br><br><br><br>
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
@@ -45,8 +47,6 @@
             <li id="hour"><h3><font color="#DBDBDB">aqui ira la hora</font></h3></li>
           </ul>
 
-          
-
           <form class="navbar-form navbar-left" role="search">
               <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
@@ -56,16 +56,14 @@
           
           <ul class="nav navbar-nav navbar-right">        
             <% if user_signed_in? %>
-             
-              
-
+            <li> <a href="<%= authentications_path %>"><strong>Authentications</strong></a> |</li>
               <li class="">
-                <a href="/users/sign_out" title="" method="delete"><%= current_user.email %><img src="\images\user.png" alt="12%" width="30" height="30"></a>
-                                
+                <a href="/users/sign_out" title="" method="delete"><%= current_user.email %><img src="\images\user.png" alt="12%" width="30" height="30"></a>       
               </li>
+              
             <% else %>
-              <li><a href="/users/sign_in">Sign in</a></li>
-              <li><a href="/users/sign_up">Sign up</a></li> 
+              <li><a href="<%= new_user_registration_path %>">Sign Up</a></li>
+              <li><a href="<%= new_user_session_path %>">Login</a></li> 
             <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -101,34 +99,36 @@
             
 
               <% @alarm = Alarm.last %>
-
-              <% if @valor > @alarm.time %>
+              <% if @valor != nil%>
+              <% if @valor > @alarm.time%>
                 <p align="center"><img src="\images\alert_red.gif" alt="dsdad" width="50" height="50"></p>
                 <div class="alert alert-danger">
                   <H4>THERM serial :: <%= thermostat.serial %></H4>
                   <hr class="message-inner-separator">
                   <strong>step was::</strong> <%= @valor %>
-                  <p>temperatura= <%= @history_thermostats.temperature %></p>
+                  <p>temperature= <%= @history_thermostats.temperature %></p>
                   <p>humidity= <%= @history_thermostats.humidity %></p>
                   <p>energy= <%= @history_thermostats.energy %></p>
-                  <p>id termostato= <%= @history_thermostats.thermostat_id %></p>
+                  <p>id thermostat= <%= @history_thermostats.thermostat_id %></p>
                   <audio autoplay='autoplay'>
                     <source src="\images\alert2.mp3" type="audio/mp3">
                   </audio>
                 </div>
               <%else%>
               <%end%>
-            
+            <%end%>
             <%else%>
               
             <%end%>
 
           <%end%>    
+
                 <div class="alert alert-success">
                   <strong>That's all right.</strong>
                   <hr class="message-inner-separator">
                   <p id="hour2">. :D</p>
                 </div>
+
       <% else %>
         
       <% end %>
@@ -163,10 +163,8 @@
       <tr>
           <td>
              <a href="https://www.facebook.com/ThermMonitor">
-               <img  src="\images\f.ico" width="30" />&nbsp;
+               <img  src="\images\facebook_32.png" width="30" />&nbsp;
              </a>|
-          </td>
-          <td>
              <a href="https://www.twitter.com/ThermMonitor">
               <img  src="\images\t.png" width="30" />&nbsp;
             </a>|
@@ -182,6 +180,7 @@
       <b>®2014 Walsoft Labs . All rights reserved.</b>
       <br>
       <b>The website and its content was created for Walsoft® Labs.</b>
+
     </footer>
   </div>
 

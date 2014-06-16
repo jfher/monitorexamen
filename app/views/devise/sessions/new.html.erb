@@ -8,10 +8,10 @@
 		<div class="container">
 			<div class="row">
     			<div class="col-sm-4 social-buttons">	
-					<a class="btn btn-block btn-social btn-facebook">
+					<a href ="/users/auth/facebook" class="btn btn-block btn-social btn-facebook">
 		      		  <i class="fa fa-facebook"></i> Sign in with Facebook
 		     		</a>
-		     		<a class="btn btn-block btn-social btn-twitter">
+		     		<a href ="/users/auth/twitter" class="btn btn-block btn-social btn-twitter">
 				    	<i class="fa fa-twitter"></i> Sign in with Twitter
 				    </a>
 		     	</div>
@@ -31,8 +31,6 @@
 
 			  <div><%= f.submit "Sign in", :class => "btn btn-primary" %></div>
 			<% end %>
-
-			<%= render "devise/shared/links" %>
 		</div>
 	</div>
 </div>

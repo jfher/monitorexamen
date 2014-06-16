@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require issues
 //= require jquery.ui.addresspicker
 //= require jquery.ui.core
 //= require jquery.ui.widget

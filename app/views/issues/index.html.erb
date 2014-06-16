@@ -10,16 +10,16 @@
         <th></th>
       </tr>
     </thead>
-
+    
     <tbody>
       <% @issues.each do |issue| %>
         <tr>
           <% if issue.thermostat_id == @id_therm %>
              <td><%= issue.thermostat_id %></td>
              <td><%= issue.description %></td>
-             <td><%= issue.status%></td>
+             <td id="status<%=issue.id%>"><%= issue.status%></td>
              <td><%= issue.resolution %></td>
-             <td><a href="/issues/cancel/<%=issue.id %>"class="btn btn-danger">Cancel Problem</a></td>
+             <td class="button_cancelar" id="<%= issue.id %>"><button>Cancel Problem</button></td>
        <%end%>
         </tr>
       <% end %>
