@@ -53,8 +53,8 @@
           <td><a href="/schedules/index/<%= thermostat.id %>" class="btn btn-success">Schedule</a></td>
           <td><a href="<%= report_history_path(thermostat.id) %> " class="btn btn-primary "> Show History Thermostat</a></td>
           <td><a href="/issues/new/<%= thermostat.id %>" class="btn btn-warning">Report Problem</a></td>
-          <td><a href="/issues/show/<%= thermostat.id %>"class="btn btn-info">Show Problems</a>
-          </td>
+          <td><a href="/issues/show/<%= thermostat.id %>"class="btn btn-info">Show Problems</a></td>
+          <td><a href="/thermostats/graphic/<%= thermostat.id %>" title="view graphig" class="btn btn-primary">view graphig</a></td>
           <% end %>
           <% end %>
         </tr>

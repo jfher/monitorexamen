@@ -1,0 +1,87 @@
+<h1> <mark>GRAPHICS</mark></h1>
+temrostato:: <%= @thermostat.id %>
+<br>
+creacion del termostato:: <%= @thermostat.created_at %>
+<br>
+numero de datos en el historial :: <%= @historys.length %>
+<br>
+
+<br>
+
+	
+		<meter value="40" min="1" low="30" high="50" max="100" class="progress">100</meter>
+	
+		<br>
+
+<% if @historys.length > 0 %>
+	
+	<table border="0" >
+		<thead>
+		<tr>
+			<th>Date</th>
+			<th></th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		
+
+		<% @historys.each do |history| %>
+			<tr >
+				<td align="center">
+					<B >
+					<%= history.created_at.day %>/<%= history.created_at.month %>/<%= history.created_at.year %>
+					</B>&nbsp;&nbsp;|&nbsp;&nbsp;
+				</td>
+				<td width="80%" >&nbsp;&nbsp;&nbsp;&nbsp;
+					<div class="progress">
+						<% if history.energy <= 30 %>
+						  <div class="progress-bar progress-bar-success" style="width: <%= history.energy %>%">
+						    <span class="sr-only">30% Complete (success)</span>
+						  </div><p align="right"></p>
+						<%elsif history.energy <= 60 %>
+						  <div class="progress-bar progress-bar-success" style="width: 30%">
+						    <span class="sr-only">30% Complete (success)</span>
+						  </div>	
+						  <div class="progress-bar progress-bar-warning" style="width: <%= history.energy/2 %>%">
+						    <span class="sr-only">20% Complete (warning)</span>
+						  </div><p align="right"></p>
+						<%elsif history.energy > 60%>
+						  <div class="progress-bar progress-bar-success" style="width: 30%">
+						    <span class="sr-only">30% Complete (success)</span>
+						  </div>	
+						  <div class="progress-bar progress-bar-warning" style="width: 30%">
+						    <span class="sr-only">30% Complete (warning)</span>
+						  </div>					
+						  <div class="progress-bar progress-bar-danger" style="width: <%= history.energy/3 %>%">
+						    <span class="sr-only">30% Complete (danger)</span>
+						  </div><p align="right"></p>
+						<%end%>
+					</div>
+								
+				</td>		
+				<td align="center"><%= history.energy %>W </td>
+			</tr>
+			
+		<%end%>
+			<tr>
+				<td> <b> Energy </b></td>
+				<td>
+					<hr>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<mark style="background-color:green">1-30W</mark>
+					&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<mark style="background-color:yellow">31-60W</mark>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<mark style="background-color:red">61-100W</mark>
+				</td>	
+				<td></td>
+
+			</tr>
+		</tbody>
+	</table>
+<%else%>
+	<h1><mark>No tienes histoial para hacer las graficas</mark></h1>
+<%end%>
+

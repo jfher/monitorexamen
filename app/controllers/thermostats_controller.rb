@@ -20,6 +20,11 @@ class ThermostatsController < ApplicationController
     redirect_to '/'
   end
 
+  def graphic
+    @thermostat=Thermostat.find(params[:id])
+    @historys = HistoryThermostat.where( :thermostat_id => params[:id])
+  end
+
  def block
    if current_user.role=="admin"
     @user=User.find(params[:id])
