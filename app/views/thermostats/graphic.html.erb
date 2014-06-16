@@ -8,13 +8,10 @@ numero de datos en el historial :: <%= @historys.length %>
 
 <br>
 
-	
-		<meter value="40" min="1" low="30" high="50" max="100" class="progress">100</meter>
-	
-		<br>
-
 <% if @historys.length > 0 %>
-	
+<div class="jumbotron">
+ 	
+
 	<table border="0" >
 		<thead>
 		<tr>
@@ -81,6 +78,7 @@ numero de datos en el historial :: <%= @historys.length %>
 			</tr>
 		</tbody>
 	</table>
+</div>
 <%else%>
 	<h1><mark>No tienes histoial para hacer las graficas</mark></h1>
 <%end%>
