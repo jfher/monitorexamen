@@ -1,85 +1,150 @@
-<h1> <mark>GRAPHICS</mark></h1>
-temrostato:: <%= @thermostat.id %>
+<center><h1> GRAPHICS</h1></center>
+Thermostat ID:: <%= @thermostat.id %>
 <br>
-creacion del termostato:: <%= @thermostat.created_at %>
+Thermostat created:: <%= @thermostat.created_at %>
 <br>
-numero de datos en el historial :: <%= @historys.length %>
 <br>
 
-<br>
 
 <% if @historys.length > 0 %>
-<div class="jumbotron">
- 	
 
-	<table border="0" >
-		<thead>
-		<tr>
-			<th>Date</th>
-			<th></th>
-			<th></th>
-		</tr>
-		</thead>
-		<tbody>
-		
+	<form align="center">
+		<input id="inicio" class="textboxgrade" type="date" name="inicio" required="required">Betoween
+		<input id="fin" class="textboxgrade" type="date" name="fin" required="required">
+		<input class="btn btn-primary"type="submit" name="" value="Search">
+	</form> 
+	<hr>
+	<mark>Start-><%= @start %></mark>
+	<mark>End-><%= @end %></mark>
 
-		<% @historys.each do |history| %>
-			<tr >
-				<td align="center">
-					<B >
-					<%= history.created_at.day %>/<%= history.created_at.month %>/<%= history.created_at.year %>
-					</B>&nbsp;&nbsp;|&nbsp;&nbsp;
-				</td>
-				<td width="80%" >&nbsp;&nbsp;&nbsp;&nbsp;
-					<div class="progress">
-						<% if history.energy <= 30 %>
-						  <div class="progress-bar progress-bar-success" style="width: <%= history.energy %>%">
-						    <span class="sr-only">30% Complete (success)</span>
-						  </div><p align="right"></p>
-						<%elsif history.energy <= 60 %>
-						  <div class="progress-bar progress-bar-success" style="width: 30%">
-						    <span class="sr-only">30% Complete (success)</span>
-						  </div>	
-						  <div class="progress-bar progress-bar-warning" style="width: <%= history.energy/2 %>%">
-						    <span class="sr-only">20% Complete (warning)</span>
-						  </div><p align="right"></p>
-						<%elsif history.energy > 60%>
-						  <div class="progress-bar progress-bar-success" style="width: 30%">
-						    <span class="sr-only">30% Complete (success)</span>
-						  </div>	
-						  <div class="progress-bar progress-bar-warning" style="width: 30%">
-						    <span class="sr-only">30% Complete (warning)</span>
-						  </div>					
-						  <div class="progress-bar progress-bar-danger" style="width: <%= history.energy/3 %>%">
-						    <span class="sr-only">30% Complete (danger)</span>
-						  </div><p align="right"></p>
-						<%end%>
-					</div>
-								
-				</td>		
-				<td align="center"><%= history.energy %>W </td>
-			</tr>
-			
-		<%end%>
+<% if @start != nil && @end != nil%>
+		<%@inicio = @start.to_s.delete('-').to_i %>
+		<%@fin = @end.to_s.delete('-').to_i %>
+	<div class="jumbotron">
+
+		<table border="2"  >
+			<thead>
 			<tr>
-				<td> <b> Energy </b></td>
-				<td>
-					<hr>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<mark style="background-color:green">1-30W</mark>
-					&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<mark style="background-color:yellow">31-60W</mark>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<mark style="background-color:red">61-100W</mark>
-				</td>	
-				<td></td>
-
+				<th>Date</th>
+				<th></th>
 			</tr>
-		</tbody>
-	</table>
-</div>
+			</thead>
+			<tbody>
+			
+			
+			<% @contador =  0 %>
+			<% @historys.each do |history| %>
+
+				<% @creado =  String.new %>
+				<% @creado =  history.created_at.year.to_s %>
+				<%if history.created_at.month < 10 %>
+					<% @creado +=  '0' %>
+					<% @creado +=  history.created_at.month.to_s %>
+				<%else%>
+					<% @creado +=  history.created_at.month.to_s %>
+				<%end%>
+				<%if history.created_at.day < 10 %>
+					<% @creado +=  '0' %>
+					<% @creado +=  history.created_at.day.to_s %>
+				<%else%>
+					<% @creado +=  history.created_at.day.to_s %>
+				<%end%>
+				<% @creado=@creado.to_i %>
+
+				
+
+				<% if @creado >= @inicio && @creado <= @fin %>
+					<tr >
+						<td align="center">
+							<B >
+								<%= history.created_at.day %>/<%= history.created_at.month %>/<%= history.created_at.year %>
+							</B>&nbsp;&nbsp;&nbsp;&nbsp;
+						</td>
+						<td width="80%" >&nbsp;&nbsp;&nbsp;&nbsp;
+							<div class="progress progress-striped active">
+								<% if history.energy <= 30 %>
+								  <div class="progress-bar progress-bar-success" style="width: <%= history.energy %>%">
+								  	<%= history.energy %>W
+								    <span class="sr-only">30% Complete (success)</span>
+								  </div><p align="right"></p>
+								<%elsif history.energy <= 60 %>
+								  <div class="progress-bar progress-bar-success" style="width: 30%">
+								    <span class="sr-only">30% Complete (success)</span>
+								  </div>	
+								  <div class="progress-bar progress-bar-warning" style="width: <%= history.energy/2 %>%">
+								  	<%= history.energy %>W
+								    <span class="sr-only">20% Complete (warning)</span>
+								  </div><p align="right"></p>
+								<%elsif history.energy > 60%>
+								  <div class="progress-bar progress-bar-success" style="width: 30%">
+								    <span class="sr-only">30% Complete (success)</span>
+								  </div>	
+								  <div class="progress-bar progress-bar-warning" style="width: 30%">
+								    <span class="sr-only">30% Complete (warning)</span>
+								  </div>					
+								  <div class="progress-bar progress-bar-danger" style="width: <%= history.energy/3 %>%">
+								  	<%= history.energy %>W
+								    <span class="sr-only">30% Complete (danger)</span>
+								  </div><p align="right"></p>
+								<%end%>
+							</div>
+										
+						</td>		
+						<td align="center"><%= history.energy %>W </td>
+					</tr>
+				<%else%>
+					<% @contador+=1 %>
+				<%end%>
+	
+				
+			<%end%>
+				<%if @contador > 0 %>
+				 <h1>Empty..!!! :(</h1>
+				<%end%>
+
+				<tr>
+					<td> <b> Energy </b></td>
+						<hr bgcolor="#111111">
+					<td>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<mark style="background-color:green">1-30W</mark>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<mark style="background-color:yellow">31-60W</mark>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<mark style="background-color:red">61-100W</mark>
+					</td>	
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+<%else%>
+	<h1>Icorrect Dates</h1>
+<%end%>
+
 <%else%>
 	<h1><mark>No tienes histoial para hacer las graficas</mark></h1>
 <%end%>
 
+<script>
+	$( document ).ready(function() {
+  
+
+	  $('#submit').click(function(){
+	  	var inicio = $('#inicio').val();
+	  	var fin = $('#fin').val();
+
+	  	if (fin == '') {
+	  		alert('no hay fin');
+	  	};
+
+	  	$('.rango').html("<h2>inicio::"+inicio+"</h2><h2>fin::"+fin+"</h2>");
+
+	  });
+	 
+
+	});
+
+</script>
