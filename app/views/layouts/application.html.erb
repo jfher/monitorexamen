@@ -21,6 +21,45 @@
   <%= javascript_include_tag "jquery" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" %>
   
+  <script type="text/javascript">
+
+  $(document).ready(function(){
+
+    function get_hour () {
+       var fecha = new Date();
+       var hora = fecha.getHours();
+       return hora;
+    }
+    function get_minute () {
+       var fecha = new Date();
+       var minuto = fecha.getMinutes();
+       return minuto;
+    }
+    function get_day () {
+       var fecha = new Date();
+       var dia = fecha.getDay();
+       var dias= new Array(7);
+        dias[0]='Monday';
+        dias[1]='Tuesday';
+        dias[2]='Wednesday';
+        dias[3]='Thursday';
+        dias[4]='Friday';
+        dias[5]='Saturday';
+        dias[6]='Sunday';
+       return dias[dia-1];
+    }
+
+    function put_hour () {   
+      $('#hour').html("<h3><font color='#DBDBDB'>"+get_day()+" "+get_hour()+":"+get_minute()+"</font></h3>");    
+      
+    }
+
+    put_hour();
+    
+   
+  });
+
+</script>
 
 </head>
 <body background="\images\img1.jpg">
@@ -44,7 +83,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/about_us">About Us</a></li>
             <li><a href="/contact_us">Contact Us</a></li>
-            <li id="hour"><h3><font color="#DBDBDB">aqui ira la hora</font></h3></li>
+            <li id="hour"><h3><font color="#DBDBDB">Time</font></h3></li>
           </ul>
 
           <form class="navbar-form navbar-left" role="search">
@@ -56,7 +95,7 @@
           
           <ul class="nav navbar-nav navbar-right">        
             <% if user_signed_in? %>
-            <li> <a href="<%= authentications_path %>"><strong>Authentications</strong></a> |</li>
+              <li> <a href="<%= authentications_path %>"><strong>Authentications</strong></a> |</li>
               <li class="">
                 <a href="/users/sign_out" title="" method="delete"><%= current_user.email %><img src="\images\user.png" alt="12%" width="30" height="30"></a>       
               </li>
@@ -169,44 +208,6 @@
     </footer>
   </div>
 
-<script type="text/javascript">
 
-$(document).ready(function(){
-
-  function get_hour () {
-     var fecha = new Date();
-     var hora = fecha.getHours();
-     return hora;
-  }
-  function get_minute () {
-     var fecha = new Date();
-     var minuto = fecha.getMinutes();
-     return minuto;
-  }
-  function get_day () {
-     var fecha = new Date();
-     var dia = fecha.getDay();
-     var dias= new Array(7);
-      dias[0]='Monday';
-      dias[1]='Tuesday';
-      dias[2]='Wednesday';
-      dias[3]='Thursday';
-      dias[4]='Friday';
-      dias[5]='Saturday';
-      dias[6]='Sunday';
-     return dias[dia-1];
-  }
-
-  function put_hour () {   
-    $('#hour').html("<h3><font color='#DBDBDB'>"+get_day()+" "+get_hour()+":"+get_minute()+"</font></h3>");    
-    $('#hour2').html("<h3><font color='#268A24'>"+get_day()+" "+get_hour()+":"+get_minute()+"</font></h3> <h1>:D</h1>");    
-  }
-
-  put_hour();
-  
- 
-});
-
-</script>
 </body>
 </html>
