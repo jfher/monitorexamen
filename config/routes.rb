@@ -60,7 +60,9 @@ ThermMonitor::Application.routes.draw do
    get '/schedules/destroy/:id' => 'schedules#destroy'  
 
    get '/thermostats/graphic/:id' => 'thermostats#graphic'
-   
+   get '/schedules/index/:thermostat_id/alarms/new' => 'alarms#new'
+   post '/schedules/index/:thermostat_id/alarms/new ' => 'alarms#create'
+    
 
   
 
