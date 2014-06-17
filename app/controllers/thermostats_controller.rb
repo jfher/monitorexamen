@@ -28,7 +28,7 @@ class ThermostatsController < ApplicationController #controlador del termostato
   end
 
  def block
-   if current_user.role=="admin"
+   if if_current_admi
     @user=User.find(params[:id])
     @user.state=false
     @user.save
@@ -39,7 +39,7 @@ class ThermostatsController < ApplicationController #controlador del termostato
 end
 
   def unlock
-     if current_user.role=="admin"
+     if if_current_admi
    @user=User.find(params[:id])
     @user.state=true
     @user.save
@@ -50,7 +50,7 @@ end
   end
 
   def remove
-     if current_user.role=="admin"
+     if if_current_admi
     @user=User.find(params[:id])
     @thermostats=Thermostat.all
     @thermostats.each do |therm|
@@ -80,7 +80,7 @@ end
   end
 
   def edit_user
-       if current_user.role=="admin"
+       if if_current_admi
     @user=User.find(params[:id])
   else
     redirect_to '/'
@@ -88,18 +88,18 @@ end
   end
 
   def index
-    if user_signed_in? && current_user.role == "admin"
+    if user_signed_in? && if_current_admi
       redirect_to '/admi'
       @thermostats=Thermostat.all
     else
     if  user_signed_in?
        redirect_to '/home'
     end
-  end
+    end
   end
 
   def create_user
-     if current_user.role=="admin"
+     if if_current_admi
     @user=User.new
   else
     redirect_to '/'
@@ -143,7 +143,14 @@ end
     end
   end
 
-   
+   def if_current_admi
+    if current_user.role == 'admin'
+      return true
+    else
+      return false
+  end
+end
+  
 
   # GET /thermostats/1
   # GET /thermostats/1.json

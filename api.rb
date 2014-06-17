@@ -5,7 +5,7 @@ require 'json'
 
 agent = Mechanize.new
 	a = agent.post('http://localhost:3000/history_thermostats.json',{
-			"history_thermostat[temperature]" => 30,  
+			"history_thermostat[temperature]" => 13,  
 			"history_thermostat[humidity]" => 50,
 			"history_thermostat[energy]" => 20,
 			 serial: '1', #numero serial del termostato

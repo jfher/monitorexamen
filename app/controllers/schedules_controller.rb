@@ -15,11 +15,7 @@ class SchedulesController < ApplicationController #controlador de las configurac
   # GET /schedules/1
   # GET /schedules/1.json
   def show
-    @schedule=Schedule.find(params[:id])
-    @thermostat=Thermostat.find(@schedule.thermostat_id)
-      if current_user.role == 'admin' || current_user.id != @thermostat.user_id
-      redirect_to '/'
-      end
+    view_if_user
 end
 
   # GET /schedules/new
@@ -36,11 +32,7 @@ end
 end
   # GET /schedules/1/edit
   def edit
-    @schedule=Schedule.find(params[:id])
-    @thermostat=Thermostat.find(@schedule.thermostat_id)
-      if current_user.role == 'admin' || current_user.id != @thermostat.user_id
-      redirect_to '/'
-      end
+    view_if_user
   end
 
   # POST /schedules
@@ -78,15 +70,19 @@ end
   # DELETE /schedules/1
   # DELETE /schedules/1.json
   def destroy
-    @schedule=Schedule.find(params[:id])
-    @thermostat=Thermostat.find(@schedule.thermostat_id)
-      if current_user.role == 'admin' || current_user.id != @thermostat.user_id
-      redirect_to '/'
-      end
+   view_if_user
     @schedule.destroy
     
     redirect_to '/'
   end
+
+def view_if_user
+   @schedule=Schedule.find(params[:id])
+    @thermostat=Thermostat.find(@schedule.thermostat_id)
+      if current_user.role == 'admin' || current_user.id != @thermostat.user_id
+      redirect_to '/'
+      end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
