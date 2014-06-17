@@ -14,7 +14,12 @@ class AlarmsController < ApplicationController
 
   # GET /alarms/new
   def new
+    @therm_id= params[:thermostat_id]
+    @therm_id=@therm_id.to_i
     @alarm = Alarm.new
+     @alarm.thermostat_id=@therm_id
+    @alarm.save
+    
   end
 
   # GET /alarms/1/edit
