@@ -61,10 +61,10 @@ class HistoryThermostatsController < ApplicationController #controlador del hist
  def verifyhistory_create(history_thermostat,therm)
       respond_to do |format|
       if history_thermostat.save
-         #@temperature= Schedule.where(:thermostat_id => therm.id , :day_week => 'params[:day]' , :day_time => 'params[:time]' ).last
-         #if @temperature==nil
-         #@temperature=therm.default_temperature
-         #end
+        @temperature= Schedule.where(:thermostat_id => therm.id , :day_week => params[:day] , :day_time => params[:time]).last
+         if @temperature==nil
+         @temperature=therm.default_temperature
+         end
         msg = { :status => "ok", :temperature => therm.default_temperature}
         format.json  { render :json => msg }
       else

@@ -43,7 +43,7 @@ end
     
 
     respond_to do |format|
-      if @schedule.save
+      if @schedule.save && @schedule.temperature< 40 && @schedule.temperature > 10
         format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
         format.json { render action: 'show', status: :created, location: @schedule }
       else
@@ -57,7 +57,7 @@ end
   # PATCH/PUT /schedules/1.json
   def update
     respond_to do |format|
-      if @schedule.update(schedule_params)
+      if @schedule.update(schedule_params)&& @schedule.temperature< 40 && @schedule.temperature > 10
         format.html { redirect_to @schedule, notice: 'Schedule was successfully updated.' }
         format.json { head :no_content }
       else
