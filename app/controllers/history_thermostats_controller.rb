@@ -38,7 +38,7 @@ class HistoryThermostatsController < ApplicationController #controlador del hist
   
   # POST /history_thermostats
   # POST /history_thermostats.json
-  def create    
+  def create
     @history_thermostat = HistoryThermostat.new(history_thermostat_params)
     @serial=params[:serial]
     @therm=Thermostat.find_by_serial(@serial)
@@ -59,7 +59,7 @@ class HistoryThermostatsController < ApplicationController #controlador del hist
 
  def verifyhistory_create(history_thermostat,therm)
       respond_to do |format|
-      if history_thermostat.saves
+      if history_thermostat.save
         msg = { :status => "ok", :temperature => therm.temperature }
         format.json  { render :json => msg }
       else
