@@ -2,7 +2,7 @@ class User < ActiveRecord::Base #modelo del usuario
   # Include default devise modules. Others available are:auta
   # :confirmable, :lockable, :timeoutable and :omniauthable
   before_create :begin_usu
-  before_save :begin_usu2
+  before_save :begin_admi
   devise :database_authenticatable, :registerable,  :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :thermostats  
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base #modelo del usuario
 		self.role='simple'
 	end
 
-	def begin_usu2
+	def begin_admi
 		if self.id == 1
 			self.role= 'admin'
 		end

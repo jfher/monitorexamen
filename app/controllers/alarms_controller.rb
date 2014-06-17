@@ -35,7 +35,7 @@ class AlarmsController < ApplicationController #controlador del modelo alarma
       if @alarm.save
         format.html { redirect_to @alarm, notice: 'Alarm was successfully created.' }
         format.json { render action: 'show', status: :created, location: @alarm }
-      else
+       else
         format.html { render action: 'new' }
         format.json { render json: @alarm.errors, status: :unprocessable_entity }
       end

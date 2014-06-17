@@ -50,10 +50,10 @@ class HistoryThermostatsController < ApplicationController #controlador del hist
     if @user && @userpass && @therm.user.id == @user.id
       verifyhistory_create(@history_thermostat,@therm)
    else
-    mensaje3
+    display_error_user
    end
  else
-  mensaje4
+  display_error_thermostat
  end
  end
 
@@ -63,24 +63,23 @@ class HistoryThermostatsController < ApplicationController #controlador del hist
         msg = { :status => "ok", :temperature => therm.temperature }
         format.json  { render :json => msg }
       else
-        mensaje2
-         msg2 = { :error => "Error while trying to save"}
-        format.json  { render :json => msg2 }
+         msg_error = { :error => "Error while trying to save"}
+        format.json  { render :json => msg_error}
       end
     end
 end
 
-  def mensaje3
+  def display_error_user
      respond_to do |format|
-  msg3 = { :error => "Error thermostat does not belong to the user"}
-        format.json  { render :json => msg3 }
+  msg_user = { :error => "Error thermostat does not belong to the user"}
+        format.json  { render :json => msg_user }
   end
 end
 
-def mensaje4
+def display_error_thermostat
    respond_to do |format|
-   msg4 = { :error => "Error the thermostat does not exist"}
-        format.json  { render :json => msg4 }
+   msg_thermostat = { :error => "Error the thermostat does not exist"}
+        format.json  { render :json => msg_thermostat }
       end
 end
 

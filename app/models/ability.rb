@@ -1,7 +1,7 @@
 class Ability #clase para inicializar permisos
   include CanCan::Ability
 
-  def initialize(user)
+  #def initialize(user)
    # if user.nil? == false 
     #   if user.role == 'admin'
      #   can :manage, :all
@@ -30,18 +30,18 @@ class Ability #clase para inicializar permisos
     #end
 
 
-   if user.nil? == false 
-        if user.role == 'admin'
-        can :manage, :all
+  # if user.nil? == false 
+   #     if user.role == 'admin'
+    #    can :manage, :all
         
-        else
-          can :manage, Thermostat
-        end  
+     #   else
+      #    can :manage, Thermostat
+       # end  
       #  can :manage, :all
 
-    else
-      can :read, :all
-    end    
+    #else
+     # can :read, :all
+    #end    
 
 
 

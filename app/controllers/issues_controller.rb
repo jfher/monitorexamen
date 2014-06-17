@@ -32,8 +32,7 @@ class IssuesController < ApplicationController #controlador de los problemas del
 
   def open
       @issue=Issue.find(params[:id])
-    if current_user.role == 'admin' && @issue.status != "Open" && @issue.status != "Canceled"
-      @issue.status="Open"
+    if current_user.role == 'admin' && @issue.status == "Resolved"
       @issue.save
     end
     redirect_to '/'
@@ -41,7 +40,7 @@ class IssuesController < ApplicationController #controlador de los problemas del
 
   def resolve
     @issue=Issue.find(params[:id])
-    if current_user.role == 'admin' && @issue.status != "Resolved" && @issue.status != "Canceled"
+    if current_user.role == 'admin' && @issue.status != "Open"
     @issue.status="Resolved"
     else
     redirect_to '/'
