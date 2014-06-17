@@ -193,13 +193,12 @@ end
     @thermostat.energy = 0
     @thermostat.humidity = 0
     respond_to do |format|
-      if @thermostat.save && @thermostat.temperature< 40 && @thermostat.temperature > 10
+     if @thermostat.save
         format.html { redirect_to locations_home_path, notice: 'Thermostat was successfully created.' }
         format.json { render action: 'show', status: :created, location: @thermostat }
       else
         format.html { render action: 'new' }
         format.json { render json: @thermostat.errors, status: :unprocessable_entity }
-      end
     end
   end
 #Increases the temperature configuration
@@ -224,7 +223,7 @@ end
   # PATCH/PUT /thermostats/1.json
   def update
     respond_to do |format|
-      if @thermostat.update(thermostat_params)&& @thermostat.temperature< 40 && @thermostat.temperature > 10
+      if @thermostat.update(thermostat_params)
         @thermostat.default_temperature=@thermostat.temperature
     @thermostat.save
         
