@@ -19,7 +19,8 @@ class AlarmsController < ApplicationController #controlador del modelo alarma
     @alarm = Alarm.new
      @alarm.thermostat_id=@therm_id
     @alarm.save
-    
+    @post = current_user.authentications.find_by(provider: "facebook")
+    @post.post
   end
 
   # GET /alarms/1/edit
