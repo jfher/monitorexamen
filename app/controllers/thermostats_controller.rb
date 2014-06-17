@@ -115,7 +115,6 @@ end
   end
  
    def admi
-    
     if current_user.role != "simple"
       if params[:search]
         @users = User.search(params[:search])
@@ -131,6 +130,26 @@ end
     else
       redirect_to '/'
     end
+  end
+
+  def admimodel
+     if current_user.role != "simple"
+      if params[:search]
+        @users = User.all
+        @thermostats = Thermostat.search(params[:search])
+        @locations = Location.all
+        @issues = Issue.all
+      else
+      @users= User.all
+      @thermostats = Thermostat.all
+      @locations = Location.all
+      @issues = Issue.all
+      end
+      redirect_to :back
+    else
+      redirect_to '/'
+    end
+    
   end
 
 

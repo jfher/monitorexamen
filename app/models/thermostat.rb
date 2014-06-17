@@ -4,4 +4,5 @@ class Thermostat < ActiveRecord::Base #modelo del termostato
 	has_many :history_thermostats
 	has_one :alarms
 	has_one :modelos
+	scope :search, lambda { |search_word| where('thermostats.model_id LIKE ?', "%#{search_word}%") }
 end

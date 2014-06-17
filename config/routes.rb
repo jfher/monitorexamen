@@ -1,11 +1,14 @@
 ThermMonitor::Application.routes.draw do
 
+  resources :issues do resources :reviews end
+
   resources :modelos
 
   resources :authentications
   devise_for :users, path_names: {sign_in: "login"},
                         controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}
-
+                        
+ get '/review/:id' => 'reviews#like'
  get '/api/register.json' => 'history_thermostats#register' 
  get '/issues/new/:id' => 'issues#new'
  get '/issues/show/:id' => 'issues#index'
@@ -15,8 +18,6 @@ ThermMonitor::Application.routes.draw do
 
  #Ruta de hacer un post en facebook
  get '/post/:id' => 'authentications#post'
-
-  resources :issues
 
   resources :alarms
 
@@ -39,6 +40,7 @@ ThermMonitor::Application.routes.draw do
   get '/admi/user/change_role/:id' => 'thermostats#change_role'
   get '/home' => 'locations#index', :as => 'locations_home'
   get '/admi' => 'thermostats#admi', :as => 'home'
+  get '/admimodel' => 'thermostats#admimodel'
   get '/admi/report' => 'thermostats#report', :as => 'report_thermostat'  
   get '/about_us' => 'thermostats#about'
   get '/locations/new' => 'locations#new', :as => 'location_thermostat'

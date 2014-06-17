@@ -20,9 +20,51 @@
              <td id="status<%=issue.id%>"><%= issue.status%></td>
              <td><%= issue.resolution %></td>
              <td class="button_cancelar" id="<%= issue.id %>"><button>Cancel Problem</button></td>
-             
        <%end%>
+       <p><h1><b>Add a Review....</b></h1>
+
+            <%= form_for([issue, issue.reviews.new]) do |f| %>
+             <p> <%= f.text_area :text %> </p>
+                 <% f.hidden_field :id %>
+            <p> <%= f.submit%> </p>
+            <%end%>
         </tr>
-      <% end %>
+
+          <p><em><h1>Reviews</h1></em>
+<table>
+ 
+ <% issue.reviews.each do |review| %>
+   <tr>
+   <td>
+     
+  </td>
+   </tr>
+   <tr> 
+     <td>
+      <textarea readonly rows="4" cols="50" name="review[text]" value="<%= review.text %>"><%=review.text%></textarea>
+      </td>
+   </tr>
+   <tr>
+    <td>
+      <ul class ="plike"> 
+
+         <li><a href="/review/<%= review.id %>">Like</a>
+      </ul>
+      <td class="button_like" id="<%= review.id %>"><button>Like</button></td>
+      
+    </td>
+    <td>
+       <b>Total Likes:</b>
+       <%=review.like%>
+    </td>
+   </tr>
+</table>
+<% end %>
+<%end%>
+
+    
+
+
+
     </tbody>
   </table>
