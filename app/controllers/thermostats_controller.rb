@@ -21,6 +21,8 @@ class ThermostatsController < ApplicationController #controlador del termostato
   end
 
   def graphic
+    @start = params[:inicio]
+    @end = params[:fin]
     @thermostat=Thermostat.find(params[:id])
     @historys = HistoryThermostat.where( :thermostat_id => params[:id])
   end
