@@ -197,6 +197,7 @@ end
   def add
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature + 1
+    @thermostat.default_temperature=@thermostat.temperature
     @thermostat.save
     redirect_to :back
   end
@@ -204,6 +205,7 @@ end
   def sub
     @thermostat = Thermostat.find(params[:id])
     @thermostat.temperature = @thermostat.temperature - 1
+    @thermostat.default_temperature=@thermostat.temperature
     @thermostat.save
     redirect_to :back
   end
@@ -214,6 +216,7 @@ end
   def update
     respond_to do |format|
       if @thermostat.update(thermostat_params)
+        @thermostat.default_temperature=@thermostat.temperature
         format.html { redirect_to @thermostat, notice: 'Thermostat was successfully updated.' }
         format.json { head :no_content }
       else
