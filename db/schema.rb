@@ -11,16 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615012108) do
+ActiveRecord::Schema.define(version: 20140617021733) do
 
   create_table "alarms", force: true do |t|
-    t.integer  "max"
-    t.integer  "min"
-    t.integer  "time"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "schedule_id"
     t.integer  "thermostat_id"
+    t.integer  "number_range"
   end
 
   add_index "alarms", ["schedule_id"], name: "index_alarms_on_schedule_id"

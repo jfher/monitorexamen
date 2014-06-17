@@ -14,17 +14,14 @@
   
 
   <div class="field">
-    <%= f.label :max %><br>
-    <%= f.number_field :max, :class => "textboxgrade", :required => "required" %>
+    <%= f.label :number_range %><br>
+    <%= f.number_field :number_range, :class => "textboxgrade", :required => "required" %>
   </div>
   <div class="field">
-    <%= f.label :min %><br>
-    <%= f.number_field :min, :class => "textboxgrade", :required => "required" %>
+    <%= f.label :thermostat_id %><br>
+    <%= f.number_field :thermostat_id, :disabled => "true"  %>
   </div>
-  <div class="field">
-    <%= f.label :time %><br>
-    <%= f.number_field :time, :class => "textboxgrade", :required => "required" %>
-  </div>
+
   <br>
   <br>
   <div class="actions">

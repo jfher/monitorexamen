@@ -3,9 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Max</th>
-      <th>Min</th>
-      <th>Time</th>
+      <th>Range Number</th>
+      <th>thermostat id</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +14,8 @@
   <tbody>
     <% @alarms.each do |alarm| %>
       <tr>
-        <td><%= alarm.max %></td>
-        <td><%= alarm.min %></td>
-        <td><%= alarm.time %></td>
+        <td><%= alarm.range_number %></td>
+        <td><%= alarm.thermostat_id %></td>
         <td><%= link_to 'Show', alarm %></td>
         <td><%= link_to 'Edit', edit_alarm_path(alarm) %></td>
         <td><%= link_to 'Destroy', alarm, method: :delete, data: { confirm: 'Are you sure?' } %></td>

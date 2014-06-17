@@ -69,6 +69,6 @@ class AlarmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def alarm_params
-      params.require(:alarm).permit(:max, :min, :time)
+      params.require(:alarm).permit(:number_range)
     end
 end
