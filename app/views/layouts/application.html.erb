@@ -12,14 +12,14 @@
   
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
-
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "bootstrap" %>
   <%= javascript_include_tag "bootstrap.min" %>
   <%= javascript_include_tag "jquery.ui.addresspicker" %>
   <%= javascript_include_tag "jquery.ui.core" %>
   <%= javascript_include_tag "alert" %>
   <%= javascript_include_tag "jquery" %>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" %>
+  <%= csrf_meta_tags %>
   
   <script type="text/javascript">
 
