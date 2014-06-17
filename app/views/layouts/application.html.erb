@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head lang="en">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>ThermMonitor</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= stylesheet_link_tag    "bootstrap" %>
-  <%= stylesheet_link_tag    "bootstrap.min" %>
-  <%= stylesheet_link_tag    "bootstrap-theme" %>
-  <%= stylesheet_link_tag    "bootstrap-theme.min" %>
 
+  <meta name="viewport" content="width=divice-width, initial-scale-1.0">
+
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  
   <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-  <%= csrf_meta_tags %>
+
+
   <%= javascript_include_tag "bootstrap" %>
   <%= javascript_include_tag "bootstrap.min" %>
   <%= javascript_include_tag "jquery.ui.addresspicker" %>
+  <%= javascript_include_tag "jquery.ui.core" %>
   <%= javascript_include_tag "alert" %>
   <%= javascript_include_tag "jquery" %>
-  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js" %>
+  
 
 </head>
 <body background="\images\img1.jpg">
@@ -108,7 +111,7 @@
                   <p>energy= <%= @history_thermostats.energy %></p>
                   <p>id thermostat= <%= @history_thermostats.thermostat_id %></p>
                   <audio autoplay='autoplay'>
-                    <source src="\images\alert2.mp3" type="audio/mp3">
+                    <source src="\images\alert.mp3" type="audio/mp3">
                   </audio>
                 </div>
               <%else%>
@@ -119,6 +122,13 @@
             <%end%>
 
           <%end%>    
+
+                <div class="alert alert-success">
+                  <strong>That's all right.</strong>
+                  <hr class="message-inner-separator">
+                  <p id="hour2">. :D</p>
+                </div>
+
       <% else %>
         
       <% end %>
@@ -128,6 +138,7 @@
 <!--========================== :::::ALERTAS::::: ============================================== -->
 
 <div class="container">
+  
 
   <div class="row">
     <div class="col-xs-12 col-md-8">

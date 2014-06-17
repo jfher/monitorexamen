@@ -59,6 +59,9 @@ ThermMonitor::Application.routes.draw do
 
    get '/schedules/destroy/:id' => 'schedules#destroy'  
 
+   get '/thermostats/graphic/:id' => 'thermostats#graphic'
+   
+
   
 
 

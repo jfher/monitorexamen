@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  before_action :set_issue, only: [:show, :edit, :update, :destroy]
+  before_action :set_issue, only: [:show, :edit, :update, :destroy, :cancel]
   before_filter :authenticate_user!
 
   # GET /issues
@@ -18,18 +18,16 @@ class IssuesController < ApplicationController
   # GET /issues/1
   # GET /issues/1.json
   def show
-     issues_permissions
+     #issues_permissions
   end
 
   def cancel
-    @id_issue=params[:id]
-    @issue=Issue.find(@id_issue)
-    @thermostat = Thermostat.find(@issue.thermostat_id)
-    if @issue && @thermostat.user_id == current_user.id
-      @issue.status="Canceled"
-      @issue.save
-    end
-      redirect_to :back
+    @issue.status = "Canceled"
+    @issue.save
+    respond_to do |format|
+        format.html { redirect_to '/', notice: "Canceled"}
+        format.json { render json: {:status => @issue.status} }
+      end
   end
 
   def open

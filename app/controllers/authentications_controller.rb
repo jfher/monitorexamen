@@ -21,19 +21,18 @@ class AuthenticationsController < ApplicationController
      authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
 
      if authentication
-       flash[:notice] = "Logged in Successfully"
-       sign_in_and_redirect User.find(authentication.user_id)
+       authentication_twitter(authentication)
+     
      elsif current_user
-       token = omni['credentials'].token
-       token_secret = omni['credentials'].secret
-
-       current_user.authentications.create!(:provider => omni['provider'], :uid => omni['uid'], :token => token, :token_secret => token_secret)
-       flash[:notice] = "Authentication successful."
-       sign_in_and_redirect current_user
+      currentuser_twitter(omni)
      else
-       user = User.new 
-       user.apply_omniauth(omni)
+      userappli_twitter(omni)
+     end 
+   end
 
+   def userappli_twitter(omni)
+    user = User.new 
+       user.apply_omniauth(omni)
        if user.save
          flash[:notice] = "Logged in."
          sign_in_and_redirect User.find(user.id)             
@@ -42,9 +41,22 @@ class AuthenticationsController < ApplicationController
          flash[:notice] = "You dont have Authentication with Twitter"
          redirect_to '/users/login'
        end
-     end 
    end
    
+   def authentication_twitter(authentication)
+    flash[:notice] = "Logged in Successfully"
+    sign_in_and_redirect User.find(authentication.user_id)
+   end
+
+   def currentuser_twitter(omni)
+    token = omni['credentials'].token
+       token_secret = omni['credentials'].secret
+
+       current_user.authentications.create!(:provider => omni['provider'], :uid => omni['uid'], :token => token, :token_secret => token_secret)
+       flash[:notice] = "Authentication successful."
+       sign_in_and_redirect current_user
+   end
+
    def destroy
      @authentication = Authentication.find(params[:id])
      @authentication.destroy
@@ -57,9 +69,22 @@ class AuthenticationsController < ApplicationController
      authentication = Authentication.find_by_provider_and_uid(omni['provider'], omni['uid'])
 
      if authentication
+      authentication_facebook(authentication)
+     elsif current_user
+      currentuser_facebook(omni)
+     else
+      userappli_facebook(omni)
+     end
+   end
+end
+
+def authentication_facebook(authentication)
        flash[:notice] = "Logged in Successfully"
        sign_in_and_redirect User.find(authentication.user_id)
-     elsif current_user
+end
+
+def currentuser_facebook(omni)
+      
        token = omni['credentials'].token
        token_secret = ""
 
@@ -67,7 +92,9 @@ class AuthenticationsController < ApplicationController
 
        flash[:notice] = "Authentication successful."
        sign_in_and_redirect current_user
-     else
+end
+
+def userappli_facebook(omni)
        user = User.new
        user.email = omni['extra']['raw_info'].email 
 
@@ -82,6 +109,4 @@ class AuthenticationsController < ApplicationController
          #session[:omniauth] = omni.except('extra')
          #redirect_to new_user_registration_path
        end
-     end
-   end
 end

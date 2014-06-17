@@ -20,3 +20,4 @@ Thermostat.new({:serial => "0012", :temperature => "30", :user_id => 3, :energy 
 Thermostat.new({:serial => "00123", :temperature => "50", :user_id => 3, :energy => 20, :location_id => 3}).save(:validate => false)
 Thermostat.new({:serial => "001234", :temperature => "40", :user_id => 3, :energy => 30, :location_id => 4}).save(:validate => false)
 Thermostat.new({:serial => "0012345", :temperature => "10", :user_id => 3, :energy => 40, :location_id => 4}).save(:validate => false)
+
