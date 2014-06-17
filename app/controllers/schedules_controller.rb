@@ -1,39 +1,31 @@
 class SchedulesController < ApplicationController
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
+    before_filter :authenticate_user!
 
   # GET /schedules
   # GET /schedules.json
   def index
-    if user_signed_in?
-      if current_user.role != "admin" 
-           @thermostat=Thermostat.find(params[:thermostat_id])
+      @thermostat=Thermostat.find(params[:thermostat_id])
            @schedules=Schedule.all
-           
-      else
-        redirect_to '/'
+      if current_user.role == "admin" || current_user.id != @thermostat.user_id
+           redirect_to '/'
       end
-    else
-     redirect_to '/users/sign_in'
-   end
  end
 
   # GET /schedules/1
   # GET /schedules/1.json
   def show
-    if user_signed_in?
-      if current_user.role == 'admin' 
+    @schedule=Schedule.find(params[:id])
+    @thermostat=Thermostat.find(@schedule.thermostat_id)
+      if current_user.role == 'admin' || current_user.id != @thermostat.user_id
       redirect_to '/'
       end
-    else
-  redirect_to '/users/sign_in'
-  end
 end
 
   # GET /schedules/new
   def new
     @therm_id= params[:thermostat_id]
     @therm_id=@therm_id.to_i
-    if user_signed_in?
       if current_user.role != 'admin'
     @schedule = Schedule.new
     @schedule.thermostat_id=@therm_id
@@ -41,19 +33,14 @@ end
   else
     redirect_to '/'
   end
-else
-  redirect_to '/users/sign_in'
-  end
 end
   # GET /schedules/1/edit
   def edit
-    if user_signed_in?
-      if current_user.role == 'admin'
+    @schedule=Schedule.find(params[:id])
+    @thermostat=Thermostat.find(@schedule.thermostat_id)
+      if current_user.role == 'admin' || current_user.id != @thermostat.user_id
       redirect_to '/'
       end
-    else
-  redirect_to '/users/sign_in'
-  end
   end
 
   # POST /schedules
@@ -91,6 +78,11 @@ end
   # DELETE /schedules/1
   # DELETE /schedules/1.json
   def destroy
+    @schedule=Schedule.find(params[:id])
+    @thermostat=Thermostat.find(@schedule.thermostat_id)
+      if current_user.role == 'admin' || current_user.id != @thermostat.user_id
+      redirect_to '/'
+      end
     @schedule.destroy
     
     redirect_to '/'

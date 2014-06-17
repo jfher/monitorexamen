@@ -1,6 +1,12 @@
 class AuthenticationsController < ApplicationController
+   before_filter :authenticate_user!
+
   def index
+    if current_user.role!='admin'
     @authentications = current_user.authentications.all
+    else
+    redirect_to '/'
+  end
   end
   
   def home
