@@ -24,7 +24,6 @@ class ReviewsController < ApplicationController
     end
     @review.save
   end
-
   # GET /reviews/new
   def new
     @review = Review.new
