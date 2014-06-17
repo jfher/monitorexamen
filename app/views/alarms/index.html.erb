@@ -14,7 +14,7 @@
   <tbody>
     <% @alarms.each do |alarm| %>
       <tr>
-        <td><%= alarm.range_number %></td>
+        <td><%= alarm.number_range %></td>
         <td><%= alarm.thermostat_id %></td>
         <td><%= link_to 'Show', alarm %></td>
         <td><%= link_to 'Edit', edit_alarm_path(alarm) %></td>

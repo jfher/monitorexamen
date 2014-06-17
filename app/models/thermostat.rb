@@ -1,4 +1,4 @@
-class Thermostat < ActiveRecord::Base
+class Thermostat < ActiveRecord::Base #modelo del termostato
 	belongs_to :user
 	belongs_to :location
 	has_many :history_thermostats

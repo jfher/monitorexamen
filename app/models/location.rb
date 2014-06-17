@@ -1,4 +1,4 @@
-class Location < ActiveRecord::Base
+class Location < ActiveRecord::Base #modelo locacion
  belongs_to :User
  has_many :thermostats
  geocoded_by :address

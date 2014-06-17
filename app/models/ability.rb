@@ -1,4 +1,4 @@
-class Ability
+class Ability #clase para inicializar permisos
   include CanCan::Ability
 
   def initialize(user)

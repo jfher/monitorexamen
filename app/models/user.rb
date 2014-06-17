@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ActiveRecord::Base #modelo del usuario
   # Include default devise modules. Others available are:auta
   # :confirmable, :lockable, :timeoutable and :omniauthable
   before_create :begin_usu
