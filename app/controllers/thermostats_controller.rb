@@ -217,6 +217,8 @@ end
     respond_to do |format|
       if @thermostat.update(thermostat_params)
         @thermostat.default_temperature=@thermostat.temperature
+    @thermostat.save
+        
         format.html { redirect_to @thermostat, notice: 'Thermostat was successfully updated.' }
         format.json { head :no_content }
       else
@@ -248,6 +250,6 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thermostat_params
-      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy, :user_id, :location_id)
+      params.require(:thermostat).permit(:serial, :temperature, :humidity, :energy, :user_id, :location_id, :default_temperature)
     end
 end

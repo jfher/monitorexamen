@@ -1,19 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Max:</strong>
-  <%= @alarm.max %>
+  <strong>Number Range:</strong>
+  <%= @alarm.number_range %>
 </p>
 
 <p>
-  <strong>Min:</strong>
-  <%= @alarm.min %>
+  <strong>Thermostat id:</strong>
+  <%= @alarm.thermostat_id %>
 </p>
 
-<p>
-  <strong>Time:</strong>
-  <%= @alarm.time %>
-</p>
+
 
 <%= link_to 'Edit', edit_alarm_path(@alarm) %> |
 <%= link_to 'Back', home_path %>
