@@ -38,7 +38,7 @@ class HistoryThermostatsController < ApplicationController #controlador del hist
   
   # POST /history_thermostats
   # POST /history_thermostats.json
-  def create
+  def create        #aqui esta la api de json
     @history_thermostat = HistoryThermostat.new(history_thermostat_params)
     @serial=params[:serial]
     @therm=Thermostat.find_by_serial(@serial)
@@ -59,8 +59,12 @@ class HistoryThermostatsController < ApplicationController #controlador del hist
 
  def verifyhistory_create(history_thermostat,therm)
       respond_to do |format|
-      if history_thermostat.save
-        msg = { :status => "ok", :temperature => therm.temperature }
+      if history_thermostat.saves
+        @s26= Schedule.where(:thermostat_id => therm.id , :day_week => @days , :day_time => "6:00 pm a 12:00 am" ).last
+        if @s26==nil
+        @s26=therm.default_temperature
+        end
+        msg = { :status => "ok", :temperature => @s26 }
         format.json  { render :json => msg }
       else
          msg_error = { :error => "Error while trying to save"}
