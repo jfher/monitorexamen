@@ -31,6 +31,10 @@
           <%= f.collection_select(:location_id, Location.where(:user_id => current_user.id), :id, :name, {:required => "required"}, :class => "textboxgrade" ) %>
         </div>
         <br>
+        <div class="text_info">
+          <%= f.label :'Please select the model for this thermostat'%><br>
+          <%= f.collection_select(:modelo_id, Modelo.all, :id, :name, {:required => "required"}, :class => "textboxgrade" ) %>
+        </div>
         <div>
           <button type="submit" class="btn btn-success">Submit</button>
         </div>

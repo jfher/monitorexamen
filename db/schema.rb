@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617021733) do
+ActiveRecord::Schema.define(version: 20140617171848) do
 
   create_table "alarms", force: true do |t|
     t.datetime "created_at"
@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 20140617021733) do
 
   add_index "locations", ["user_id"], name: "index_locations_on_user_id"
 
+  create_table "modelos", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "schedules", force: true do |t|
     t.string   "day_week"
     t.string   "day_time"
@@ -89,9 +95,11 @@ ActiveRecord::Schema.define(version: 20140617021733) do
     t.integer  "energy"
     t.integer  "location_id"
     t.integer  "default_temperature"
+    t.integer  "modelo_id"
   end
 
   add_index "thermostats", ["location_id"], name: "index_thermostats_on_location_id"
+  add_index "thermostats", ["modelo_id"], name: "index_thermostats_on_modelo_id"
   add_index "thermostats", ["user_id"], name: "index_thermostats_on_user_id"
 
   create_table "users", force: true do |t|

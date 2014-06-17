@@ -19,6 +19,7 @@
         <th>Temperature</th>
         <th>Humidity</th>
         <th>Energy</th>
+        <th>Model</th>
         
         <th></th>
         <th></th>
@@ -37,16 +38,20 @@
         <tr>
            <% if current_user.nil? ==false %>
           <% if current_user.id == thermostat.user_id  && @location.id == thermostat.location_id%>
+          <% @modname = Modelo.find_by(id: thermostat.modelo_id.to_i)%>
           <%if thermostat.history_thermostats.last != nil%>
              <td><%= thermostat.serial %></td>
              <td><%= thermostat.history_thermostats.last.temperature %></td>
              <td><%= thermostat.history_thermostats.last.humidity%></td>
              <td><%= thermostat.history_thermostats.last.energy %></td>
+             <td><%= @modname.name%></td>
           <%else%>
              <td><%= thermostat.serial %></td>
              <td><%= thermostat.temperature %></td>
              <td><%= thermostat.humidity%></td>
              <td><%= thermostat.energy %></td>
+             <td><%= @modname.name%></td>
+             <td></td>
           <%end%>
           <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default">Show</a></td>
           <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-default">Edit</a></td>

@@ -1,5 +1,7 @@
 ThermMonitor::Application.routes.draw do
 
+  resources :modelos
+
   resources :authentications
   devise_for :users, path_names: {sign_in: "login"},
                         controllers: {omniauth_callbacks: "authentications", registrations: "registrations"}

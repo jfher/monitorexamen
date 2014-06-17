@@ -1,6 +1,8 @@
 <center><h1><b> Admin view</b></h1></center>  
 <a href= "/users/create_user" class="btn btn-success"><b>Create User</b></a>
 <a href="<%= report_thermostat_path %> " class="btn btn-success active"><b>Report</b></a>
+<a href="/modelos" class="btn btn-success"><b>Therm Models</b></a>
+
 <%= form_tag '/admi', :method => 'get' do %>
     <div class= "field">
       <h3 class = "tex-info"> <%= label_tag "Search"%></h3><br>
@@ -69,6 +71,7 @@
         <td><b>Temperature</b> </td>
         <td><b>Humidity</b> </td>
         <td><b>Energy</b></td>
+        <td><b>Model</b></td>
         <td><b>Options</b></td>
 
           <th></th>
@@ -81,11 +84,13 @@
           <tr>
             <td><%= thermostat.user_id %></td>
             <% @users=User.find(thermostat.user_id) %>
+            <% @modname = Modelo.find_by(id: thermostat.modelo_id.to_i)%>
             <td><%= @users.email %></td>  
             <td><%= thermostat.serial %></td>
             <td><%= thermostat.temperature %></td>
             <td><%= thermostat.humidity %></td>
             <td><%= thermostat.energy %></td>
+            <td><%= @modname.name%></td>
             <td><a href="/thermostats/<%= thermostat.id %>" class="btn btn-default"><b>Show</b></a></td>
             <td><a href="<%= edit_thermostat_path(thermostat) %>" class="btn btn-primary"><b>Edit</b></a></td>
             <td><a href="/thermostats/destroy/<%= thermostat.id %>" class="btn btn-danger"><b>Delete</b></a></td>
