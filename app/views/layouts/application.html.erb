@@ -125,15 +125,26 @@
           <% @thermostats = Thermostat.where( :user_id => current_user.id) %> <!--Los termostatos del usuario-->
 
           <% @thermostats.each do |thermostat|%>
-            <% @schedule= Schedule.where(:thermostat_id => thermostat.id, :day_week =>@dia).last %><!--Schedules del termostato-->           
+
+            <%if @hora < 6 %>
+              <% @schedule= Schedule.where(:thermostat_id => thermostat.id, :day_week =>@dia, :day_time => "12:00 am - 6:00 am").last %><!--Schedules del termostato-->           
+            <%elsif @hora < 12 %>
+              <% @schedule= Schedule.where(:thermostat_id => thermostat.id, :day_week =>@dia, :day_time => "6:00 am - 12:00 pm").last %><!--Schedules del termostato-->           
+            <%elsif @hora < 18 %>
+              <% @schedule= Schedule.where(:thermostat_id => thermostat.id, :day_week =>@dia, :day_time => "12:00 pm - 6:00 pm").last %><!--Schedules del termostato-->           
+            <%elsif @hora < 23 %>
+              <% @schedule= Schedule.where(:thermostat_id => thermostat.id, :day_week =>@dia, :day_time => "6:00 pm - 12:00 am").last %><!--Schedules del termostato-->
+            <%end%>
+            
             <% @history_thermostats= HistoryThermostat.where(:thermostat_id => thermostat.id).last %><!--Ultimo Historial del termostato-->
             <% if Schedule.where(:thermostat_id => thermostat.id, :day_week =>@dia).length() > 0 && HistoryThermostat.where(:thermostat_id => thermostat.id).length() > 0 %>
-
-              <% if @schedule.temperature.to_i > @history_thermostats.temperature.to_i %>
-                <% @valor = @schedule.temperature.to_i - @history_thermostats.temperature.to_i %>
-              <%else%>
-                <% @valor = @history_thermostats.temperature.to_i - @schedule.temperature.to_i %>
-              <%end%>      
+              <% if @schedule != nil %>
+                <% if @schedule.temperature.to_i > @history_thermostats.temperature.to_i  %>
+                  <% @valor = @schedule.temperature.to_i - @history_thermostats.temperature.to_i %>
+                <%else%>
+                  <% @valor = @history_thermostats.temperature.to_i - @schedule.temperature.to_i %>
+                <%end%>      
+              <%end%>  
             <%end%> 
 
                <!--auidsadasdad-->
@@ -144,11 +155,13 @@
             
 
               <% @alarm = Alarm.where(:thermostat_id => thermostat.id).last %>
+              <!--
               <hgroup>
                 <h1>@alarm.id::<%= @alarm.id %></h1>
                 <h6>@alarm.thermostat_id::<%= @alarm.thermostat_id %></h6>
                 <h6>@valor::<%= @valor %></h6>
               </hgroup>
+              -->
               <% if Alarm.where(:thermostat_id => thermostat.id).length() != 0 && @valor != nil && @schedule != nil %>
                 <!--Aqui code 01-->
                 <% if @valor > @alarm.number_range.to_i %>
