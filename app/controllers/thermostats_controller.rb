@@ -217,6 +217,8 @@ end
     respond_to do |format|
       if @thermostat.update(thermostat_params)
         @thermostat.default_temperature=@thermostat.temperature
+    @thermostat.save
+        
         format.html { redirect_to @thermostat, notice: 'Thermostat was successfully updated.' }
         format.json { head :no_content }
       else

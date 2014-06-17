@@ -48,28 +48,41 @@ class HistoryThermostatsController < ApplicationController
     @user=User.find_by_email(@mail)
     @userpass=User.where(:password => 'params[:pass]')
     if @user && @userpass && @therm.user.id == @user.id
-    respond_to do |format|
-      if @history_thermostat.save
-        msg = { :status => "ok", :temperature => @therm.temperature }
+      verifyhistory_create(@history_thermostat,@therm)
+   else
+    mensaje3
+   end
+ else
+  mensaje4
+ end
+ end
+
+ def verifyhistory_create(history_thermostat,therm)
+      respond_to do |format|
+      if history_thermostat.save
+        msg = { :status => "ok", :temperature => therm.temperature }
         format.json  { render :json => msg }
       else
+        mensaje2
          msg2 = { :error => "Error while trying to save"}
         format.json  { render :json => msg2 }
       end
     end
-   else
+end
+
+  def mensaje3
      respond_to do |format|
   msg3 = { :error => "Error thermostat does not belong to the user"}
         format.json  { render :json => msg3 }
-      end
-   end
- else
+  end
+end
+
+def mensaje4
    respond_to do |format|
    msg4 = { :error => "Error the thermostat does not exist"}
         format.json  { render :json => msg4 }
       end
- end
-  end
+end
 
   # PATCH/PUT /history_thermostats/1
   # PATCH/PUT /history_thermostats/1.json
