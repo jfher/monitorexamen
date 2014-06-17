@@ -1,4 +1,4 @@
-class HistoryThermostatsController < ApplicationController
+class HistoryThermostatsController < ApplicationController #controlador del historial de las temperaturas
   before_action :set_history_thermostat, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token
   before_filter :authenticate_user!

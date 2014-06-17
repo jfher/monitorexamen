@@ -1,4 +1,4 @@
-class IssuesController < ApplicationController
+class IssuesController < ApplicationController #controlador de los problemas del termostato
   before_action :set_issue, only: [:show, :edit, :update, :destroy, :cancel]
   before_filter :authenticate_user!
 

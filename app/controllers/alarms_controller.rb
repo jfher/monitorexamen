@@ -1,4 +1,4 @@
-class AlarmsController < ApplicationController
+class AlarmsController < ApplicationController #controlador del modelo alarma
   before_action :set_alarm, only: [:show, :edit, :update, :destroy]
 
   # GET /alarms

@@ -1,4 +1,4 @@
-class LocationsController < ApplicationController
+class LocationsController < ApplicationController #controlador de locaciones
   before_action :set_location, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, :except =>  [:index, :about, :contact, :edit, :update]
   skip_before_filter :verify_authenticity_token

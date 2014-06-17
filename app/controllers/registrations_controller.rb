@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+class RegistrationsController < Devise::RegistrationsController #controlador del registro para las apis face y twitter
   
   def create
     super

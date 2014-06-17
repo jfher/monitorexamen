@@ -1,4 +1,4 @@
-class AuthenticationsController < ApplicationController
+class AuthenticationsController < ApplicationController #controlador para las autenticaciones por face y twitter
    before_filter :authenticate_user!
 
   def index
