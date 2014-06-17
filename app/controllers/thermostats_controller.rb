@@ -49,13 +49,6 @@ end
   end
   end
 
-  def if_current_admi
-    if current_user.role == 'admin'
-      return true
-    else
-      return false
-  end
-
   def remove
      if if_current_admi
     @user=User.find(params[:id])
@@ -102,7 +95,7 @@ end
     if  user_signed_in?
        redirect_to '/home'
     end
-  end
+    end
   end
 
   def create_user
@@ -150,7 +143,14 @@ end
     end
   end
 
-   
+   def if_current_admi
+    if current_user.role == 'admin'
+      return true
+    else
+      return false
+  end
+end
+  
 
   # GET /thermostats/1
   # GET /thermostats/1.json
