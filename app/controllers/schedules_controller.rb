@@ -1,4 +1,4 @@
-class SchedulesController < ApplicationController
+class SchedulesController < ApplicationController #controlador de las configuraciones de temperaturas
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
     before_filter :authenticate_user!
 
